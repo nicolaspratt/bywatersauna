@@ -1019,17 +1019,21 @@
 
         // Enhanced smooth parallax effect for hero
         let heroParallaxTicking = false;
+        let animationsComplete = false;
+
+        // Mark animations as complete after initial load
+        setTimeout(() => {
+            animationsComplete = true;
+        }, 1200);
+
         window.addEventListener('scroll', () => {
-            if (!heroParallaxTicking) {
+            if (!heroParallaxTicking && animationsComplete) {
                 window.requestAnimationFrame(() => {
                     const scrolled = window.scrollY;
                     const hero = document.querySelector('.hero');
                     if (hero && scrolled < window.innerHeight) {
-                        // Only apply parallax after initial animations complete
-                        setTimeout(() => {
-                            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                            hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
-                        }, 1200);
+                        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                        hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
                     }
                     heroParallaxTicking = false;
                 });
