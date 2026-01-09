@@ -338,13 +338,33 @@
             background: #f8f9fa;
             padding: 40px 30px;
             border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid transparent;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5555, #d4c4a8);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             border-color: #d4c4a8;
         }
 
@@ -424,6 +444,15 @@
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #d4c4a8;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pin-info:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(8px);
+            border-left-width: 6px;
         }
 
         .pin-info h4 {
@@ -482,12 +511,97 @@
             font-size: 15px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Stacked Card Effect */
+        .stacked-section {
+            position: sticky;
+            top: 0;
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+        }
+
+        .service-card-wrapper {
+            perspective: 1000px;
+        }
+
+        /* Enhanced shadows and depth */
+        .service-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Glassmorphism effect for location cards */
+        .pin-info {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Mobile Navigation Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: #2d5555;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) {
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+                width: 240px;
+            }
+
+            .main-content {
+                margin-left: 260px;
+            }
+
+            section {
+                padding: 60px 40px;
+            }
+
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .sidebar {
+                width: 280px;
+                height: 100vh;
+                left: -280px;
+                top: 0;
+                margin: 0;
+                border-radius: 0;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                animation: none;
+            }
+
+            .sidebar.mobile-open {
+                left: 0;
             }
 
             .main-content {
@@ -495,7 +609,13 @@
             }
 
             section {
-                padding: 60px 30px;
+                padding: 60px 24px;
+                min-height: auto;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 100px 24px 60px;
             }
 
             .hero h1 {
@@ -505,22 +625,121 @@
             .section-title {
                 font-size: 36px;
             }
+
+            .hero .tagline {
+                font-size: 16px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 30px 24px;
+            }
+
+            .map-pins {
+                grid-template-columns: 1fr;
+                padding: 0 24px 24px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            #map {
+                height: 400px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 30px;
+            }
+
+            .contact-info {
+                font-size: 11px;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+                left: -100%;
+            }
+        }
+
+        /* Mobile overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-overlay {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        ☰
+    </button>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="logo">
             Bywater
             <small>Seattle</small>
         </div>
         <nav class="nav">
-            <a href="#booking" class="active">Booking</a>
-            <a href="#who-we-are">Who We Are</a>
-            <a href="#services">Services</a>
-            <a href="#location">Location</a>
-            <a href="#how-it-works">How It Works</a>
+            <a href="#booking" class="active nav-link">Booking</a>
+            <a href="#who-we-are" class="nav-link">Who We Are</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#location" class="nav-link">Location</a>
+            <a href="#how-it-works" class="nav-link">How It Works</a>
         </nav>
         <div class="contact-info">
             <p><strong>Contact us</strong></p>
@@ -788,6 +1007,83 @@
         }, { threshold: 0.3 });
 
         mapObserver.observe(document.getElementById('map'));
+
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function toggleMobileMenu() {
+            sidebar.classList.toggle('mobile-open');
+            mobileOverlay.classList.toggle('active');
+            mobileMenuToggle.textContent = sidebar.classList.contains('mobile-open') ? '✕' : '☰';
+        }
+
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when nav link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Enhanced smooth parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+            }
+        });
+
+        // Add intersection observer for stacked card effect
+        const stackedObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px'
+        });
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            stackedObserver.observe(card);
+        });
+
+        // Add touch-friendly hover effects for mobile
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.service-card, .pin-info, .step').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = this.style.transform || 'translateY(-4px)';
+                });
+                element.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+
+        // Prevent scroll on body when mobile menu is open
+        const observer = new MutationObserver(() => {
+            if (sidebar.classList.contains('mobile-open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        observer.observe(sidebar, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
     </script>
 </body>
 </html>
