@@ -523,21 +523,6 @@
             perspective: 1000px;
         }
 
-        /* Enhanced shadows and depth */
-        .service-card {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .service-card:hover {
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Glassmorphism effect for location cards */
-        .pin-info {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
         /* Mobile Navigation Toggle */
         .mobile-menu-toggle {
             display: none;
@@ -1033,12 +1018,22 @@
         });
 
         // Enhanced smooth parallax effect for hero
+        let heroParallaxTicking = false;
         window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-            const hero = document.querySelector('.hero');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+            if (!heroParallaxTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.scrollY;
+                    const hero = document.querySelector('.hero');
+                    if (hero && scrolled < window.innerHeight) {
+                        // Only apply parallax after initial animations complete
+                        setTimeout(() => {
+                            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                            hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+                        }, 1200);
+                    }
+                    heroParallaxTicking = false;
+                });
+                heroParallaxTicking = true;
             }
         });
 
@@ -1072,7 +1067,7 @@
         }
 
         // Prevent scroll on body when mobile menu is open
-        const observer = new MutationObserver(() => {
+        const menuObserver = new MutationObserver(() => {
             if (sidebar.classList.contains('mobile-open')) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -1080,7 +1075,7 @@
             }
         });
 
-        observer.observe(sidebar, {
+        menuObserver.observe(sidebar, {
             attributes: true,
             attributeFilter: ['class']
         });
