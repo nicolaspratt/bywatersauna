@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bywater Sauna - Seattle's Social Third Space</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * {
             margin: 0;
@@ -15,7 +16,67 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #1a1a1a;
+            overflow-x: hidden;
         }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
 
         /* Sidebar */
         .sidebar {
@@ -31,6 +92,8 @@
             display: flex;
             flex-direction: column;
             border-radius: 16px;
+            animation: slideInLeft 0.8s ease-out;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
@@ -117,7 +180,7 @@
             border-radius: 4px;
             text-decoration: none;
             font-weight: 700;
-            transition: background 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -126,6 +189,12 @@
 
         .btn-primary:hover {
             background: #c9b59a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 196, 168, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .btn-secondary {
@@ -137,7 +206,7 @@
             border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 13px;
@@ -146,6 +215,12 @@
         .btn-secondary:hover {
             border-color: #d4c4a8;
             color: #d4c4a8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 196, 168, 0.2);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
         }
 
         /* Main Content */
@@ -263,11 +338,14 @@
             background: #f8f9fa;
             padding: 40px 30px;
             border-radius: 12px;
-            transition: transform 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #d4c4a8;
         }
 
         .service-card h3 {
@@ -290,10 +368,43 @@
         .map-container {
             background: #1a3a5a;
             border-radius: 12px;
-            padding: 40px;
+            padding: 0;
             margin-top: 40px;
             position: relative;
             min-height: 500px;
+            overflow: hidden;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: #2d5555;
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .leaflet-popup-content {
+            margin: 16px;
+        }
+
+        .leaflet-popup-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: #d4c4a8;
+        }
+
+        .leaflet-popup-content p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .leaflet-popup-tip {
+            background: #2d5555;
         }
 
         .map-placeholder {
@@ -353,6 +464,12 @@
             font-size: 24px;
             font-weight: 700;
             margin: 0 auto 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 20px rgba(45, 85, 85, 0.3);
         }
 
         .step h3 {
@@ -424,11 +541,11 @@
     <main class="main-content">
         <!-- Hero / Booking -->
         <section id="booking" class="hero">
-            <p class="hero-label">Bywater Sauna</p>
-            <h1>Bywater<br>Seattle's Social<br>Third Space</h1>
-            <p class="subtitle">— Bathhouse & Wellness —</p>
-            <p class="tagline">We're not an ordinary spa. We guide you through an exhilarating thermal experience that combines ancient wellness rituals and authentic community. <strong>Bywater is not meant to be luxury, it's meant to be social</strong> — leaving you feeling de-stressed and reborn.</p>
-            <div class="hero-ctas">
+            <p class="hero-label" style="animation: fadeIn 0.8s ease-out 0.2s both;">Bywater Sauna</p>
+            <h1 style="animation: fadeInUp 0.8s ease-out 0.4s both;">Bywater<br>Seattle's Social<br>Third Space</h1>
+            <p class="subtitle" style="animation: fadeInUp 0.8s ease-out 0.6s both;">— Bathhouse & Wellness —</p>
+            <p class="tagline" style="animation: fadeInUp 0.8s ease-out 0.8s both;">We're not an ordinary spa. We guide you through an exhilarating thermal experience that combines ancient wellness rituals and authentic community. <strong>Bywater is not meant to be luxury, it's meant to be social</strong> — leaving you feeling de-stressed and reborn.</p>
+            <div class="hero-ctas" style="animation: fadeInUp 0.8s ease-out 1s both;">
                 <a href="#services" class="btn-primary">Sauna Packages →</a>
                 <a href="#location" class="btn-secondary">Our Locations</a>
             </div>
@@ -436,8 +553,8 @@
 
         <!-- Who We Are -->
         <section id="who-we-are" class="who-we-are">
-            <h2 class="section-title">Who We Are</h2>
-            <div class="section-content">
+            <h2 class="section-title animate-on-scroll">Who We Are</h2>
+            <div class="section-content animate-on-scroll">
                 <p style="margin-bottom: 24px;">
                     Bywater brings the ancient ritual of sauna to Seattle's most beautiful waterfront locations.
                     We're building <span class="highlight">a third space where strangers become neighbors</span>,
@@ -456,24 +573,24 @@
 
         <!-- Services -->
         <section id="services" class="services">
-            <h2 class="section-title">Sessions & Pricing</h2>
+            <h2 class="section-title animate-on-scroll">Sessions & Pricing</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card animate-on-scroll stagger-1">
                     <h3>🔥 Public Sessions</h3>
                     <p>60-75 minute sessions at Seattle's best beaches. Book a spot online and cycle between heat and cold at your own pace.</p>
                     <p style="margin-top: 16px;"><strong>$35 Weekdays / $40 Weekends</strong></p>
                 </div>
-                <div class="service-card">
+                <div class="service-card animate-on-scroll stagger-2">
                     <h3>👥 Private Sessions</h3>
                     <p>Reserve the entire sauna for your group, team gathering, or special event. Perfect for building team culture.</p>
                     <p style="margin-top: 16px;"><strong>Contact for pricing</strong></p>
                 </div>
-                <div class="service-card">
+                <div class="service-card animate-on-scroll stagger-3">
                     <h3>🎟️ Membership</h3>
                     <p>Regular saunagoers save with membership access. Priority booking and member benefits included.</p>
                     <p style="margin-top: 16px;"><strong>Flexible options available</strong></p>
                 </div>
-                <div class="service-card">
+                <div class="service-card animate-on-scroll stagger-4">
                     <h3>🎁 Gift Certificates</h3>
                     <p>Share the Bywater experience. Gift certificates available for sessions at any of our waterfront locations.</p>
                     <p style="margin-top: 16px;"><strong>Perfect for any occasion</strong></p>
@@ -483,31 +600,28 @@
 
         <!-- Location -->
         <section id="location" class="location">
-            <h2 class="section-title">Our Locations</h2>
-            <p class="section-content" style="color: rgba(255,255,255,0.9);">
+            <h2 class="section-title animate-on-scroll">Our Locations</h2>
+            <p class="section-content animate-on-scroll" style="color: rgba(255,255,255,0.9);">
                 Four waterfront locations across Seattle. Beach access, stunning views, and the perfect setting for hot-cold cycles.
             </p>
 
             <div class="map-container">
-                <div class="map-placeholder">
-                    <p style="opacity: 0.7; margin-bottom: 20px;">[Interactive Map showing 4 Bywater locations across Seattle]</p>
-                    <p style="font-size: 14px; opacity: 0.5;">Map visualization to be implemented in Framer</p>
-                </div>
+                <div id="map"></div>
 
-                <div class="map-pins">
-                    <div class="pin-info">
+                <div class="map-pins animate-on-scroll" style="margin-top: 40px; padding: 0 40px 40px;">
+                    <div class="pin-info animate-on-scroll stagger-1">
                         <h4>📍 Golden Gardens</h4>
                         <p>South of the Bathhouse, just before the traffic circle. Stunning Puget Sound views.</p>
                     </div>
-                    <div class="pin-info">
+                    <div class="pin-info animate-on-scroll stagger-2">
                         <h4>📍 Alki Beach</h4>
                         <p>On the boardwalk, slightly west of the Alki Beach Bathhouse. West Seattle's iconic beach.</p>
                     </div>
-                    <div class="pin-info">
+                    <div class="pin-info animate-on-scroll stagger-3">
                         <h4>📍 Old Stove (Ballard)</h4>
                         <p>Old Stove's Gardens Location on NW 49th St. East side of the outdoor beer garden.</p>
                     </div>
-                    <div class="pin-info">
+                    <div class="pin-info animate-on-scroll stagger-4">
                         <h4>📍 Leschi</h4>
                         <p>Dockside on Lake Washington off Lakeside Ave. Parking available at public lot next to BluWater Bistro.</p>
                     </div>
@@ -517,35 +631,35 @@
 
         <!-- How It Works -->
         <section id="how-it-works" class="how-it-works">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-content" style="max-width: 700px; margin: 0 auto 60px; text-align: center; color: #555;">
+            <h2 class="section-title animate-on-scroll">How It Works</h2>
+            <p class="section-content animate-on-scroll" style="max-width: 700px; margin: 0 auto 60px; text-align: center; color: #555;">
                 Sessions last 60-75 minutes. You control your own experience, cycling between heat and cold at your own pace.
             </p>
 
             <div class="steps">
-                <div class="step">
+                <div class="step animate-on-scroll stagger-1">
                     <div class="step-number">1</div>
                     <h3>Book a Session</h3>
                     <p>Reserve your spot online. Choose your location and time. Limited spots per session—book like a workout class.</p>
                 </div>
-                <div class="step">
+                <div class="step animate-on-scroll stagger-2">
                     <div class="step-number">2</div>
                     <h3>Heat Up 🔥</h3>
                     <p>Take a seat in our saunas. Step out anytime, but take a break after 15-20 consecutive minutes.</p>
                 </div>
-                <div class="step">
+                <div class="step animate-on-scroll stagger-3">
                     <div class="step-number">3</div>
                     <h3>Cool Down ❄️</h3>
                     <p>Dip into the cold water (or enjoy the cool air). Any amount of cold exposure complements sauna use.</p>
                 </div>
-                <div class="step">
+                <div class="step animate-on-scroll stagger-4">
                     <div class="step-number">4</div>
                     <h3>Repeat 🔄</h3>
                     <p>Cycle between hot and cold at your own pace. Start and end on hot or cold—you're the boss.</p>
                 </div>
             </div>
 
-            <div style="margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 12px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div class="animate-on-scroll" style="margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 12px; max-width: 800px; margin-left: auto; margin-right: auto;">
                 <h3 style="font-size: 24px; margin-bottom: 20px; color: #2d5555;">Good to Know</h3>
                 <ul style="list-style: none; padding: 0; color: #555; line-height: 1.8;">
                     <li style="margin-bottom: 12px;">✓ Bring a towel (required to sit on in the sauna)</li>
@@ -559,6 +673,7 @@
         </section>
     </main>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -594,6 +709,85 @@
                 }
             });
         });
+
+        // Scroll animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize map
+        const map = L.map('map', {
+            center: [47.6205, -122.3493], // Seattle center
+            zoom: 11,
+            scrollWheelZoom: false
+        });
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Custom icon
+        const saunaIcon = L.divIcon({
+            className: 'custom-icon',
+            html: '<div style="background: #d4c4a8; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.3);"></div>',
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+        });
+
+        // Locations
+        const locations = [
+            {
+                name: 'Golden Gardens',
+                coords: [47.6884, -122.4034],
+                desc: 'South of the Bathhouse, just before the traffic circle. Stunning Puget Sound views.'
+            },
+            {
+                name: 'Alki Beach',
+                coords: [47.5805, -122.4079],
+                desc: 'On the boardwalk, slightly west of the Alki Beach Bathhouse. West Seattle\'s iconic beach.'
+            },
+            {
+                name: 'Old Stove (Ballard)',
+                coords: [47.6637, -122.3765],
+                desc: 'Old Stove\'s Gardens Location on NW 49th St. East side of the outdoor beer garden.'
+            },
+            {
+                name: 'Leschi',
+                coords: [47.6018, -122.2849],
+                desc: 'Dockside on Lake Washington off Lakeside Ave. Parking at public lot next to BluWater Bistro.'
+            }
+        ];
+
+        locations.forEach(location => {
+            L.marker(location.coords, { icon: saunaIcon })
+                .addTo(map)
+                .bindPopup(`<h3>${location.name}</h3><p>${location.desc}</p>`);
+        });
+
+        // Add subtle animation to map on scroll
+        const mapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    map.invalidateSize();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        mapObserver.observe(document.getElementById('map'));
     </script>
 </body>
 </html>
