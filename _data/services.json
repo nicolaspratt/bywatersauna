@@ -1,0 +1,29 @@
+{
+  "title": "Sessions & Pricing",
+  "items": [
+    {
+      "icon": "🔥",
+      "name": "Public Sessions",
+      "description": "60-75 minute sessions at Seattle's best beaches. Book a spot online and cycle between heat and cold at your own pace.",
+      "price": "$35 Weekdays / $40 Weekends"
+    },
+    {
+      "icon": "👥",
+      "name": "Private Sessions",
+      "description": "Reserve the entire sauna for your group, team gathering, or special event. Perfect for building team culture.",
+      "price": "Contact for pricing"
+    },
+    {
+      "icon": "🎟️",
+      "name": "Membership",
+      "description": "Regular saunagoers save with membership access. Priority booking and member benefits included.",
+      "price": "Flexible options available"
+    },
+    {
+      "icon": "🎁",
+      "name": "Gift Certificates",
+      "description": "Share the Bywater experience. Gift certificates available for sessions at any of our waterfront locations.",
+      "price": "Perfect for any occasion"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "title": "How It Works",
+  "description": "Sessions last 60-75 minutes. You control your own experience, cycling between heat and cold at your own pace.",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Book a Session",
+      "description": "Reserve your spot online. Choose your location and time. Limited spots per session—book like a workout class."
+    },
+    {
+      "number": 2,
+      "title": "Heat Up 🔥",
+      "description": "Take a seat in our saunas. Step out anytime, but take a break after 15-20 consecutive minutes."
+    },
+    {
+      "number": 3,
+      "title": "Cool Down ❄️",
+      "description": "Dip into the cold water (or enjoy the cool air). Any amount of cold exposure complements sauna use."
+    },
+    {
+      "number": 4,
+      "title": "Repeat 🔄",
+      "description": "Cycle between hot and cold at your own pace. Start and end on hot or cold—you're the boss."
+    }
+  ],
+  "good_to_know": [
+    "Bring a towel (required to sit on in the sauna)",
+    "Leave valuables at home—shelves available for essentials",
+    "Rinse off sandy feet before entering",
+    "Close the door quickly to keep the heat in",
+    "Let others know before pouring water on rocks",
+    "Respect your fellow saunamates—Bywater is a shared space"
+  ]
+}
