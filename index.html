@@ -18,8 +18,8 @@
         }
 
         :root {
-            --orange: #FF6833;
-            --orange-light: #FF8C5A;
+            --orange: #ca5e43;
+            --orange-light: #d67a62;
             --sage: #8B9D83;
             --forest: #4A6156;
             --earth: #C7A882;
@@ -512,17 +512,37 @@
             padding: 30px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .location-card::after {
+            content: 'Click for details →';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: var(--orange);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .location-card:hover::after {
+            opacity: 1;
         }
 
         .location-card.active {
             border-color: var(--orange);
-            background: rgba(255, 104, 51, 0.1);
+            background: rgba(202, 94, 67, 0.08);
             transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(202, 94, 67, 0.15);
         }
 
         .location-card:hover {
             border-color: var(--orange);
-            transform: translateX(8px);
+            transform: translateX(8px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(202, 94, 67, 0.2);
         }
 
         .location-header {
@@ -587,44 +607,53 @@
             height: 100%;
         }
 
-        /* Location Sidebar */
+        /* Location Modal */
         .location-sidebar {
             position: fixed;
-            right: -500px;
-            top: 0;
-            width: 480px;
-            height: 100vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
             background: var(--dark-forest);
             z-index: 2000;
             overflow-y: auto;
-            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .location-sidebar.active {
-            right: 0;
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
         }
 
         .sidebar-header {
             position: sticky;
             top: 0;
-            background: var(--forest);
-            padding: 30px;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--dark-forest) 100%);
+            padding: 40px;
             z-index: 10;
+            border-radius: 24px 24px 0 0;
         }
 
         .close-sidebar {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(250, 248, 243, 0.1);
-            border: none;
-            color: var(--warm-white);
-            width: 40px;
-            height: 40px;
+            top: 24px;
+            right: 24px;
+            background: rgba(202, 94, 67, 0.2);
+            border: 2px solid var(--orange);
+            color: var(--orange);
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 20px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -632,8 +661,9 @@
         }
 
         .close-sidebar:hover {
-            background: rgba(250, 248, 243, 0.2);
-            transform: rotate(90deg);
+            background: var(--orange);
+            color: var(--warm-white);
+            transform: rotate(90deg) scale(1.1);
         }
 
         .sidebar-content {
@@ -1094,9 +1124,48 @@
             display: none;
         }
 
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(28, 28, 28, 0.98);
+            z-index: 999;
+            padding: 100px 40px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .mobile-menu a {
+            color: var(--warm-white);
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .nav-links, .nav-ctas {
                 display: none;
+            }
+
+            .mobile-menu {
+                display: block;
             }
 
             .mobile-menu-toggle {
@@ -1104,8 +1173,10 @@
                 background: none;
                 border: none;
                 color: var(--warm-white);
-                font-size: 24px;
+                font-size: 28px;
                 cursor: pointer;
+                z-index: 1000;
+                position: relative;
             }
 
             .hero h1 {
@@ -1133,8 +1204,19 @@
             }
 
             .location-sidebar {
-                width: 100%;
-                right: -100%;
+                width: 95%;
+                max-width: 95%;
+                max-height: 90vh;
+                border-radius: 16px;
+            }
+
+            .sidebar-header {
+                padding: 30px 20px;
+                border-radius: 16px 16px 0 0;
+            }
+
+            .sidebar-content {
+                padding: 20px;
             }
 
             .footer-grid {
@@ -1152,6 +1234,141 @@
         .loading {
             opacity: 0.5;
             pointer-events: none;
+        }
+
+        /* Design Options Panel */
+        .design-options {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark-forest);
+            border: 2px solid rgba(202, 94, 67, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            z-index: 1500;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-width: 320px;
+            transform: translateY(calc(100% + 40px));
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .design-options.active {
+            transform: translateY(0);
+        }
+
+        .design-options-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--orange);
+            color: var(--warm-white);
+            border: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(202, 94, 67, 0.4);
+            z-index: 1501;
+            transition: all 0.3s;
+        }
+
+        .design-options-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 30px rgba(202, 94, 67, 0.6);
+        }
+
+        .design-options h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--orange);
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-group label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(250, 248, 243, 0.6);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 2px solid rgba(139, 157, 131, 0.3);
+            background: rgba(74, 97, 86, 0.1);
+            color: rgba(250, 248, 243, 0.8);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .option-btn.active {
+            border-color: var(--orange);
+            background: rgba(202, 94, 67, 0.15);
+            color: var(--orange);
+        }
+
+        .option-btn:hover {
+            border-color: var(--orange);
+            transform: translateY(-2px);
+        }
+
+        /* Card Style Variations */
+        body.cards-minimal .location-card,
+        body.cards-minimal .ritual-card,
+        body.cards-minimal .pricing-card {
+            background: transparent;
+            border-width: 1px;
+        }
+
+        body.cards-bold .location-card,
+        body.cards-bold .ritual-card,
+        body.cards-bold .pricing-card {
+            border-width: 3px;
+            background: rgba(74, 97, 86, 0.15);
+        }
+
+        /* Button Style Variations */
+        body.buttons-rounded .btn {
+            border-radius: 50px;
+        }
+
+        body.buttons-square .btn {
+            border-radius: 4px;
+        }
+
+        /* Font Size Variations */
+        body.text-large {
+            font-size: 18px;
+        }
+
+        body.text-large h2 {
+            font-size: clamp(48px, 6vw, 72px);
+        }
+
+        body.text-small {
+            font-size: 14px;
+        }
+
+        body.text-small h2 {
+            font-size: clamp(36px, 4vw, 56px);
         }
     </style>
 </head>
@@ -1173,9 +1390,23 @@
                 <a href="#" class="btn btn-outline">Gift Certificates</a>
                 <a href="#pricing" class="btn btn-primary">Book a Session</a>
             </div>
-            <button class="mobile-menu-toggle">☰</button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#how-it-works" class="mobile-menu-link">How It Works</a></li>
+            <li><a href="#locations" class="mobile-menu-link">Locations</a></li>
+            <li><a href="#pricing" class="mobile-menu-link">Pricing</a></li>
+            <li><a href="#faq" class="mobile-menu-link">FAQ</a></li>
+        </ul>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <a href="#" class="btn btn-outline" style="display: block; text-align: center;">Gift Certificates</a>
+            <a href="#pricing" class="btn btn-primary btn-large" style="display: block; text-align: center;">Book a Session</a>
+        </div>
+    </div>
 
     <!-- Hero with Video -->
     <section class="hero">
@@ -1434,6 +1665,39 @@
         </div>
     </footer>
 
+    <!-- Design Options Panel -->
+    <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
+    <div class="design-options" id="designOptions">
+        <h3>🎨 Design Options</h3>
+
+        <div class="option-group">
+            <label>Card Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="cards" data-value="default">Default</button>
+                <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
+                <button class="option-btn" data-option="cards" data-value="bold">Bold</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Button Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
+                <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
+                <button class="option-btn" data-option="buttons" data-value="square">Square</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Text Size</label>
+            <div class="option-buttons">
+                <button class="option-btn" data-option="text" data-value="small">Small</button>
+                <button class="option-btn active" data-option="text" data-value="default">Default</button>
+                <button class="option-btn" data-option="text" data-value="large">Large</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Scroll Animations
@@ -1574,7 +1838,6 @@
                         <div class="location-badge">${location.neighborhood}</div>
                     </div>
                     <h3>${location.name}</h3>
-                    <p>${location.address}</p>
                     <div class="location-tag">≈ ${location.tagline}</div>
                 `;
 
@@ -1585,7 +1848,7 @@
                     // Update map
                     map.setView([location.lat, location.lng], 14);
 
-                    // Open sidebar
+                    // Open modal
                     openLocationSidebar(location);
                 });
 
@@ -1730,7 +1993,7 @@
         function addMapMarkers(locations) {
             const icon = L.divIcon({
                 className: 'custom-icon',
-                html: '<div style="background: #FF6833; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3;"></div>',
+                html: '<div style="background: #ca5e43; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3;"></div>',
                 iconSize: [24, 24],
                 iconAnchor: [12, 12]
             });
@@ -1739,6 +2002,31 @@
                 L.marker([loc.lat, loc.lng], { icon })
                     .addTo(map)
                     .bindPopup(`<strong>${loc.name}</strong><br>${loc.tagline}`);
+            });
+        }
+
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isActive = mobileMenu.classList.contains('active');
+                if (isActive) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                } else {
+                    mobileMenu.classList.add('active');
+                    mobileMenuToggle.textContent = '✕';
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
             });
         }
 
@@ -1786,6 +2074,46 @@
                         document.location.href = "/admin/";
                     });
                 }
+            });
+        }
+
+        // Design Options functionality
+        const designOptionsToggle = document.getElementById('designOptionsToggle');
+        const designOptions = document.getElementById('designOptions');
+
+        if (designOptionsToggle && designOptions) {
+            designOptionsToggle.addEventListener('click', () => {
+                const isActive = designOptions.classList.contains('active');
+                designOptions.classList.toggle('active');
+                designOptionsToggle.textContent = isActive ? '⚙️' : '✕';
+            });
+
+            // Handle option changes
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const option = this.dataset.option;
+                    const value = this.dataset.value;
+
+                    // Remove active class from siblings
+                    this.parentElement.querySelectorAll('.option-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    // Remove all related classes from body
+                    document.body.classList.forEach(cls => {
+                        if (cls.startsWith(option + '-')) {
+                            document.body.classList.remove(cls);
+                        }
+                    });
+
+                    // Add new class if not default
+                    if (value !== 'default') {
+                        document.body.classList.add(`${option}-${value}`);
+                    }
+                });
             });
         }
     </script>
