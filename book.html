@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Session - Bywater Sauna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #ca5e43;
+            --orange-light: #d67a62;
+            --sage: #8B9D83;
+            --forest: #4A6156;
+            --dark-forest: #2D3E35;
+            --charcoal: #1C1C1C;
+            --warm-white: #FAF8F3;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(139, 157, 131, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--warm-white);
+            text-decoration: none;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--warm-white);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(250, 248, 243, 0.8);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-white);
+        }
+
+        main {
+            padding-top: 120px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 80px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: var(--orange);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: clamp(48px, 6vw, 72px);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .intro-text {
+            font-size: 20px;
+            color: rgba(250, 248, 243, 0.8);
+            line-height: 1.8;
+        }
+
+        .booking-info {
+            background: rgba(74, 97, 86, 0.1);
+            border: 2px solid rgba(139, 157, 131, 0.2);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+        }
+
+        .booking-info h2 {
+            font-size: 36px;
+            margin-bottom: 24px;
+            color: var(--orange);
+        }
+
+        .booking-info p {
+            color: rgba(250, 248, 243, 0.8);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .booking-info ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .booking-info li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(250, 248, 243, 0.9);
+        }
+
+        .booking-info li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: var(--orange);
+            color: var(--warm-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .info-box {
+            background: rgba(202, 94, 67, 0.1);
+            border-left: 4px solid var(--orange);
+            padding: 24px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .info-box h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--orange);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--warm-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(202, 94, 67, 0.5);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--sage);
+            color: var(--sage);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--sage);
+            color: var(--charcoal);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--charcoal);
+            padding: 40px;
+            border-top: 1px solid rgba(139, 157, 131, 0.1);
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(250, 248, 243, 0.4);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .booking-info {
+                padding: 30px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            main {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-circle">B</div>
+                <span>Bywater</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#locations">Locations</a></li>
+                <li><a href="book.html">Book</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <p class="page-label">RESERVE YOUR SPOT</p>
+            <h1>Book a Session</h1>
+            <p class="intro-text">
+                Ready to experience the ancient ritual of contrast therapy? Reserve your spot online - it's as easy as signing up for a class.
+            </p>
+        </div>
+
+        <div class="booking-info">
+            <h2>How It Works</h2>
+            <p>Booking a Bywater session is simple:</p>
+            <ul>
+                <li>Choose your preferred location and time slot</li>
+                <li>Select session length (60 or 75 minutes)</li>
+                <li>Pay securely online ($35 weekday, $40 weekend)</li>
+                <li>Receive confirmation email with details</li>
+                <li>Show up and enjoy your session!</li>
+            </ul>
+
+            <div class="info-box">
+                <h3>What to Bring</h3>
+                <p>
+                    Just bring yourself, a towel, and a swimsuit! We provide everything else you need including
+                    outdoor showers, towel storage, and a welcoming community.
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3>Cancellation Policy</h3>
+                <p>
+                    Cancel anytime up to 24 hours before your session for a full credit. Late cancellations and
+                    no-shows cannot be refunded, so we can open your spot to someone on the waitlist.
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="mailto:booking@bywatersauna.com?subject=Session%20Booking" class="btn btn-primary">Book Now →</a>
+            <a href="membership.html" class="btn btn-outline">View Memberships</a>
+        </div>
+
+        <div style="background: rgba(45, 62, 53, 0.3); border-radius: 16px; padding: 40px; text-align: center; margin-top: 60px;">
+            <h3 style="font-size: 28px; margin-bottom: 16px; color: var(--orange);">First Time?</h3>
+            <p style="color: rgba(250, 248, 243, 0.8); line-height: 1.8;">
+                New to sauna and cold plunge? Don't worry! We recommend starting with a 60-minute session and
+                cycling between hot and cold at your own pace. There's no wrong way to do it - listen to your body
+                and enjoy the journey. Our friendly community is always happy to share tips!
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>©2024 Bywater LLC. All rights reserved. | <a href="index.html">Back to Home</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>

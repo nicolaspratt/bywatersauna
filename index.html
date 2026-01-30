@@ -201,7 +201,7 @@
             box-shadow: 0 8px 30px rgba(255, 104, 51, 0.5);
         }
 
-        /* Hero with Video */
+        /* Hero with Background Image */
         .hero {
             height: 100vh;
             display: flex;
@@ -214,38 +214,16 @@
             overflow: hidden;
         }
 
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            z-index: 0;
-        }
-
-        .hero-video-fallback {
+        .hero-background {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg,
-                var(--dark-forest) 0%,
-                var(--forest) 50%,
-                var(--dark-forest) 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
+            background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?w=1920&h=1080&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
             z-index: 0;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         .hero::before {
@@ -605,6 +583,16 @@
         #map {
             width: 100%;
             height: 100%;
+        }
+
+        /* Map marker highlighting */
+        .location-marker {
+            transition: all 0.3s;
+        }
+
+        .location-marker.highlighted {
+            transform: scale(1.5);
+            z-index: 1000 !important;
         }
 
         /* Location Modal */
@@ -1370,9 +1358,103 @@
         body.text-small h2 {
             font-size: clamp(36px, 4vw, 56px);
         }
+
+        /* Gift Certificates Modal */
+        .gift-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 600px;
+            background: var(--dark-forest);
+            z-index: 2000;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 50px 40px;
+        }
+
+        .gift-modal.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gift-modal h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--orange);
+        }
+
+        .gift-modal p {
+            color: rgba(250, 248, 243, 0.8);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .gift-modal ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .gift-modal li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(250, 248, 243, 0.9);
+        }
+
+        .gift-modal li::before {
+            content: '🎁';
+            font-size: 20px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(202, 94, 67, 0.2);
+            border: 2px solid var(--orange);
+            color: var(--orange);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background: var(--orange);
+            color: var(--warm-white);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
     </style>
 </head>
-<body>
+<body class="text-large">
     <!-- Header -->
     <header id="header">
         <nav>
@@ -1387,8 +1469,8 @@
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <div class="nav-ctas">
-                <a href="#" class="btn btn-outline">Gift Certificates</a>
-                <a href="#pricing" class="btn btn-primary">Book a Session</a>
+                <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
+                <a href="book.html" class="btn btn-primary">Book a Session</a>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
@@ -1408,12 +1490,9 @@
         </div>
     </div>
 
-    <!-- Hero with Video -->
+    <!-- Hero with Background -->
     <section class="hero">
-        <div class="hero-video-fallback"></div>
-        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1511497584788-876760111969?w=1920&h=1080&fit=crop">
-            <source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-misty-forest-6407/1080p.mp4" type="video/mp4">
-        </video>
+        <div class="hero-background"></div>
         <p class="hero-label" id="hero-label">SEATTLE BEACH SAUNA EXPERIENCE</p>
         <h1 id="hero-title">
             Heat Up.<br>
@@ -1634,16 +1713,17 @@
                     <li><a href="#locations">Locations</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#faq">FAQ</a></li>
+                    <li><a href="about.html">About Us</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
                 <h4>Get Started</h4>
                 <ul class="footer-links">
-                    <li><a href="#pricing">Book a Session</a></li>
-                    <li><a href="#">Gift Certificates</a></li>
-                    <li><a href="#">Membership</a></li>
-                    <li><a href="#">Private Events</a></li>
+                    <li><a href="book.html">Book a Session</a></li>
+                    <li><a href="#" class="gift-cert-link">Gift Certificates</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="events.html">Private Events</a></li>
                 </ul>
             </div>
 
@@ -1659,11 +1739,33 @@
         <div class="footer-bottom">
             <p>©2024 Bywater LLC. All rights reserved.</p>
             <div class="footer-legal">
-                <a href="#">Privacy Policy</a>
+                <a href="privacy.html">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
             </div>
         </div>
     </footer>
+
+    <!-- Gift Certificates Modal -->
+    <div class="modal-overlay" id="giftModalOverlay"></div>
+    <div class="gift-modal" id="giftModal">
+        <button class="close-modal" id="closeGiftModal">✕</button>
+        <h2>🎁 Gift Certificates</h2>
+        <p>Give the gift of relaxation and wellness. Perfect for birthdays, holidays, or just because.</p>
+
+        <ul>
+            <li>Available in any amount ($35 minimum)</li>
+            <li>Never expire</li>
+            <li>Redeemable at all 4 locations</li>
+            <li>Digital delivery or physical card</li>
+            <li>Transferable to friends and family</li>
+        </ul>
+
+        <p><strong>Popular amounts:</strong> $35 (single session), $150 (5 sessions), $300 (10 sessions)</p>
+
+        <div style="margin-top: 30px;">
+            <a href="book.html?gift=true" class="btn btn-primary btn-large" style="display: block; text-align: center; text-decoration: none;">Purchase Gift Certificate →</a>
+        </div>
+    </div>
 
     <!-- Design Options Panel -->
     <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
@@ -1841,6 +1943,7 @@
                     <div class="location-tag">≈ ${location.tagline}</div>
                 `;
 
+                // Click handler
                 card.addEventListener('click', () => {
                     document.querySelectorAll('.location-card').forEach(c => c.classList.remove('active'));
                     card.classList.add('active');
@@ -1850,6 +1953,41 @@
 
                     // Open modal
                     openLocationSidebar(location);
+                });
+
+                // Hover handlers for map interaction
+                card.addEventListener('mouseenter', () => {
+                    if (mapMarkers[location.name]) {
+                        // Highlight marker
+                        const markerElement = mapMarkers[location.name].getElement();
+                        if (markerElement) {
+                            const iconDiv = markerElement.querySelector('div');
+                            if (iconDiv) {
+                                iconDiv.style.transform = 'scale(1.5)';
+                                iconDiv.style.boxShadow = '0 0 20px rgba(202, 94, 67, 0.8)';
+                            }
+                        }
+                        // Open popup
+                        mapMarkers[location.name].openPopup();
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    if (mapMarkers[location.name]) {
+                        // Reset marker
+                        const markerElement = mapMarkers[location.name].getElement();
+                        if (markerElement) {
+                            const iconDiv = markerElement.querySelector('div');
+                            if (iconDiv) {
+                                iconDiv.style.transform = 'scale(1)';
+                                iconDiv.style.boxShadow = 'none';
+                            }
+                        }
+                        // Close popup
+                        mapMarkers[location.name].closePopup();
+                    }
+                    // Reset map view to show all locations after a delay
+                    setTimeout(resetMapView, 300);
                 });
 
                 list.appendChild(card);
@@ -1989,20 +2127,38 @@
             maxZoom: 19
         }).addTo(map);
 
+        // Store map markers for hover interactions
+        let mapMarkers = {};
+
         // Add markers after locations load
         function addMapMarkers(locations) {
-            const icon = L.divIcon({
-                className: 'custom-icon',
-                html: '<div style="background: #ca5e43; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3;"></div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
-            });
-
             locations.forEach(loc => {
-                L.marker([loc.lat, loc.lng], { icon })
+                const icon = L.divIcon({
+                    className: 'custom-icon location-marker',
+                    html: '<div style="background: #ca5e43; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3; transition: all 0.3s;"></div>',
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
+                });
+
+                const marker = L.marker([loc.lat, loc.lng], { icon })
                     .addTo(map)
                     .bindPopup(`<strong>${loc.name}</strong><br>${loc.tagline}`);
+
+                mapMarkers[loc.name] = marker;
             });
+
+            // Fit map to show all markers initially
+            resetMapView();
+        }
+
+        // Reset map to show all locations
+        function resetMapView() {
+            if (locationsData.length > 0) {
+                const bounds = L.latLngBounds(
+                    locationsData.map(loc => [loc.lat, loc.lng])
+                );
+                map.fitBounds(bounds, { padding: [50, 50] });
+            }
         }
 
         // Mobile menu functionality
@@ -2041,28 +2197,47 @@
             });
         });
 
+        // Gift Certificates Modal
+        const giftModal = document.getElementById('giftModal');
+        const giftModalOverlay = document.getElementById('giftModalOverlay');
+        const closeGiftModal = document.getElementById('closeGiftModal');
+        const giftCertBtn = document.getElementById('giftCertBtn');
+
+        function openGiftModal() {
+            giftModal.classList.add('active');
+            giftModalOverlay.classList.add('active');
+        }
+
+        function closeGiftModalFunc() {
+            giftModal.classList.remove('active');
+            giftModalOverlay.classList.remove('active');
+        }
+
+        if (giftCertBtn) {
+            giftCertBtn.addEventListener('click', openGiftModal);
+        }
+
+        if (closeGiftModal) {
+            closeGiftModal.addEventListener('click', closeGiftModalFunc);
+        }
+
+        if (giftModalOverlay) {
+            giftModalOverlay.addEventListener('click', closeGiftModalFunc);
+        }
+
+        // Also handle gift certificate links in footer
+        document.querySelectorAll('.gift-cert-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                openGiftModal();
+            });
+        });
+
         // Load all content on page load
         window.addEventListener('DOMContentLoaded', async () => {
             await loadContent();
             if (locationsData.length > 0) {
                 addMapMarkers(locationsData);
-            }
-
-            // Handle video loading errors
-            const heroVideo = document.querySelector('.hero-video');
-            if (heroVideo) {
-                heroVideo.addEventListener('error', () => {
-                    console.log('Video failed to load, using fallback background');
-                    heroVideo.style.display = 'none';
-                });
-
-                // Hide video if it doesn't start playing within 3 seconds
-                setTimeout(() => {
-                    if (heroVideo.paused && heroVideo.readyState < 3) {
-                        console.log('Video slow to load, using fallback background');
-                        heroVideo.style.opacity = '0';
-                    }
-                }, 3000);
             }
         });
 
