@@ -18,6 +18,8 @@
         }
 
         :root {
+            --orange: #FF6833;
+            --orange-light: #FF8C5A;
             --sage: #8B9D83;
             --forest: #4A6156;
             --earth: #C7A882;
@@ -115,14 +117,14 @@
         .logo-circle {
             width: 40px;
             height: 40px;
-            background: var(--sage);
+            background: var(--orange);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             font-size: 20px;
-            color: var(--charcoal);
+            color: var(--warm-white);
         }
 
         .nav-links {
@@ -146,7 +148,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--sage);
+            background: var(--orange);
             transition: width 0.3s;
         }
 
@@ -188,15 +190,15 @@
         }
 
         .btn-primary {
-            background: var(--sage);
-            color: var(--charcoal);
+            background: var(--orange);
+            color: var(--warm-white);
         }
 
         .btn-primary:hover {
-            background: var(--forest);
+            background: var(--orange-light);
             color: var(--warm-white);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(74, 97, 86, 0.4);
+            box-shadow: 0 8px 30px rgba(255, 104, 51, 0.5);
         }
 
         /* Hero with Video */
@@ -246,7 +248,7 @@
         .hero-label {
             font-size: 12px;
             letter-spacing: 4px;
-            color: var(--earth);
+            color: var(--orange);
             margin-bottom: 30px;
             text-transform: uppercase;
             font-weight: 600;
@@ -276,8 +278,13 @@
             }
         }
 
+        .hero h1 .accent {
+            color: var(--orange);
+        }
+
+        /* Legacy class name for backwards compatibility */
         .hero h1 .sage {
-            color: var(--sage);
+            color: var(--orange);
         }
 
         .hero-description {
@@ -334,7 +341,7 @@
         .section-label {
             font-size: 12px;
             letter-spacing: 4px;
-            color: var(--earth);
+            color: var(--orange);
             margin-bottom: 20px;
             text-transform: uppercase;
             font-weight: 600;
@@ -378,9 +385,9 @@
 
         .ritual-card:hover {
             transform: translateY(-12px);
-            border-color: var(--sage);
-            background: rgba(74, 97, 86, 0.15);
-            box-shadow: 0 20px 60px rgba(139, 157, 131, 0.2);
+            border-color: var(--orange);
+            background: rgba(255, 104, 51, 0.05);
+            box-shadow: 0 20px 60px rgba(255, 104, 51, 0.2);
         }
 
         .ritual-number {
@@ -487,13 +494,13 @@
         }
 
         .location-card.active {
-            border-color: var(--sage);
-            background: rgba(139, 157, 131, 0.15);
+            border-color: var(--orange);
+            background: rgba(255, 104, 51, 0.1);
             transform: translateX(8px);
         }
 
         .location-card:hover {
-            border-color: var(--sage);
+            border-color: var(--orange);
             transform: translateX(8px);
         }
 
@@ -508,7 +515,7 @@
             width: 50px;
             height: 50px;
             border-radius: 12px;
-            background: var(--sage);
+            background: var(--orange);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -516,8 +523,8 @@
         }
 
         .location-badge {
-            background: rgba(199, 168, 130, 0.2);
-            color: var(--earth);
+            background: rgba(255, 104, 51, 0.15);
+            color: var(--orange);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 11px;
@@ -541,7 +548,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--sage);
+            color: var(--orange);
             font-size: 14px;
             margin-top: 16px;
         }
@@ -620,7 +627,7 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--earth);
+            color: var(--orange);
             margin-bottom: 16px;
             font-weight: 700;
         }
@@ -647,8 +654,8 @@
             content: '✓';
             width: 24px;
             height: 24px;
-            background: var(--sage);
-            color: var(--charcoal);
+            background: var(--orange);
+            color: var(--warm-white);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -658,8 +665,8 @@
         }
 
         .info-box {
-            background: rgba(139, 157, 131, 0.1);
-            border-left: 4px solid var(--sage);
+            background: rgba(255, 104, 51, 0.08);
+            border-left: 4px solid var(--orange);
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
@@ -667,8 +674,8 @@
 
         .btn-directions {
             width: 100%;
-            background: var(--sage);
-            color: var(--charcoal);
+            background: var(--orange);
+            color: var(--warm-white);
             border: none;
             padding: 18px;
             border-radius: 8px;
@@ -684,9 +691,10 @@
         }
 
         .btn-directions:hover {
-            background: var(--forest);
+            background: var(--orange-light);
             color: var(--warm-white);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 104, 51, 0.4);
         }
 
         .sidebar-overlay {
@@ -728,12 +736,12 @@
 
         .pricing-card:hover {
             transform: translateY(-8px);
-            border-color: var(--sage);
-            box-shadow: 0 20px 60px rgba(139, 157, 131, 0.2);
+            border-color: var(--orange);
+            box-shadow: 0 20px 60px rgba(255, 104, 51, 0.25);
         }
 
         .pricing-card.popular {
-            border-color: var(--sage);
+            border-color: var(--orange);
         }
 
         .pricing-card.popular::before {
@@ -742,8 +750,8 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--sage);
-            color: var(--charcoal);
+            background: var(--orange);
+            color: var(--warm-white);
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 11px;
@@ -791,8 +799,8 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background: var(--sage);
-            color: var(--charcoal);
+            background: var(--orange);
+            color: var(--warm-white);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -832,8 +840,8 @@
         }
 
         .faq-item.active {
-            border-color: var(--sage);
-            background: rgba(74, 97, 86, 0.12);
+            border-color: var(--orange);
+            background: rgba(255, 104, 51, 0.08);
         }
 
         .faq-question {
@@ -849,7 +857,7 @@
 
         .faq-icon {
             transition: transform 0.3s;
-            color: var(--sage);
+            color: var(--orange);
         }
 
         .faq-item.active .faq-icon {
@@ -885,7 +893,7 @@
         }
 
         .faq-contact a:hover {
-            color: var(--earth);
+            color: var(--orange-light);
         }
 
         /* Newsletter */
@@ -899,7 +907,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            color: var(--sage);
+            color: var(--orange);
             margin-bottom: 20px;
             font-size: 12px;
             letter-spacing: 3px;
@@ -931,7 +939,7 @@
 
         .newsletter-form input:focus {
             outline: none;
-            border-color: var(--sage);
+            border-color: var(--orange);
             background: rgba(250, 248, 243, 0.08);
         }
 
@@ -969,13 +977,13 @@
         .footer-logo-circle {
             width: 36px;
             height: 36px;
-            background: var(--sage);
+            background: var(--orange);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            color: var(--charcoal);
+            color: var(--warm-white);
         }
 
         .footer-description {
@@ -997,7 +1005,7 @@
         }
 
         .social-links a:hover {
-            color: var(--sage);
+            color: var(--orange);
         }
 
         .footer-section h4 {
@@ -1024,7 +1032,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--sage);
+            color: var(--orange);
         }
 
         .footer-bottom {
@@ -1057,7 +1065,7 @@
         }
 
         .footer-legal a:hover {
-            color: var(--sage);
+            color: var(--orange);
         }
 
         /* Mobile */
@@ -1307,7 +1315,7 @@
         </div>
 
         <p class="fade-up" style="text-align: center; margin-top: 40px; color: rgba(250, 248, 243, 0.6);">
-            Looking for a gift? <a href="#" style="color: var(--sage); text-decoration: underline;">Gift certificates available</a>
+            Looking for a gift? <a href="#" style="color: var(--orange); text-decoration: underline;">Gift certificates available</a>
         </p>
     </section>
 
@@ -1636,7 +1644,7 @@
         function addMapMarkers(locations) {
             const icon = L.divIcon({
                 className: 'custom-icon',
-                html: '<div style="background: #8B9D83; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3;"></div>',
+                html: '<div style="background: #FF6833; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3;"></div>',
                 iconSize: [24, 24],
                 iconAnchor: [12, 12]
             });
