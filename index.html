@@ -494,16 +494,17 @@
         }
 
         .location-card::after {
-            content: 'Click for details →';
+            content: 'Click for full details →';
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 12px;
+            bottom: 24px;
+            right: 24px;
+            font-size: 11px;
             color: var(--orange);
             opacity: 0;
             transition: opacity 0.3s;
             font-weight: 600;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .location-card:hover::after {
@@ -513,13 +514,13 @@
         .location-card.active {
             border-color: var(--orange);
             background: rgba(202, 94, 67, 0.08);
-            transform: translateX(8px);
+            transform: scale(1.02);
             box-shadow: 0 8px 24px rgba(202, 94, 67, 0.15);
         }
 
         .location-card:hover {
             border-color: var(--orange);
-            transform: translateX(8px) scale(1.02);
+            transform: scale(1.02);
             box-shadow: 0 8px 24px rgba(202, 94, 67, 0.2);
         }
 
@@ -1500,7 +1501,7 @@
             Repeat.
         </h1>
         <p class="hero-description" id="hero-description">
-            Experience the ancient ritual of contrast therapy. Cycle between our cedar barrel saunas and the cold waters of Puget Sound at your own pace.
+            Relax in our cedar barrel saunas, then refresh with a cold plunge in Puget Sound. Your wellness journey, your pace.
         </p>
         <div class="hero-ctas">
             <a href="#pricing" class="btn btn-primary btn-large">Book Your Session →</a>
@@ -1537,13 +1538,12 @@
             </div>
         </div>
 
-        <div class="ritual-images">
-            <div class="ritual-image fade-up stagger-1">
-                <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?w=800" alt="Cedar sauna interior">
-            </div>
-            <div class="ritual-image fade-up stagger-2">
-                <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800" alt="Cold water plunge">
-            </div>
+        <div style="text-align: center; margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto;" class="fade-up">
+            <p style="font-size: 20px; color: rgba(250, 248, 243, 0.8); line-height: 1.9; margin-bottom: 30px;">
+                There's no wrong way to sauna. Listen to your body, go at your own pace, and enjoy the journey.
+                Whether you're here for relaxation, recovery, or community, you're welcome at Bywater.
+            </p>
+            <a href="book.html" class="btn btn-primary btn-large" style="text-decoration: none;">Ready to Try It? →</a>
         </div>
     </section>
 
@@ -1627,7 +1627,7 @@
                     <li><span class="check">✓</span> Towel storage</li>
                     <li><span class="check">✓</span> Outdoor shower</li>
                 </ul>
-                <button class="btn btn-book btn-primary">Book Now</button>
+                <a href="book.html" class="btn btn-book btn-primary" style="text-decoration: none; display: block; text-align: center;">Book Now</a>
             </div>
 
             <div class="pricing-card popular fade-up stagger-2">
@@ -1642,7 +1642,7 @@
                     <li><span class="check">✓</span> Outdoor shower</li>
                     <li><span class="check">✓</span> Prime sunset slots</li>
                 </ul>
-                <button class="btn btn-book btn-primary">Book Now</button>
+                <a href="book.html" class="btn btn-book btn-primary" style="text-decoration: none; display: block; text-align: center;">Book Now</a>
             </div>
         </div>
 
@@ -1737,7 +1737,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>©2024 Bywater LLC. All rights reserved.</p>
+            <p>©2026 Bywater LLC. All rights reserved.</p>
             <div class="footer-legal">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -1936,11 +1936,12 @@
 
                 card.innerHTML = `
                     <div class="location-header">
-                        <div class="location-icon">📍</div>
                         <div class="location-badge">${location.neighborhood}</div>
                     </div>
                     <h3>${location.name}</h3>
-                    <div class="location-tag">≈ ${location.tagline}</div>
+                    <div class="location-tag" style="margin-bottom: 16px;">≈ ${location.tagline}</div>
+                    <p style="color: rgba(250, 248, 243, 0.7); font-size: 15px; line-height: 1.7; margin-bottom: 12px;">${location.address}</p>
+                    <p style="color: rgba(250, 248, 243, 0.6); font-size: 14px;">${location.session_length} sessions</p>
                 `;
 
                 // Click handler
@@ -2157,7 +2158,7 @@
                 const bounds = L.latLngBounds(
                     locationsData.map(loc => [loc.lat, loc.lng])
                 );
-                map.fitBounds(bounds, { padding: [50, 50] });
+                map.fitBounds(bounds, { padding: [80, 80], maxZoom: 10 });
             }
         }
 
