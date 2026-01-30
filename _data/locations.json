@@ -4,27 +4,55 @@
   "items": [
     {
       "name": "Golden Gardens",
-      "address": "South of the Bathhouse, just before the traffic circle. Stunning Puget Sound views.",
+      "address": "South of the Bathhouse, just before the traffic circle",
+      "neighborhood": "BALLARD",
       "lat": 47.6884,
-      "lng": -122.4034
+      "lng": -122.4034,
+      "tagline": "Sunset views over Puget Sound",
+      "parking": "Limited street parking along Seaview Ave NW. Public lot fills quickly on weekends. Arrive 15 minutes early.",
+      "session_length": "60-75 minutes",
+      "amenities": ["Cedar barrel sauna", "Cold water plunge", "Outdoor shower", "Towel storage", "Fire pit"],
+      "best_time": "Sunset sessions are magical here",
+      "getting_there": "From downtown: Take the D Line bus to Golden Gardens Park. 5 minute walk to sauna location."
     },
     {
       "name": "Alki Beach",
-      "address": "On the boardwalk, slightly west of the Alki Beach Bathhouse. West Seattle's iconic beach.",
+      "address": "On the boardwalk, slightly west of the Alki Beach Bathhouse",
+      "neighborhood": "WEST SEATTLE",
       "lat": 47.5805,
-      "lng": -122.4079
+      "lng": -122.4079,
+      "tagline": "Seattle skyline panoramas",
+      "parking": "Street parking on Alki Ave SW and Harbor Ave SW. Metered spots ($2/hr). Arrive 10-15 minutes early to find parking.",
+      "session_length": "60-75 minutes",
+      "amenities": ["Cedar barrel sauna", "Cold water plunge", "Outdoor shower", "Towel storage", "Beach chairs"],
+      "best_time": "Morning sessions for calm water",
+      "getting_there": "Water taxi from downtown to West Seattle, then 10 minute walk. Or drive across West Seattle Bridge."
     },
     {
       "name": "Old Stove (Ballard)",
-      "address": "Old Stove's Gardens Location on NW 49th St. East side of the outdoor beer garden.",
+      "address": "Old Stove's Gardens Location on NW 49th St. East side of the outdoor beer garden",
+      "neighborhood": "BALLARD",
       "lat": 47.6637,
-      "lng": -122.3765
+      "lng": -122.3765,
+      "tagline": "Craft beer post-sauna",
+      "parking": "Free parking lot on-site. Plenty of space. Street parking also available on NW 49th St.",
+      "session_length": "60-75 minutes",
+      "amenities": ["Cedar barrel sauna", "Cold plunge tub", "Outdoor shower", "Towel storage", "Beer garden access"],
+      "best_time": "Evening sessions - enjoy a beer after",
+      "getting_there": "40 bus line stops 2 blocks away. Easy bike access via Burke-Gilman Trail nearby."
     },
     {
       "name": "Leschi",
-      "address": "Dockside on Lake Washington off Lakeside Ave. Parking available at public lot next to BluWater Bistro.",
+      "address": "Dockside on Lake Washington off Lakeside Avenue",
+      "neighborhood": "LESCHI",
       "lat": 47.6018,
-      "lng": -122.2849
+      "lng": -122.2849,
+      "tagline": "Lakefront tranquility",
+      "parking": "Public parking lot next to BluWater Bistro (free for 2 hours). Overflow parking on Lakeside Ave S.",
+      "session_length": "60-75 minutes",
+      "amenities": ["Cedar barrel sauna", "Lake Washington plunge", "Outdoor shower", "Towel storage", "Dock seating"],
+      "best_time": "Weekday mornings for quiet reflection",
+      "getting_there": "From downtown: Take bus 27 to Leschi. 3 minute walk to dock. Limited Uber/Lyft pickup area."
     }
   ]
 }

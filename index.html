@@ -3,13 +3,1680 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bywater Sauna - Loading...</title>
-    <script>
-        // Redirect to mockup for now (will be replaced with dynamic version)
-        window.location.href = '/mockup/index.html';
-    </script>
+    <title>Bywater - Seattle Beach Sauna Experience</title>
+    <meta name="description" content="Seattle's social third space. Experience the ancient ritual of contrast therapy at four waterfront locations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage: #8B9D83;
+            --forest: #4A6156;
+            --earth: #C7A882;
+            --stone: #E8DCC4;
+            --clay: #D4A574;
+            --dark-forest: #2D3E35;
+            --charcoal: #1C1C1C;
+            --warm-white: #FAF8F3;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Scroll Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(139, 157, 131, 0.1);
+            transition: all 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(28, 28, 28, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--warm-white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--charcoal);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(250, 248, 243, 0.8);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sage);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-white);
+        }
+
+        .nav-ctas {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--sage);
+            color: var(--sage);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--sage);
+            color: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 157, 131, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--sage);
+            color: var(--charcoal);
+        }
+
+        .btn-primary:hover {
+            background: var(--forest);
+            color: var(--warm-white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 97, 86, 0.4);
+        }
+
+        /* Hero with Video */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                rgba(45, 62, 53, 0.7) 0%,
+                rgba(28, 28, 28, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: var(--earth);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: 600;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 1.1;
+            margin-bottom: 40px;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 .sage {
+            color: var(--sage);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: rgba(250, 248, 243, 0.9);
+            line-height: 1.8;
+            animation: slideUp 1s ease-out 0.7s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideUp 1s ease-out 0.9s both;
+        }
+
+        .btn-large {
+            padding: 18px 40px;
+            font-size: 16px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: rgba(250, 248, 243, 0.6);
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Section Containers */
+        section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: var(--earth);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 5vw, 64px);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: rgba(250, 248, 243, 0.7);
+            max-width: 700px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            text-align: center;
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--dark-forest) 100%);
+        }
+
+        .ritual-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .ritual-card {
+            background: rgba(74, 97, 86, 0.1);
+            border: 1px solid rgba(139, 157, 131, 0.2);
+            border-radius: 20px;
+            padding: 50px 30px;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ritual-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--sage);
+            background: rgba(74, 97, 86, 0.15);
+            box-shadow: 0 20px 60px rgba(139, 157, 131, 0.2);
+        }
+
+        .ritual-number {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(139, 157, 131, 0.08);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .ritual-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(139, 157, 131, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 30px;
+            transition: transform 0.4s;
+        }
+
+        .ritual-card:hover .ritual-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .ritual-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--stone);
+        }
+
+        .ritual-card p {
+            color: rgba(250, 248, 243, 0.7);
+            line-height: 1.8;
+        }
+
+        .ritual-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .ritual-image {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            position: relative;
+        }
+
+        .ritual-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(45, 62, 53, 0.3), rgba(28, 28, 28, 0.2));
+            z-index: 1;
+            transition: opacity 0.4s;
+        }
+
+        .ritual-image:hover::before {
+            opacity: 0;
+        }
+
+        .ritual-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .ritual-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Locations */
+        .locations-section {
+            background: var(--charcoal);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .location-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .location-card {
+            background: rgba(74, 97, 86, 0.1);
+            border: 2px solid rgba(139, 157, 131, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .location-card.active {
+            border-color: var(--sage);
+            background: rgba(139, 157, 131, 0.15);
+            transform: translateX(8px);
+        }
+
+        .location-card:hover {
+            border-color: var(--sage);
+            transform: translateX(8px);
+        }
+
+        .location-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 16px;
+        }
+
+        .location-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .location-badge {
+            background: rgba(199, 168, 130, 0.2);
+            color: var(--earth);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .location-card h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: var(--stone);
+        }
+
+        .location-card p {
+            color: rgba(250, 248, 243, 0.7);
+            line-height: 1.7;
+        }
+
+        .location-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--sage);
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        .map-container {
+            background: rgba(45, 62, 53, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            height: 600px;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Location Sidebar */
+        .location-sidebar {
+            position: fixed;
+            right: -500px;
+            top: 0;
+            width: 480px;
+            height: 100vh;
+            background: var(--dark-forest);
+            z-index: 2000;
+            overflow-y: auto;
+            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .location-sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            position: sticky;
+            top: 0;
+            background: var(--forest);
+            padding: 30px;
+            z-index: 10;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(250, 248, 243, 0.1);
+            border: none;
+            color: var(--warm-white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-sidebar:hover {
+            background: rgba(250, 248, 243, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .sidebar-content {
+            padding: 40px 30px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-section h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--earth);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .sidebar-section p {
+            color: rgba(250, 248, 243, 0.8);
+            line-height: 1.8;
+        }
+
+        .amenities-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .amenities-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(250, 248, 243, 0.9);
+        }
+
+        .amenities-list li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: var(--sage);
+            color: var(--charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .info-box {
+            background: rgba(139, 157, 131, 0.1);
+            border-left: 4px solid var(--sage);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .btn-directions {
+            width: 100%;
+            background: var(--sage);
+            color: var(--charcoal);
+            border: none;
+            padding: 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 16px;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+
+        .btn-directions:hover {
+            background: var(--forest);
+            color: var(--warm-white);
+            transform: translateY(-2px);
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--dark-forest) 100%);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(74, 97, 86, 0.1);
+            border: 2px solid rgba(139, 157, 131, 0.2);
+            border-radius: 20px;
+            padding: 50px 40px;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--sage);
+            box-shadow: 0 20px 60px rgba(139, 157, 131, 0.2);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--sage);
+        }
+
+        .pricing-card.popular::before {
+            content: '⭐ MOST POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--sage);
+            color: var(--charcoal);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card h3 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: var(--stone);
+        }
+
+        .pricing-card .period {
+            color: rgba(250, 248, 243, 0.6);
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .price {
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--warm-white);
+            margin-bottom: 8px;
+        }
+
+        .price span {
+            font-size: 28px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(250, 248, 243, 0.9);
+        }
+
+        .pricing-features .check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--sage);
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .btn-book {
+            width: 100%;
+            padding: 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: var(--charcoal);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: rgba(74, 97, 86, 0.08);
+            border: 1px solid rgba(139, 157, 131, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active {
+            border-color: var(--sage);
+            background: rgba(74, 97, 86, 0.12);
+        }
+
+        .faq-question {
+            padding: 24px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--stone);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+            color: var(--sage);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-answer-content {
+            padding: 0 30px 24px;
+            color: rgba(250, 248, 243, 0.7);
+            line-height: 1.8;
+        }
+
+        .faq-contact {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .faq-contact a {
+            color: var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .faq-contact a:hover {
+            color: var(--earth);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: var(--dark-forest);
+            text-align: center;
+        }
+
+        .newsletter-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--sage);
+            margin-bottom: 20px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .newsletter-form {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .newsletter-form input {
+            background: rgba(250, 248, 243, 0.05);
+            border: 1px solid rgba(139, 157, 131, 0.2);
+            border-radius: 8px;
+            padding: 16px 20px;
+            color: var(--warm-white);
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(250, 248, 243, 0.4);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--sage);
+            background: rgba(250, 248, 243, 0.08);
+        }
+
+        .newsletter-form button {
+            grid-column: 1 / -1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            padding: 80px 40px 40px;
+            border-top: 1px solid rgba(139, 157, 131, 0.1);
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-circle {
+            width: 36px;
+            height: 36px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .footer-description {
+            color: rgba(250, 248, 243, 0.6);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            color: rgba(250, 248, 243, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--sage);
+        }
+
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--stone);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(250, 248, 243, 0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--sage);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(139, 157, 131, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: rgba(250, 248, 243, 0.4);
+            font-size: 14px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            color: rgba(250, 248, 243, 0.4);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: var(--sage);
+        }
+
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-ctas {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--warm-white);
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            section {
+                padding: 80px 24px;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .ritual-images {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                grid-template-columns: 1fr;
+            }
+
+            .location-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-    <p>Loading Bywater Sauna...</p>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                <div class="logo-circle">B</div>
+                <span>Bywater</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#locations">Locations</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="nav-ctas">
+                <a href="#" class="btn btn-outline">Gift Certificates</a>
+                <a href="#pricing" class="btn btn-primary">Book a Session</a>
+            </div>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero with Video -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://cdn.coverr.co/videos/coverr-aerial-view-of-misty-forest-6407/1080p.mp4" type="video/mp4">
+        </video>
+        <p class="hero-label" id="hero-label">SEATTLE BEACH SAUNA EXPERIENCE</p>
+        <h1 id="hero-title">
+            Heat Up.<br>
+            <span class="sage">Cool Down.</span><br>
+            Repeat.
+        </h1>
+        <p class="hero-description" id="hero-description">
+            Experience the ancient ritual of contrast therapy. Cycle between our cedar barrel saunas and the cold waters of Puget Sound at your own pace.
+        </p>
+        <div class="hero-ctas">
+            <a href="#pricing" class="btn btn-primary btn-large">Book Your Session →</a>
+            <a href="#how-it-works" class="btn btn-outline btn-large">See How It Works</a>
+        </div>
+        <p class="scroll-indicator">SCROLL</p>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <p class="section-label fade-up">THE RITUAL</p>
+        <h2 class="section-title fade-up" id="how-title">How It Works</h2>
+
+        <div class="ritual-cards">
+            <div class="ritual-card fade-up stagger-1">
+                <div class="ritual-number">01</div>
+                <div class="ritual-icon">🔥</div>
+                <h3>Heat Up</h3>
+                <p>Step into our cedar barrel saunas. Feel the warmth envelop you as tensions melt away and your body begins to reset.</p>
+            </div>
+
+            <div class="ritual-card fade-up stagger-2">
+                <div class="ritual-number">02</div>
+                <div class="ritual-icon">💧</div>
+                <h3>Cool Down</h3>
+                <p>Take the plunge into the refreshing waters of Puget Sound. Feel the invigorating rush as your body awakens.</p>
+            </div>
+
+            <div class="ritual-card fade-up stagger-3">
+                <div class="ritual-number">03</div>
+                <div class="ritual-icon">🔄</div>
+                <h3>Repeat</h3>
+                <p>Cycle between hot and cold at your own pace. Your body, your rhythm, your personal wellness journey.</p>
+            </div>
+        </div>
+
+        <div class="ritual-images">
+            <div class="ritual-image fade-up stagger-1">
+                <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?w=800" alt="Cedar sauna interior">
+            </div>
+            <div class="ritual-image fade-up stagger-2">
+                <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=800" alt="Cold water plunge">
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations -->
+    <section id="locations" class="locations-section">
+        <p class="section-label fade-up">FIND US</p>
+        <h2 class="section-title fade-up" id="locations-title">Four Seattle Locations</h2>
+        <p class="section-description fade-up" id="locations-description">From beach sunsets to lakefront serenity, find your perfect sauna spot</p>
+
+        <div class="locations-grid">
+            <div class="location-list" id="location-list">
+                <!-- Locations will be loaded dynamically -->
+            </div>
+
+            <div class="map-container fade-up">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="location-sidebar" id="locationSidebar">
+        <div class="sidebar-header">
+            <button class="close-sidebar" id="closeSidebar">✕</button>
+            <h2 id="sidebarLocationName" style="font-size: 32px; margin-bottom: 8px;"></h2>
+            <p id="sidebarLocationAddress" style="color: rgba(250, 248, 243, 0.7);"></p>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h4>Session Details</h4>
+                <p id="sidebarSessionLength"></p>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>What's Included</h4>
+                <ul class="amenities-list" id="sidebarAmenities"></ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>🅿️ Parking Information</h4>
+                <div class="info-box">
+                    <p id="sidebarParking"></p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>🚌 Getting There</h4>
+                <p id="sidebarTransit"></p>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>⏰ Best Time to Visit</h4>
+                <div class="info-box">
+                    <p id="sidebarBestTime"></p>
+                </div>
+            </div>
+
+            <button class="btn-directions" id="getDirections">
+                Get Directions →
+            </button>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing-section">
+        <p class="section-label fade-up">SIMPLE PRICING</p>
+        <h2 class="section-title fade-up">Book Your Session</h2>
+        <p class="section-description fade-up">Reserve your spot online, just like signing up for a class. Limited spots per session to ensure the best experience.</p>
+
+        <div class="pricing-cards">
+            <div class="pricing-card fade-up stagger-1">
+                <h3>Weekday</h3>
+                <p class="period">Monday through Friday</p>
+                <div class="price"><span>$</span>35<span>/session</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check">✓</span> 60 or 75 minute sessions</li>
+                    <li><span class="check">✓</span> Cedar barrel sauna access</li>
+                    <li><span class="check">✓</span> Cold water plunge</li>
+                    <li><span class="check">✓</span> Towel storage</li>
+                    <li><span class="check">✓</span> Outdoor shower</li>
+                </ul>
+                <button class="btn btn-book btn-primary">Book Now</button>
+            </div>
+
+            <div class="pricing-card popular fade-up stagger-2">
+                <h3>Weekend</h3>
+                <p class="period">Saturday & Sunday</p>
+                <div class="price"><span>$</span>40<span>/session</span></div>
+                <ul class="pricing-features">
+                    <li><span class="check">✓</span> 60 or 75 minute sessions</li>
+                    <li><span class="check">✓</span> Cedar barrel sauna access</li>
+                    <li><span class="check">✓</span> Cold water plunge</li>
+                    <li><span class="check">✓</span> Towel storage</li>
+                    <li><span class="check">✓</span> Outdoor shower</li>
+                    <li><span class="check">✓</span> Prime sunset slots</li>
+                </ul>
+                <button class="btn btn-book btn-primary">Book Now</button>
+            </div>
+        </div>
+
+        <p class="fade-up" style="text-align: center; margin-top: 40px; color: rgba(250, 248, 243, 0.6);">
+            Looking for a gift? <a href="#" style="color: var(--sage); text-decoration: underline;">Gift certificates available</a>
+        </p>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+        <div class="faq-container">
+            <p class="section-label fade-up">QUESTIONS?</p>
+            <h2 class="section-title fade-up">Frequently Asked Questions</h2>
+            <p class="section-description fade-up">Everything you need to know about your Bywater sauna experience. Can't find what you're looking for?</p>
+
+            <div class="faq-grid" id="faq-list">
+                <!-- FAQ items will be loaded here -->
+            </div>
+
+            <div class="faq-contact fade-up">
+                <a href="mailto:info@bywatersauna.com">
+                    ✉️ info@bywatersauna.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-label fade-up">
+            ✨ Join the community
+        </div>
+        <h2 class="section-title fade-up">Stay in the Loop</h2>
+        <p class="section-description fade-up">
+            Be the first to know about new locations, special events, seasonal offerings, and exclusive member perks.
+        </p>
+
+        <form class="newsletter-form fade-up">
+            <input type="text" placeholder="First name" required>
+            <input type="text" placeholder="Last name" required>
+            <input type="email" placeholder="Email address" required style="grid-column: 1 / -1;">
+            <button type="submit" class="btn btn-primary btn-large">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-circle">B</div>
+                    <span style="font-size: 20px; font-weight: 600;">Bywater</span>
+                </div>
+                <p class="footer-description">
+                    Seattle's social third space. Experience the ancient ritual of contrast therapy at four waterfront locations.
+                </p>
+                <div class="social-links">
+                    <a href="https://instagram.com/bywatersauna" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Twitter</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#locations">Locations</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Get Started</h4>
+                <ul class="footer-links">
+                    <li><a href="#pricing">Book a Session</a></li>
+                    <li><a href="#">Gift Certificates</a></li>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Private Events</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@bywatersauna.com">info@bywatersauna.com</a></li>
+                    <li><a href="tel:+12065551234">(206) 555-1234</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©2024 Bywater LLC. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Load content from Decap CMS
+        let locationsData = [];
+        let currentLocation = null;
+
+        async function loadContent() {
+            try {
+                // Load locations
+                const locationsResponse = await fetch('/_data/locations.json');
+                const locations = await locationsResponse.json();
+                locationsData = locations.items;
+
+                // Render locations
+                renderLocations(locations.items);
+
+                // Update title and description
+                document.getElementById('locations-title').textContent = locations.title;
+                document.getElementById('locations-description').textContent = locations.description;
+
+                // Load hero content
+                const heroResponse = await fetch('/_data/hero.json');
+                const hero = await heroResponse.json();
+                document.getElementById('hero-description').textContent = hero.description;
+
+                // Load FAQ
+                loadFAQ();
+
+            } catch (error) {
+                console.log('Using default content (CMS data not loaded)');
+            }
+        }
+
+        function renderLocations(locations) {
+            const list = document.getElementById('location-list');
+            list.innerHTML = '';
+
+            locations.forEach((location, index) => {
+                const card = document.createElement('div');
+                card.className = `location-card fade-up stagger-${index + 1}`;
+                if (index === 0) card.classList.add('active');
+
+                card.innerHTML = `
+                    <div class="location-header">
+                        <div class="location-icon">📍</div>
+                        <div class="location-badge">${location.neighborhood}</div>
+                    </div>
+                    <h3>${location.name}</h3>
+                    <p>${location.address}</p>
+                    <div class="location-tag">≈ ${location.tagline}</div>
+                `;
+
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.location-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+
+                    // Update map
+                    map.setView([location.lat, location.lng], 14);
+
+                    // Open sidebar
+                    openLocationSidebar(location);
+                });
+
+                list.appendChild(card);
+                observer.observe(card);
+            });
+
+            // Open first location sidebar by default
+            if (locations.length > 0) {
+                currentLocation = locations[0];
+            }
+        }
+
+        function openLocationSidebar(location) {
+            currentLocation = location;
+
+            document.getElementById('sidebarLocationName').textContent = location.name;
+            document.getElementById('sidebarLocationAddress').textContent = location.address;
+            document.getElementById('sidebarSessionLength').textContent = location.session_length;
+            document.getElementById('sidebarParking').textContent = location.parking;
+            document.getElementById('sidebarTransit').textContent = location.getting_there;
+            document.getElementById('sidebarBestTime').textContent = location.best_time;
+
+            // Render amenities
+            const amenitiesList = document.getElementById('sidebarAmenities');
+            amenitiesList.innerHTML = '';
+            location.amenities.forEach(amenity => {
+                const li = document.createElement('li');
+                li.textContent = amenity;
+                amenitiesList.appendChild(li);
+            });
+
+            // Show sidebar
+            document.getElementById('locationSidebar').classList.add('active');
+            document.getElementById('sidebarOverlay').classList.add('active');
+        }
+
+        function closeSidebar() {
+            document.getElementById('locationSidebar').classList.remove('active');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+        }
+
+        document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
+        document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
+
+        document.getElementById('getDirections').addEventListener('click', () => {
+            if (currentLocation) {
+                window.open(`https://www.google.com/maps/dir/?api=1&destination=${currentLocation.lat},${currentLocation.lng}`, '_blank');
+            }
+        });
+
+        // FAQ
+        function loadFAQ() {
+            const faqData = [
+                {
+                    question: "Is that a sauna? How does this all work?",
+                    answer: "Yes, it is a sauna! We offer sauna sessions at the beach. Sessions last either 60 or 75 minutes. Anyone can book a spot during a session - reserve online beforehand like signing up for a workout class. During your session, cycle between the sauna and cold water at your own pace."
+                },
+                {
+                    question: "Are there rules or specific etiquette?",
+                    answer: "Yes! Wash sandy toes before entering. Sit on a towel inside the sauna (required). Take your towel with you when you go for a dip - no saving seats. Mind the door and close it quickly. Let folks know before pouring water on rocks. Respect your fellow saunamates - Bywater is a shared space."
+                },
+                {
+                    question: "How should I start and end my session?",
+                    answer: "You're the boss of your cycling schedule! Start and end on cold or hot - whatever feels right. Take a break after 15-20 consecutive minutes in the sauna to allow your core temperature to come down. Any amount of cold water exposure complements sauna use."
+                },
+                {
+                    question: "Where do I put my stuff?",
+                    answer: "We have shelves and hooks available outside the sauna for guests' things. We recommend leaving all non-essential items at home. Leave heat-sensitive items outside: jewelry, eyeglasses, phones, cameras, watches, etc."
+                },
+                {
+                    question: "Are there showers available?",
+                    answer: "Yes, but not private showers. The bathhouses have quick rinse outdoor showers available to rinse off before and after your session."
+                },
+                {
+                    question: "Are people under 18 allowed?",
+                    answer: "With prior notice and when accompanied by a parent or guardian, yes! Please reach out directly to info@bywatersauna.com if one of your guests is under 18."
+                },
+                {
+                    question: "How does the wait list work?",
+                    answer: "Add your name to the waitlist when a session is full. When a spot opens up, everyone on the waitlist receives an email notification. Availability is first come, first served. The waitlist cannot accommodate multi-spot bookings - each person must sign up individually."
+                },
+                {
+                    question: "What is your cancellation policy?",
+                    answer: "Cancel anytime up to 24 hours before the start of a session to receive a credit back to your Bywater account. Bookings are non-refundable. Late cancellations (less than 24 hours) and no-shows do not receive credit."
+                }
+            ];
+
+            const faqList = document.getElementById('faq-list');
+            faqList.innerHTML = '';
+
+            faqData.forEach((faq, index) => {
+                const item = document.createElement('div');
+                item.className = `faq-item fade-up stagger-${(index % 4) + 1}`;
+                item.innerHTML = `
+                    <div class="faq-question">
+                        <span>${faq.question}</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">${faq.answer}</div>
+                    </div>
+                `;
+
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+
+                    // Close all
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                    });
+
+                    // Toggle current
+                    if (!isActive) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+
+                faqList.appendChild(item);
+                observer.observe(item);
+            });
+        }
+
+        // Initialize map
+        const map = L.map('map', {
+            center: [47.6205, -122.3493],
+            zoom: 11,
+            scrollWheelZoom: false
+        });
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Add markers after locations load
+        function addMapMarkers(locations) {
+            const icon = L.divIcon({
+                className: 'custom-icon',
+                html: '<div style="background: #8B9D83; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3;"></div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            });
+
+            locations.forEach(loc => {
+                L.marker([loc.lat, loc.lng], { icon })
+                    .addTo(map)
+                    .bindPopup(`<strong>${loc.name}</strong><br>${loc.tagline}`);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Load all content on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadContent();
+            if (locationsData.length > 0) {
+                addMapMarkers(locationsData);
+            }
+        });
+
+        // Netlify Identity (for CMS)
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 </html>
