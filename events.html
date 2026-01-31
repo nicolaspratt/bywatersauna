@@ -27,23 +27,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Cormorant:wght@600;700&family=Work+Sans:wght@400;500;600;700&family=DM+Serif+Display:wght@400&family=DM+Sans:wght@400;500;600;700&family=Crimson+Pro:wght@600;700&family=Lora:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            --orange: #ca5e43;
-            --orange-light: #d67a62;
-            --sage: #8B9D83;
-            --forest: #4A6156;
-            --earth: #C7A882;
-            --dark-forest: #2D3E35;
-            --charcoal: #1C1C1C;
-            --warm-white: #FAF8F3;
         }
 
         body {
@@ -87,19 +77,6 @@
             font-weight: 600;
             color: var(--warm-white);
             text-decoration: none;
-        }
-
-        .logo-circle {
-            width: 40px;
-            height: 40px;
-            background: var(--orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--warm-white);
         }
 
         .nav-links {
@@ -391,18 +368,6 @@
             margin-bottom: 20px;
         }
 
-        .footer-logo-circle {
-            width: 36px;
-            height: 36px;
-            background: var(--orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--warm-white);
-        }
-
         .footer-description {
             color: rgba(250, 248, 243, 0.6);
             line-height: 1.7;
@@ -510,8 +475,7 @@
     <header>
         <nav>
             <a href="index.html" class="logo">
-                <div class="logo-circle">B</div>
-                <span>Bywater</span>
+                <img src="logo.svg" alt="Bywater Sauna" height="45">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -651,8 +615,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <div class="footer-logo-circle">B</div>
-                    <span style="font-size: 20px; font-weight: 600;">Bywater</span>
+                    <img src="logo.svg" alt="Bywater" height="30">
                 </div>
                 <p class="footer-description">
                     Seattle's social third space. Relax in cedar barrel saunas and refresh with cold plunges at four waterfront locations.
@@ -702,5 +665,178 @@
             </div>
         </div>
     </footer>
+
+    <!-- Design Options Panel -->
+    <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
+    <div class="design-options" id="designOptions">
+        <h3>🎨 Design Options</h3>
+
+        <div class="option-group">
+            <label>Color Theme</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="theme" data-value="midnight" title="Deep navy with coral accents">
+                    🌙 Midnight Spa
+                </button>
+                <button class="option-btn" data-option="theme" data-value="coastal" title="Charcoal with warm gold">
+                    ✨ Luxe Charcoal
+                </button>
+                <button class="option-btn" data-option="theme" data-value="cedar" title="Coastal calm with blue-grey">
+                    🌊 Coastal Calm
+                </button>
+                <button class="option-btn" data-option="theme" data-value="sage" title="Serene mint and teal">
+                    🌿 Serene Mint
+                </button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Card Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="cards" data-value="default">Default</button>
+                <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
+                <button class="option-btn" data-option="cards" data-value="bold">Bold</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Button Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
+                <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
+                <button class="option-btn" data-option="buttons" data-value="square">Square</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Typography</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="font" data-value="playfair" title="Playfair Display + Inter">
+                    Playfair
+                </button>
+                <button class="option-btn" data-option="font" data-value="cormorant" title="Cormorant + Work Sans">
+                    Cormorant
+                </button>
+                <button class="option-btn" data-option="font" data-value="dm" title="DM Serif Display + DM Sans">
+                    DM Serif
+                </button>
+                <button class="option-btn" data-option="font" data-value="crimson" title="Crimson Pro + Inter">
+                    Crimson
+                </button>
+                <button class="option-btn" data-option="font" data-value="lora" title="Lora + Nunito Sans">
+                    Lora
+                </button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Section Width</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="layout" data-value="default">Contained</button>
+                <button class="option-btn" data-option="layout" data-value="fullwidth">Full Width</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Design Options functionality
+        const designOptionsToggle = document.getElementById('designOptionsToggle');
+        const designOptions = document.getElementById('designOptions');
+
+        if (designOptionsToggle && designOptions) {
+            designOptionsToggle.addEventListener('click', () => {
+                designOptions.classList.toggle('active');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!designOptions.contains(e.target) && !designOptionsToggle.contains(e.target)) {
+                    designOptions.classList.remove('active');
+                }
+            });
+
+            // Handle option changes
+            const optionButtons = designOptions.querySelectorAll('.option-btn');
+
+            optionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const option = button.dataset.option;
+                    const value = button.dataset.value;
+
+                    // Update active state
+                    button.parentElement.querySelectorAll('.option-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+
+                    // Apply the option
+                    if (option === 'theme') {
+                        document.body.className = document.body.className.replace(/theme-\w+/g, '');
+                        if (value !== 'midnight') {
+                            document.body.classList.add(`theme-${value}`);
+                        }
+                        localStorage.setItem('bywater-theme', value);
+                    } else {
+                        document.body.className = document.body.className.replace(new RegExp(`${option}-\\w+`, 'g'), '');
+                        if (value !== 'default') {
+                            document.body.classList.add(`${option}-${value}`);
+                        }
+                        localStorage.setItem(`bywater-${option}`, value);
+                    }
+                });
+            });
+
+            // Restore saved preferences
+            const savedTheme = localStorage.getItem('bywater-theme');
+            const savedCards = localStorage.getItem('bywater-cards');
+            const savedButtons = localStorage.getItem('bywater-buttons');
+            const savedFont = localStorage.getItem('bywater-font');
+            const savedLayout = localStorage.getItem('bywater-layout');
+
+            if (savedTheme && savedTheme !== 'midnight') {
+                document.body.classList.add(`theme-${savedTheme}`);
+                const themeBtn = designOptions.querySelector(`[data-option="theme"][data-value="${savedTheme}"]`);
+                if (themeBtn) {
+                    themeBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    themeBtn.classList.add('active');
+                }
+            }
+
+            if (savedCards && savedCards !== 'default') {
+                document.body.classList.add(`cards-${savedCards}`);
+                const cardsBtn = designOptions.querySelector(`[data-option="cards"][data-value="${savedCards}"]`);
+                if (cardsBtn) {
+                    cardsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    cardsBtn.classList.add('active');
+                }
+            }
+
+            if (savedButtons && savedButtons !== 'default') {
+                document.body.classList.add(`buttons-${savedButtons}`);
+                const buttonsBtn = designOptions.querySelector(`[data-option="buttons"][data-value="${savedButtons}"]`);
+                if (buttonsBtn) {
+                    buttonsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    buttonsBtn.classList.add('active');
+                }
+            }
+
+            if (savedFont && savedFont !== 'playfair') {
+                document.body.classList.add(`font-${savedFont}`);
+                const fontBtn = designOptions.querySelector(`[data-option="font"][data-value="${savedFont}"]`);
+                if (fontBtn) {
+                    fontBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    fontBtn.classList.add('active');
+                }
+            }
+
+            if (savedLayout && savedLayout !== 'default') {
+                document.body.classList.add(`layout-${savedLayout}`);
+                const layoutBtn = designOptions.querySelector(`[data-option="layout"][data-value="${savedLayout}"]`);
+                if (layoutBtn) {
+                    layoutBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    layoutBtn.classList.add('active');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
