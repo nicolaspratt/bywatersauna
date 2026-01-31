@@ -1,104 +1,80 @@
+# Decap CMS Configuration for Bywater Sauna
+# Using GitHub backend (no Netlify required)
+
 backend:
-  name: git-gateway
-  branch: main # Change to your main branch name
+  name: github
+  repo: nicolaspratt/bywatersauna
+  branch: main
+  # For GitHub Pages, you'll need to set up GitHub OAuth App:
+  # https://github.com/settings/developers
+  # Set Homepage URL to: https://yourusername.github.io/bywatersauna
+  # Set Authorization callback URL to: https://yourusername.github.io/bywatersauna/admin/
 
-media_folder: "assets/images"
-public_folder: "/assets/images"
+# For local development
+local_backend: true
 
+# Media files configuration
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Collections
 collections:
-  - name: "settings"
-    label: "Site Settings"
-    files:
-      - label: "General Settings"
-        name: "general"
-        file: "_data/settings.json"
-        fields:
-          - {label: "Site Title", name: "site_title", widget: "string", default: "Bywater Sauna"}
-          - {label: "Tagline", name: "tagline", widget: "string", default: "Seattle's Social Third Space"}
-          - {label: "Phone", name: "phone", widget: "string"}
-          - {label: "Email", name: "email", widget: "string"}
-          - {label: "Instagram", name: "instagram", widget: "string", required: false}
-          - {label: "Facebook", name: "facebook", widget: "string", required: false}
-          - {label: "Twitter", name: "twitter", widget: "string", required: false}
-
-  - name: "hero"
-    label: "Hero Section"
-    files:
-      - label: "Hero Content"
-        name: "hero"
-        file: "_data/hero.json"
-        fields:
-          - {label: "Main Headline", name: "headline", widget: "string"}
-          - {label: "Subtitle", name: "subtitle", widget: "string"}
-          - {label: "Description", name: "description", widget: "text"}
-          - {label: "Primary Button Text", name: "cta_primary", widget: "string"}
-          - {label: "Secondary Button Text", name: "cta_secondary", widget: "string"}
-
-  - name: "about"
-    label: "About Section"
-    files:
-      - label: "Who We Are"
-        name: "about"
-        file: "_data/about.json"
-        fields:
-          - {label: "Section Title", name: "title", widget: "string", default: "Who We Are"}
-          - {label: "Paragraph 1", name: "paragraph_1", widget: "text"}
-          - {label: "Paragraph 2", name: "paragraph_2", widget: "text"}
-          - {label: "Paragraph 3", name: "paragraph_3", widget: "text"}
-
-  - name: "services"
-    label: "Services"
-    files:
-      - label: "Services List"
-        name: "services"
-        file: "_data/services.json"
-        fields:
-          - {label: "Section Title", name: "title", widget: "string", default: "Sessions & Pricing"}
-          - label: "Service Items"
-            name: "items"
-            widget: "list"
-            fields:
-              - {label: "Icon", name: "icon", widget: "string", hint: "Emoji like 🔥"}
-              - {label: "Service Name", name: "name", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
-              - {label: "Price", name: "price", widget: "string"}
-
+  # Locations
   - name: "locations"
     label: "Locations"
+    folder: "_data"
+    identifier_field: "name"
+    extension: "json"
+    format: "json"
+    create: false
+    editor:
+      preview: false
     files:
-      - label: "Locations List"
+      - label: "Locations Data"
         name: "locations"
         file: "_data/locations.json"
         fields:
-          - {label: "Section Title", name: "title", widget: "string", default: "Our Locations"}
-          - {label: "Section Description", name: "description", widget: "text"}
-          - label: "Location Items"
+          - label: "Locations"
             name: "items"
             widget: "list"
             fields:
               - {label: "Name", name: "name", widget: "string"}
-              - {label: "Address", name: "address", widget: "text"}
+              - {label: "Address", name: "address", widget: "string"}
+              - {label: "Neighborhood", name: "neighborhood", widget: "string"}
               - {label: "Latitude", name: "lat", widget: "number", value_type: "float"}
               - {label: "Longitude", name: "lng", widget: "number", value_type: "float"}
+              - {label: "Tagline", name: "tagline", widget: "string"}
+              - {label: "Parking Info", name: "parking", widget: "text"}
+              - {label: "Session Length", name: "session_length", widget: "string"}
+              - {label: "Amenities", name: "amenities", widget: "list"}
+              - {label: "Best Time", name: "best_time", widget: "string"}
+              - {label: "Getting There", name: "getting_there", widget: "text"}
 
-  - name: "how_it_works"
-    label: "How It Works"
+  # About Page
+  - name: "about"
+    label: "About"
     files:
-      - label: "Steps"
-        name: "how_it_works"
-        file: "_data/how_it_works.json"
+      - label: "About Content"
+        name: "about"
+        file: "_data/about.json"
         fields:
-          - {label: "Section Title", name: "title", widget: "string", default: "How It Works"}
-          - {label: "Section Description", name: "description", widget: "text"}
-          - label: "Steps"
-            name: "steps"
-            widget: "list"
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Paragraph 1", name: "paragraph_1", widget: "text"}
+          - {label: "Paragraph 2", name: "paragraph_2", widget: "text"}
+          - {label: "Paragraph 3", name: "paragraph_3", widget: "text"}
+
+  # Pages (if you want to manage HTML pages)
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "index.html"
+        fields:
+          - {label: "Title", name: "title", widget: "hidden", default: "Bywater Sauna"}
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
             fields:
-              - {label: "Step Number", name: "number", widget: "number", value_type: "int"}
-              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Heading", name: "heading", widget: "string", hint: "Main heading on hero section"}
               - {label: "Description", name: "description", widget: "text"}
-          - label: "Good to Know Items"
-            name: "good_to_know"
-            widget: "list"
-            fields:
-              - {label: "Item", name: "item", widget: "string"}
