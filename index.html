@@ -226,6 +226,16 @@
         .how-it-works {
             text-align: center;
             background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            position: relative;
+        }
+
+        /* Full-width mode adjustments for gradients */
+        body.layout-fullwidth .how-it-works,
+        body.layout-fullwidth .locations-section {
+            margin-left: calc(-1 * (100vw - 100%) / 2);
+            margin-right: calc(-1 * (100vw - 100%) / 2);
+            padding-left: 80px;
+            padding-right: 80px;
         }
 
         .ritual-cards {
@@ -353,6 +363,7 @@
         /* Locations */
         .locations-section {
             background: var(--charcoal);
+            position: relative;
         }
 
         .locations-grid {
