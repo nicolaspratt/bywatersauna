@@ -386,6 +386,68 @@
             color: var(--orange);
         }
 
+        .terms-section {
+            margin-top: 80px;
+            background: rgba(45, 62, 53, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+        }
+
+        .terms-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--orange);
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .term-item {
+            background: rgba(74, 97, 86, 0.1);
+            border: 2px solid rgba(139, 157, 131, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .term-item h4 {
+            font-size: 18px;
+            color: var(--orange);
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .term-item p {
+            color: rgba(250, 248, 243, 0.8);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .term-item ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .term-item ul li {
+            padding: 8px 0;
+            color: rgba(250, 248, 243, 0.8);
+            display: flex;
+            align-items: start;
+            gap: 8px;
+        }
+
+        .term-item ul li::before {
+            content: '•';
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
         @media (max-width: 768px) {
             .membership-tiers {
                 grid-template-columns: 1fr;
@@ -476,6 +538,65 @@
                 </ul>
                 <a href="mailto:membership@bywatersauna.com?subject=Annual%20Membership" class="btn">Sign Up →</a>
             </div>
+        </div>
+
+        <div class="terms-section">
+            <h2>Membership Terms & Policies</h2>
+            <p style="color: rgba(250, 248, 243, 0.8); line-height: 1.8; margin-bottom: 30px;">
+                We keep our policies simple and fair. Here's what you need to know about your Bywater membership:
+            </p>
+
+            <div class="terms-grid">
+                <div class="term-item">
+                    <h4>📅 Booking Policies</h4>
+                    <p>To ensure availability for all members:</p>
+                    <ul>
+                        <li>Maximum 1 session per day</li>
+                        <li>Maximum 2 upcoming bookings at any time</li>
+                        <li>Priority booking windows based on membership tier</li>
+                        <li>Book through our website or mobile app</li>
+                    </ul>
+                </div>
+
+                <div class="term-item">
+                    <h4>👥 Guest Passes</h4>
+                    <p>Share the Bywater experience with friends and family:</p>
+                    <ul>
+                        <li>Unlimited members: 1 free guest pass per month</li>
+                        <li>Additional guest passes available at drop-in rate ($35 weekday, $40 weekend)</li>
+                        <li>Guest passes must be used during member's booking</li>
+                        <li>Annual members receive 2 free guest passes per year</li>
+                    </ul>
+                </div>
+
+                <div class="term-item">
+                    <h4>❌ Cancellation Policy</h4>
+                    <p>We understand plans change, but late cancellations affect our community:</p>
+                    <ul>
+                        <li>Cancel at least 12 hours in advance - no penalty</li>
+                        <li>No-shows or late cancellations: $20 fee per member</li>
+                        <li>Guest no-shows: $35 weekday / $40 weekend per guest</li>
+                        <li>Fees charged to your payment method on file</li>
+                        <li>Excessive no-shows may result in membership suspension</li>
+                    </ul>
+                </div>
+
+                <div class="term-item">
+                    <h4>🔄 Membership Management</h4>
+                    <p>Flexible options for managing your membership:</p>
+                    <ul>
+                        <li>Monthly memberships: Cancel anytime, effective end of billing cycle</li>
+                        <li>Annual memberships: Pause up to 1 month per year</li>
+                        <li>All memberships auto-renew unless cancelled</li>
+                        <li>Change membership tiers anytime (prorated adjustments)</li>
+                        <li>Session credits expire based on membership type</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="color: rgba(250, 248, 243, 0.6); margin-top: 40px; font-size: 15px; line-height: 1.8;">
+                Questions about membership? Email us at <a href="mailto:membership@bywatersauna.com" style="color: var(--orange); text-decoration: underline;">membership@bywatersauna.com</a> or call <a href="tel:+12065551234" style="color: var(--orange); text-decoration: underline;">(206) 555-1234</a>.
+            </p>
         </div>
     </main>
 
