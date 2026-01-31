@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bywater - Seattle Beach Sauna Experience</title>
-    <meta name="description" content="Seattle's social third space. Experience the ancient ritual of contrast therapy at four waterfront locations.">
+    <meta name="description" content="Seattle's social third space. Relax in cedar barrel saunas and refresh with cold plunges at four waterfront locations.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1606,6 +1606,10 @@
             <button class="btn-directions" id="getDirections">
                 Get Directions →
             </button>
+
+            <a href="book.html" class="btn-directions" style="margin-top: 16px; text-decoration: none; background: var(--orange);">
+                Book This Location →
+            </a>
         </div>
     </div>
 
@@ -1697,7 +1701,7 @@
                     <span style="font-size: 20px; font-weight: 600;">Bywater</span>
                 </div>
                 <p class="footer-description">
-                    Seattle's social third space. Experience the ancient ritual of contrast therapy at four waterfront locations.
+                    Seattle's social third space. Relax in cedar barrel saunas and refresh with cold plunges at four waterfront locations.
                 </p>
                 <div class="social-links">
                     <a href="https://instagram.com/bywatersauna" target="_blank">Instagram</a>
@@ -1940,8 +1944,7 @@
                     </div>
                     <h3>${location.name}</h3>
                     <div class="location-tag" style="margin-bottom: 16px;">≈ ${location.tagline}</div>
-                    <p style="color: rgba(250, 248, 243, 0.7); font-size: 15px; line-height: 1.7; margin-bottom: 12px;">${location.address}</p>
-                    <p style="color: rgba(250, 248, 243, 0.6); font-size: 14px;">${location.session_length} sessions</p>
+                    <p style="color: rgba(250, 248, 243, 0.7); font-size: 15px; line-height: 1.7;">${location.address}</p>
                 `;
 
                 // Click handler
