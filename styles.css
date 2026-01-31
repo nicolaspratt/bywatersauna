@@ -72,12 +72,12 @@ body.theme-sage {
     --primary-bg: #FAFCFB;
     --primary-bg-rgb: 250, 252, 251;
     --secondary-bg: #E8F5F1;
-    --accent: #4A8B7B;
-    --accent-light: #5FA394;
-    --text: #1C2D28;
-    --text-muted: rgba(28, 45, 40, 0.7);
-    --card-bg: rgba(74, 139, 123, 0.1);
-    --border: rgba(74, 139, 123, 0.25);
+    --accent: #2A6B5B;
+    --accent-light: #3F8070;
+    --text: #0F1D18;
+    --text-muted: rgba(15, 29, 24, 0.75);
+    --card-bg: rgba(42, 107, 91, 0.08);
+    --border: rgba(42, 107, 91, 0.3);
 }
 
 /* ========================================

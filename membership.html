@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership - Bywater Sauna</title>
-    <meta name="description" content="Unlimited sauna and cold plunge sessions starting at $150/month. Join the Bywater community with exclusive member benefits and priority booking.">
+    <meta name="description" content="Join the Bywater Sauna membership. Unlimited sauna sessions with exclusive benefits.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -13,96 +13,26 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bywatersauna.com/membership.html">
     <meta property="og:title" content="Membership - Bywater Sauna">
-    <meta property="og:description" content="Unlimited sauna and cold plunge sessions starting at $150/month. Join the Bywater community with exclusive member benefits and priority booking.">
-    <meta property="og:image" content="https://bywatersauna.com/social-preview.svg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:description" content="Join the Bywater Sauna membership. Unlimited sauna sessions with exclusive benefits.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bywatersauna.com/membership.html">
     <meta property="twitter:title" content="Membership - Bywater Sauna">
-    <meta property="twitter:description" content="Unlimited sauna and cold plunge sessions starting at $150/month. Join the Bywater community with exclusive member benefits and priority booking.">
-    <meta property="twitter:image" content="https://bywatersauna.com/social-preview.svg">
+    <meta property="twitter:description" content="Join the Bywater Sauna membership. Unlimited sauna sessions with exclusive benefits.">
+
+    <!-- Decap CMS -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Cormorant:wght@600;700&family=Work+Sans:wght@400;500;600;700&family=DM+Serif+Display:wght@400&family=DM+Sans:wght@400;500;600;700&family=Crimson+Pro:wght@600;700&family=Lora:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--charcoal);
-            color: var(--warm-white);
-            line-height: 1.6;
-            font-size: 18px;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(28, 28, 28, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(139, 157, 131, 0.1);
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--warm-white);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: rgba(250, 248, 243, 0.8);
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--warm-white);
-        }
-
         main {
-            padding-top: 120px;
             max-width: 1200px;
             margin: 0 auto;
-            padding-left: 40px;
-            padding-right: 40px;
-            padding-bottom: 80px;
+            padding: 140px 40px 80px;
         }
 
         .page-header {
@@ -113,455 +43,333 @@
         .page-label {
             font-size: 12px;
             letter-spacing: 4px;
-            color: var(--orange);
+            color: var(--accent);
             margin-bottom: 20px;
             text-transform: uppercase;
             font-weight: 600;
         }
 
-        h1 {
+        .page-header h1 {
             font-size: clamp(48px, 6vw, 72px);
             margin-bottom: 24px;
-            line-height: 1.2;
         }
 
         .intro-text {
             font-size: 20px;
-            color: rgba(250, 248, 243, 0.8);
-            max-width: 800px;
+            color: var(--text-muted);
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.8;
         }
 
-        .membership-tiers {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin: 60px 0;
-        }
-
-        .tier-card {
-            background: rgba(74, 97, 86, 0.1);
-            border: 2px solid rgba(139, 157, 131, 0.2);
+        .membership-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--secondary-bg) 100%);
+            border: 2px solid var(--border);
             border-radius: 20px;
-            padding: 50px;
-            position: relative;
-            transition: all 0.4s;
+            padding: 60px;
+            max-width: 600px;
+            margin: 0 auto 80px;
+            text-align: center;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
         }
 
-        .tier-card.popular {
-            border-color: var(--orange);
-            transform: scale(1.05);
-        }
-
-        .tier-card.popular::before {
-            content: '⭐ MOST POPULAR';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--orange);
-            color: var(--warm-white);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .tier-card:hover {
-            border-color: var(--orange);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(202, 94, 67, 0.2);
-        }
-
-        .tier-card h3 {
-            font-size: 32px;
+        .membership-card h2 {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--accent);
             margin-bottom: 16px;
-            color: var(--orange);
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
-        .price {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--warm-white);
+        .membership-card h3 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .membership-price {
+            font-size: 64px;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
             margin-bottom: 8px;
+            font-weight: 700;
         }
 
-        .price span {
-            font-size: 20px;
+        .membership-billing {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
         }
 
-        .period {
-            color: rgba(250, 248, 243, 0.6);
-            margin-bottom: 30px;
-        }
-
-        .benefits {
+        .membership-benefits {
             list-style: none;
-            margin: 30px 0;
+            margin-bottom: 40px;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .benefits li {
-            padding: 12px 0;
+        .membership-benefits li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 12px;
-            color: rgba(250, 248, 243, 0.9);
+            font-size: 16px;
         }
 
-        .benefits li::before {
+        .membership-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .membership-benefits li::before {
             content: '✓';
-            width: 24px;
-            height: 24px;
-            background: var(--orange);
-            color: var(--warm-white);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .steps-section {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 80px;
+        }
+
+        .steps-section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .steps-section ol {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-section li {
+            counter-increment: step-counter;
+            padding: 20px;
+            margin-bottom: 16px;
+            background: var(--secondary-bg);
+            border-radius: 12px;
+            position: relative;
+            padding-left: 70px;
+        }
+
+        .steps-section li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .btn {
-            padding: 18px 40px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.4s;
-            display: block;
-            text-align: center;
-            background: var(--orange);
-            color: var(--warm-white);
-            margin-top: 30px;
-        }
-
-        .btn:hover {
-            background: var(--orange-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(202, 94, 67, 0.5);
-        }
-
-        footer {
-            background: var(--charcoal);
-            padding: 80px 40px 40px;
-            border-top: 1px solid rgba(139, 157, 131, 0.1);
-        }
-
-        .footer-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .footer-brand {
-            max-width: 300px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .footer-description {
-            color: rgba(250, 248, 243, 0.6);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-        }
-
-        .social-links a {
-            color: rgba(250, 248, 243, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--orange);
-        }
-
-        .footer-section h4 {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--stone);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(250, 248, 243, 0.6);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--orange);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 30px;
-            border-top: 1px solid rgba(139, 157, 131, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-bottom p {
-            color: rgba(250, 248, 243, 0.4);
-            font-size: 14px;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-legal a {
-            color: rgba(250, 248, 243, 0.4);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-legal a:hover {
-            color: var(--orange);
+            color: var(--primary-bg);
         }
 
         .terms-section {
-            margin-top: 80px;
-            background: rgba(45, 62, 53, 0.3);
-            border-radius: 20px;
-            padding: 50px;
+            margin-bottom: 60px;
         }
 
-        .terms-section h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: var(--orange);
+        .terms-section h3 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        .terms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .term-item {
-            background: rgba(74, 97, 86, 0.1);
-            border: 2px solid rgba(139, 157, 131, 0.2);
-            border-radius: 12px;
-            padding: 30px;
-        }
-
-        .term-item h4 {
-            font-size: 18px;
-            color: var(--orange);
-            margin-bottom: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .term-item p {
-            color: rgba(250, 248, 243, 0.8);
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-
-        .term-item ul {
-            list-style: none;
-            margin-top: 12px;
-        }
-
-        .term-item ul li {
-            padding: 8px 0;
-            color: rgba(250, 248, 243, 0.8);
-            display: flex;
-            align-items: start;
-            gap: 8px;
-        }
-
-        .term-item ul li::before {
-            content: '•';
-            color: var(--orange);
-            font-weight: 700;
+        .terms-section h4 {
             font-size: 20px;
+            margin-bottom: 16px;
+            margin-top: 40px;
+            color: var(--accent);
+        }
+
+        .terms-section p,
+        .terms-section ul {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .terms-section ul {
+            list-style-position: inside;
+            padding-left: 20px;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-form h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            background: var(--secondary-bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         @media (max-width: 768px) {
-            .membership-tiers {
+            .form-row {
                 grid-template-columns: 1fr;
             }
 
-            .tier-card.popular {
-                transform: scale(1);
+            .membership-card {
+                padding: 40px 30px;
             }
 
             main {
-                padding-left: 24px;
-                padding-right: 24px;
+                padding: 120px 24px 60px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Header -->
+    <header id="header">
         <nav>
             <a href="index.html" class="logo">
                 <img src="logo.svg" alt="Bywater Sauna" height="45">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#locations">Locations</a></li>
-                <li><a href="book.html">Book</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#faq">FAQs</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="events.html">Private Session</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <div class="page-header">
-            <p class="page-label">JOIN THE COMMUNITY</p>
+            <p class="page-label">JOIN THE CLUB</p>
             <h1>Membership</h1>
-            <p class="intro-text">
-                Make wellness a regular part of your routine with a Bywater membership. Save money, skip the waitlist,
-                and enjoy exclusive perks at all four of our Seattle locations.
-            </p>
         </div>
 
-        <div class="membership-tiers">
-            <div class="tier-card">
-                <h3>Monthly</h3>
-                <div class="price"><span>$</span>120<span>/mo</span></div>
-                <div class="period">Billed monthly, cancel anytime</div>
-                <ul class="benefits">
-                    <li>4 sessions per month</li>
-                    <li>Priority booking (48h early access)</li>
-                    <li>All locations included</li>
-                    <li>Rollover 1 session/month</li>
-                    <li>10% off guest passes</li>
-                    <li>Member-only events</li>
-                </ul>
-                <a href="mailto:membership@bywatersauna.com?subject=Monthly%20Membership" class="btn">Sign Up →</a>
-            </div>
-
-            <div class="tier-card popular">
-                <h3>Unlimited</h3>
-                <div class="price"><span>$</span>200<span>/mo</span></div>
-                <div class="period">Unlimited sessions, best value</div>
-                <ul class="benefits">
-                    <li>Unlimited sessions</li>
-                    <li>Priority booking (72h early access)</li>
-                    <li>All locations included</li>
-                    <li>Bring 1 guest free/month</li>
-                    <li>20% off additional guests</li>
-                    <li>Exclusive member events</li>
-                    <li>Free towel service</li>
-                    <li>Cancel anytime</li>
-                </ul>
-                <a href="mailto:membership@bywatersauna.com?subject=Unlimited%20Membership" class="btn">Sign Up →</a>
-            </div>
-
-            <div class="tier-card">
-                <h3>Annual</h3>
-                <div class="price"><span>$</span>1200<span>/yr</span></div>
-                <div class="period">Save $240 vs monthly</div>
-                <ul class="benefits">
-                    <li>48 sessions (4 per month)</li>
-                    <li>Priority booking (72h early access)</li>
-                    <li>All locations included</li>
-                    <li>Rollover up to 6 sessions</li>
-                    <li>2 free guest passes/year</li>
-                    <li>Member-only events</li>
-                    <li>Pause membership 1 month/year</li>
-                </ul>
-                <a href="mailto:membership@bywatersauna.com?subject=Annual%20Membership" class="btn">Sign Up →</a>
-            </div>
+        <!-- Membership Card -->
+        <div class="membership-card">
+            <h2>THE MEMBERSHIP</h2>
+            <h3>Sauna all you wanna.</h3>
+            <div class="membership-price">$100</div>
+            <div class="membership-billing">Billed monthly</div>
+            <ul class="membership-benefits">
+                <li>Unlimited sauna sessions (up to once per day)</li>
+                <li>One free guest pass per month</li>
+            </ul>
+            <a href="https://bywatersauna.corsizio.com/" target="_blank" class="btn btn-primary btn-large">Get Started</a>
         </div>
 
+        <!-- Steps to Purchase -->
+        <div class="steps-section">
+            <h3>Steps to purchase</h3>
+            <ol>
+                <li>Log into your account on our booking site and click 'Profile' in the top right corner</li>
+                <li>Click 'My membership' and then 'Buy a membership'</li>
+                <li>Select the 'Bywater Membership' option</li>
+            </ol>
+        </div>
+
+        <!-- Membership Terms -->
         <div class="terms-section">
-            <h2>Membership Terms & Policies</h2>
-            <p style="color: rgba(250, 248, 243, 0.8); line-height: 1.8; margin-bottom: 30px;">
-                We keep our policies simple and fair. Here's what you need to know about your Bywater membership:
-            </p>
+            <h3>Membership Terms</h3>
 
-            <div class="terms-grid">
-                <div class="term-item">
-                    <h4>📅 Booking Policies</h4>
-                    <p>To ensure availability for all members:</p>
-                    <ul>
-                        <li>Maximum 1 session per day</li>
-                        <li>Maximum 2 upcoming bookings at any time</li>
-                        <li>Priority booking windows based on membership tier</li>
-                        <li>Book through our website or mobile app</li>
-                    </ul>
+            <h4>Guest Passes</h4>
+            <p>We love friends, and want to meet yours! Members get one free guest pass per month. To use your guest pass, just add +1 to your booking.</p>
+            <p>For additional guests beyond the free pass, the member's account will be charged for the session at the drop-in rate. Our app will allow you to book for more than one guest per month without any additional fee at the time of booking.</p>
+
+            <h4>Booking Caps</h4>
+            <p>As a member, you can attend unlimited sessions per month, with a few caveats:</p>
+            <ul>
+                <li>One session per day</li>
+                <li>Two upcoming bookings at any given time. (ie. If you have bookings for 12/1 and 12/4, you will not be able to book another session until after your 12/1 visit.)</li>
+            </ul>
+
+            <h4>Cancellation / No-Shows</h4>
+            <p>Cancel anytime up to 12 hours in advance of your session.</p>
+            <p>For no-shows and late cancellations, there is a $20 penalty for the members. If the booking includes guests beyond a guest pass, there is an additional $35 per guest.</p>
+            <p>We do not want to be punitive. We do want to encourage responsibility, communication, and grace. If you have an emergency, please reach out to <a href="mailto:info@bywatersauna.com" style="color: var(--accent);">info@bywatersauna.com</a> and let us know.</p>
+        </div>
+
+        <!-- Adjust Membership Form -->
+        <div class="contact-form">
+            <h3>Adjust Your Membership</h3>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Use the form below to pause or cancel your membership:</p>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="ex. Mike" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="ex. Scott" required>
+                    </div>
                 </div>
-
-                <div class="term-item">
-                    <h4>👥 Guest Passes</h4>
-                    <p>Share the Bywater experience with friends and family:</p>
-                    <ul>
-                        <li>Unlimited members: 1 free guest pass per month</li>
-                        <li>Additional guest passes available at drop-in rate ($35 weekday, $40 weekend)</li>
-                        <li>Guest passes must be used during member's booking</li>
-                        <li>Annual members receive 2 free guest passes per year</li>
-                    </ul>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="ex. Email" required>
                 </div>
-
-                <div class="term-item">
-                    <h4>❌ Cancellation Policy</h4>
-                    <p>We understand plans change, but late cancellations affect our community:</p>
-                    <ul>
-                        <li>Cancel at least 12 hours in advance - no penalty</li>
-                        <li>No-shows or late cancellations: $20 fee per member</li>
-                        <li>Guest no-shows: $35 weekday / $40 weekend per guest</li>
-                        <li>Fees charged to your payment method on file</li>
-                        <li>Excessive no-shows may result in membership suspension</li>
-                    </ul>
+                <div class="form-group">
+                    <label for="request">Request</label>
+                    <textarea id="request" name="request" placeholder="ex. Pause my membership starting XX/XX and ending XX/XX" required></textarea>
                 </div>
-
-                <div class="term-item">
-                    <h4>🔄 Membership Management</h4>
-                    <p>Flexible options for managing your membership:</p>
-                    <ul>
-                        <li>Monthly memberships: Cancel anytime, effective end of billing cycle</li>
-                        <li>Annual memberships: Pause up to 1 month per year</li>
-                        <li>All memberships auto-renew unless cancelled</li>
-                        <li>Change membership tiers anytime (prorated adjustments)</li>
-                        <li>Session credits expire based on membership type</li>
-                    </ul>
-                </div>
-            </div>
-
-            <p style="color: rgba(250, 248, 243, 0.6); margin-top: 40px; font-size: 15px; line-height: 1.8;">
-                Questions about membership? Email us at <a href="mailto:membership@bywatersauna.com" style="color: var(--orange); text-decoration: underline;">membership@bywatersauna.com</a> or call <a href="tel:+12065551234" style="color: var(--orange); text-decoration: underline;">(206) 555-1234</a>.
-            </p>
+                <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Submit Request</button>
+            </form>
         </div>
     </main>
 
@@ -573,33 +381,26 @@
                     <img src="logo.svg" alt="Bywater" height="30">
                 </div>
                 <p class="footer-description">
-                    Seattle's social third space. Relax in cedar barrel saunas and refresh with cold plunges at four waterfront locations.
+                    Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
                 </p>
-                <div class="social-links">
-                    <a href="https://instagram.com/bywatersauna" target="_blank">Instagram</a>
-                    <a href="#" target="_blank">Facebook</a>
-                    <a href="#" target="_blank">Twitter</a>
-                </div>
             </div>
 
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html#how-it-works">How It Works</a></li>
                     <li><a href="index.html#locations">Locations</a></li>
-                    <li><a href="index.html#pricing">Pricing</a></li>
-                    <li><a href="index.html#faq">FAQ</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="book.html">Book a Session</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="events.html">Private Events</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Get Started</h4>
+                <h4>Company</h4>
                 <ul class="footer-links">
-                    <li><a href="book.html">Book a Session</a></li>
-                    <li><a href="#" class="gift-cert-link">Gift Certificates</a></li>
-                    <li><a href="membership.html">Membership</a></li>
-                    <li><a href="events.html">Private Events</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
 
@@ -607,40 +408,39 @@
                 <h4>Contact</h4>
                 <ul class="footer-links">
                     <li><a href="mailto:info@bywatersauna.com">info@bywatersauna.com</a></li>
-                    <li><a href="tel:+12065551234">(206) 555-1234</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>©2026 Bywater LLC. All rights reserved.</p>
-            <div class="footer-legal">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
+            <p>@2024 Bywater LLC. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Design Options Panel -->
     <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
+
     <div class="design-options" id="designOptions">
-        <h3>🎨 Design Options</h3>
+        <h3>Design Options</h3>
 
         <div class="option-group">
             <label>Color Theme</label>
             <div class="option-buttons">
-                <button class="option-btn active" data-option="theme" data-value="midnight" title="Deep navy with coral accents">
-                    🌙 Midnight Spa
-                </button>
-                <button class="option-btn" data-option="theme" data-value="coastal" title="Charcoal with warm gold">
-                    ✨ Luxe Charcoal
-                </button>
-                <button class="option-btn" data-option="theme" data-value="cedar" title="Coastal calm with blue-grey">
-                    🌊 Coastal Calm
-                </button>
-                <button class="option-btn" data-option="theme" data-value="sage" title="Serene mint and teal">
-                    🌿 Serene Mint
-                </button>
+                <button class="option-btn active" data-option="theme" data-value="midnight">Midnight Spa</button>
+                <button class="option-btn" data-option="theme" data-value="coastal">Luxe Charcoal</button>
+                <button class="option-btn" data-option="theme" data-value="cedar">Coastal Calm</button>
+                <button class="option-btn" data-option="theme" data-value="sage">Serene Mint</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Typography</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="font" data-value="playfair">Playfair</button>
+                <button class="option-btn" data-option="font" data-value="cormorant">Cormorant</button>
+                <button class="option-btn" data-option="font" data-value="dm">DM Serif</button>
+                <button class="option-btn" data-option="font" data-value="crimson">Crimson</button>
+                <button class="option-btn" data-option="font" data-value="lora">Lora</button>
             </div>
         </div>
 
@@ -663,28 +463,7 @@
         </div>
 
         <div class="option-group">
-            <label>Typography</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="font" data-value="playfair" title="Playfair Display + Inter">
-                    Playfair
-                </button>
-                <button class="option-btn" data-option="font" data-value="cormorant" title="Cormorant + Work Sans">
-                    Cormorant
-                </button>
-                <button class="option-btn" data-option="font" data-value="dm" title="DM Serif Display + DM Sans">
-                    DM Serif
-                </button>
-                <button class="option-btn" data-option="font" data-value="crimson" title="Crimson Pro + Inter">
-                    Crimson
-                </button>
-                <button class="option-btn" data-option="font" data-value="lora" title="Lora + Nunito Sans">
-                    Lora
-                </button>
-            </div>
-        </div>
-
-        <div class="option-group">
-            <label>Section Width</label>
+            <label>Layout</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="layout" data-value="default">Contained</button>
                 <button class="option-btn" data-option="layout" data-value="fullwidth">Full Width</button>
@@ -699,98 +478,51 @@
 
         if (designOptionsToggle && designOptions) {
             designOptionsToggle.addEventListener('click', () => {
+                const isActive = designOptions.classList.contains('active');
                 designOptions.classList.toggle('active');
-            });
-
-            // Close when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!designOptions.contains(e.target) && !designOptionsToggle.contains(e.target)) {
-                    designOptions.classList.remove('active');
-                }
+                designOptionsToggle.textContent = isActive ? '⚙️' : '✕';
             });
 
             // Handle option changes
-            const optionButtons = designOptions.querySelectorAll('.option-btn');
-
-            optionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const option = button.dataset.option;
-                    const value = button.dataset.value;
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const option = this.dataset.option;
+                    const value = this.dataset.value;
 
                     // Update active state
-                    button.parentElement.querySelectorAll('.option-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    button.classList.add('active');
+                    this.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
 
-                    // Apply the option
+                    // Apply the change
                     if (option === 'theme') {
-                        document.body.className = document.body.className.replace(/theme-\w+/g, '');
-                        if (value !== 'midnight') {
-                            document.body.classList.add(`theme-${value}`);
-                        }
-                        localStorage.setItem('bywater-theme', value);
-                    } else {
-                        document.body.className = document.body.className.replace(new RegExp(`${option}-\\w+`, 'g'), '');
-                        if (value !== 'default') {
-                            document.body.classList.add(`${option}-${value}`);
-                        }
-                        localStorage.setItem(`bywater-${option}`, value);
+                        document.body.className = `theme-${value}`;
+                    } else if (option === 'font') {
+                        document.body.className = document.body.className.replace(/font-\w+/, '');
+                        document.body.classList.add(`font-${value}`);
+                    } else if (option === 'cards') {
+                        document.body.className = document.body.className.replace(/cards-\w+/, '');
+                        if (value !== 'default') document.body.classList.add(`cards-${value}`);
+                    } else if (option === 'buttons') {
+                        document.body.className = document.body.className.replace(/buttons-\w+/, '');
+                        if (value !== 'default') document.body.classList.add(`buttons-${value}`);
+                    } else if (option === 'layout') {
+                        document.body.className = document.body.className.replace(/layout-\w+/, '');
+                        if (value !== 'default') document.body.classList.add(`layout-${value}`);
                     }
+
+                    // Save to localStorage
+                    localStorage.setItem(`bywater-${option}`, value);
                 });
             });
 
-            // Restore saved preferences
-            const savedTheme = localStorage.getItem('bywater-theme');
-            const savedCards = localStorage.getItem('bywater-cards');
-            const savedButtons = localStorage.getItem('bywater-buttons');
-            const savedFont = localStorage.getItem('bywater-font');
-            const savedLayout = localStorage.getItem('bywater-layout');
-
-            if (savedTheme && savedTheme !== 'midnight') {
-                document.body.classList.add(`theme-${savedTheme}`);
-                const themeBtn = designOptions.querySelector(`[data-option="theme"][data-value="${savedTheme}"]`);
-                if (themeBtn) {
-                    themeBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    themeBtn.classList.add('active');
+            // Restore saved preferences on page load
+            ['theme', 'cards', 'buttons', 'font', 'layout'].forEach(option => {
+                const saved = localStorage.getItem(`bywater-${option}`);
+                if (saved) {
+                    const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
+                    if (btn) btn.click();
                 }
-            }
-
-            if (savedCards && savedCards !== 'default') {
-                document.body.classList.add(`cards-${savedCards}`);
-                const cardsBtn = designOptions.querySelector(`[data-option="cards"][data-value="${savedCards}"]`);
-                if (cardsBtn) {
-                    cardsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    cardsBtn.classList.add('active');
-                }
-            }
-
-            if (savedButtons && savedButtons !== 'default') {
-                document.body.classList.add(`buttons-${savedButtons}`);
-                const buttonsBtn = designOptions.querySelector(`[data-option="buttons"][data-value="${savedButtons}"]`);
-                if (buttonsBtn) {
-                    buttonsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    buttonsBtn.classList.add('active');
-                }
-            }
-
-            if (savedFont && savedFont !== 'playfair') {
-                document.body.classList.add(`font-${savedFont}`);
-                const fontBtn = designOptions.querySelector(`[data-option="font"][data-value="${savedFont}"]`);
-                if (fontBtn) {
-                    fontBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    fontBtn.classList.add('active');
-                }
-            }
-
-            if (savedLayout && savedLayout !== 'default') {
-                document.body.classList.add(`layout-${savedLayout}`);
-                const layoutBtn = designOptions.querySelector(`[data-option="layout"][data-value="${savedLayout}"]`);
-                if (layoutBtn) {
-                    layoutBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    layoutBtn.classList.add('active');
-                }
-            }
+            });
         }
     </script>
 </body>
