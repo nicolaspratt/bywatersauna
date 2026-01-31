@@ -952,7 +952,24 @@
 
         /* Mobile */
         .mobile-menu-toggle {
-            display: none;
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block; /* Show on mobile */
+            }
+
+            .nav-links,
+            .nav-ctas {
+                display: none; /* Hide main nav on mobile */
+            }
         }
 
         .mobile-menu {
@@ -1142,10 +1159,10 @@
                 <li><a href="#locations">Locations</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="membership.html">Membership</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
             <div class="nav-ctas">
+                <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
                 <a href="https://bywatersauna.corsizio.com/" target="_blank" class="btn btn-primary">Book a Session</a>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
@@ -1237,7 +1254,7 @@
                 <!-- Locations will be loaded dynamically -->
             </div>
 
-            <div class="map-container fade-up">
+            <div class="map-container">
                 <div class="map-wrapper">
                     <div id="map"></div>
                 </div>
@@ -2174,7 +2191,7 @@
                         // Navigate after animation
                         setTimeout(() => {
                             window.location.href = destination;
-                        }, 300);
+                        }, 150);
                     });
                 }
             });

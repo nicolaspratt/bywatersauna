@@ -90,7 +90,7 @@ body {
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
-    animation: pageIn 0.4s ease-out;
+    animation: pageIn 0.2s ease-out;
 }
 
 @keyframes pageIn {
@@ -103,7 +103,7 @@ body {
 }
 
 body.page-exit {
-    animation: pageOut 0.3s ease-in forwards;
+    animation: pageOut 0.15s ease-in forwards;
 }
 
 @keyframes pageOut {
