@@ -718,21 +718,6 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .map-container.sticky {
-            position: fixed;
-            top: 90px;
-            right: 40px;
-            width: calc(50% - 60px);
-            z-index: 500;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--orange);
-        }
-
-        .locations-grid.map-sticky::after {
-            content: '';
-            display: block;
-            height: 600px;
-        }
 
         #map {
             width: 100%;
@@ -1664,8 +1649,7 @@
     <header id="header">
         <nav>
             <a href="#" class="logo">
-                <div class="logo-circle">B</div>
-                <span>Bywater</span>
+                <img src="logo.svg" alt="Bywater Sauna" height="45">
             </a>
             <ul class="nav-links">
                 <li><a href="#how-it-works">How It Works</a></li>
@@ -2553,120 +2537,6 @@
                     <path d="m7 21 3-6-1.5-3" />
                     <path d="m7 3 3 6h4" />
                 </svg>`,
-                repeat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
-                    <path d="M21 3v5h-5" />
-                </svg>`
-            }
-        };
-
-        // Function to render icon
-        function renderIcon(type, iconSet = 'emoji') {
-            const icons = iconSets[iconSet];
-            if (!icons || !icons[type]) return iconSets.emoji[type];
-
-            const icon = icons[type];
-            if (typeof icon === 'string' && icon.includes('<svg')) {
-                return icon;
-            }
-            return icon;
-        }
-
-        // Function to update all ritual icons
-        function updateRitualIcons(iconSet) {
-            const ritualIcons = document.querySelectorAll('.ritual-icon');
-            ritualIcons.forEach((icon, index) => {
-                const types = ['heat', 'cold', 'repeat'];
-                const type = types[index];
-                const newIcon = renderIcon(type, iconSet);
-
-                if (newIcon.includes('<svg')) {
-                    icon.innerHTML = newIcon;
-                    icon.style.fontSize = '0';
-                } else {
-                    icon.textContent = newIcon;
-                    icon.style.fontSize = '32px';
-                }
-            });
-
-            // Save preference
-            localStorage.setItem('bywater-icons', iconSet);
-        }
-
-        // Map sticky scroll behavior
-        let mapIsSticky = false;
-        let hasScrolledPastMap = false;
-
-        function initMapStickyScroll() {
-            const mapContainer = document.querySelector('.map-container');
-            const pricingSection = document.getElementById('pricing');
-            const locationsGrid = document.querySelector('.locations-grid');
-
-            if (!mapContainer || !pricingSection || window.innerWidth <= 768) return;
-
-            // Observer for pricing section - when it enters viewport, unstick map
-            const pricingObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && mapIsSticky) {
-                        // Unstick the map
-                        mapContainer.classList.remove('sticky');
-                        locationsGrid.classList.remove('map-sticky');
-                        mapIsSticky = false;
-                        // Zoom back out
-                        resetMapView();
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '-90px 0px 0px 0px'
-            });
-
-            // Observer for map container - when it would scroll out of view, make it sticky
-            const mapObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // Track if user has scrolled down past the map
-                    if (!entry.isIntersecting) {
-                        hasScrolledPastMap = true;
-                    }
-
-                    const pricingRect = pricingSection.getBoundingClientRect();
-                    const pricingInView = pricingRect.top < window.innerHeight;
-
-                    // Only make sticky if user has scrolled down past map
-                    if (!entry.isIntersecting && !mapIsSticky && !pricingInView && hasScrolledPastMap) {
-                        // Stick the map
-                        mapContainer.classList.add('sticky');
-                        locationsGrid.classList.add('map-sticky');
-                        mapIsSticky = true;
-                        // Zoom in slightly
-                        if (map) {
-                            map.setZoom(13);
-                        }
-                    } else if (entry.isIntersecting && mapIsSticky) {
-                        // Back in view naturally, unstick
-                        mapContainer.classList.remove('sticky');
-                        locationsGrid.classList.remove('map-sticky');
-                        mapIsSticky = false;
-                        resetMapView();
-                    }
-                });
-            }, {
-                threshold: 0,
-                rootMargin: '-90px 0px 0px 0px'
-            });
-
-            mapObserver.observe(mapContainer);
-            pricingObserver.observe(pricingSection);
-        }
-
-        // Load all content on page load
-        window.addEventListener('DOMContentLoaded', async () => {
-            await loadContent();
-            if (locationsData.length > 0) {
-                addMapMarkers(locationsData);
-                // Initialize sticky map scroll after map is loaded
-                setTimeout(() => initMapStickyScroll(), 500);
-            }
         });
 
         // Design Options functionality
