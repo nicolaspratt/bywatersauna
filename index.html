@@ -486,6 +486,17 @@
             transform: scale(1.1) rotate(5deg);
         }
 
+        .ritual-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+            transition: all 0.4s;
+        }
+
+        .ritual-card:hover .ritual-icon svg {
+            color: var(--accent-light);
+        }
+
         .ritual-card h3 {
             font-size: 28px;
             margin-bottom: 20px;
@@ -1967,6 +1978,17 @@
                 <button class="option-btn" data-option="layout" data-value="fullwidth">Full Width</button>
             </div>
         </div>
+
+        <div class="option-group">
+            <label>Icon Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="icons" data-value="emoji">Emoji</button>
+                <button class="option-btn" data-option="icons" data-value="minimal">Minimal</button>
+                <button class="option-btn" data-option="icons" data-value="geometric">Geometric</button>
+                <button class="option-btn" data-option="icons" data-value="organic">Organic</button>
+                <button class="option-btn" data-option="icons" data-value="bold">Bold</button>
+            </div>
+        </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -2406,6 +2428,114 @@
             });
         });
 
+        // SVG Icon Sets for Ritual Cards
+        const iconSets = {
+            emoji: {
+                heat: '🔥',
+                cold: '💧',
+                repeat: '🔄'
+            },
+
+            minimal: {
+                heat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C12 2 8 6 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 6 12 2 12 2Z"/>
+                    <path d="M12 14C12 14 10 16 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16 12 14 12 14Z"/>
+                </svg>`,
+                cold: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M12 2L12 22M17.66 8L6.34 16M17.66 16L6.34 8"/>
+                </svg>`,
+                repeat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 1L21 5L17 9"/>
+                    <path d="M3 11V9C3 6.79 4.79 5 7 5H21"/>
+                    <path d="M7 23L3 19L7 15"/>
+                    <path d="M21 13V15C21 17.21 19.21 19 17 19H3"/>
+                </svg>`
+            },
+
+            geometric: {
+                heat: `<svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L14 8L16 4L17 10L19 6L18 12L20 10L19 16L16 14L17 20L12 16L7 20L8 14L5 16L6 10L4 12L5 6L7 10L8 4L10 8L12 2Z"/>
+                </svg>`,
+                cold: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2V22M5.64 5.64L18.36 18.36M2 12H22M5.64 18.36L18.36 5.64"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>`,
+                repeat: `<svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C12 2 12 2 8 6C6.5 7.5 6.5 9.5 8 11C9.5 12.5 11.5 12.5 13 11C14.5 9.5 14.5 7.5 13 6C13 6 12 2 12 2Z" opacity="0.5"/>
+                    <path d="M12 22C12 22 12 22 16 18C17.5 16.5 17.5 14.5 16 13C14.5 11.5 12.5 11.5 11 13C9.5 14.5 9.5 16.5 11 18C11 18 12 22 12 22Z"/>
+                </svg>`
+            },
+
+            organic: {
+                heat: `<svg viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="10" r="3"/>
+                    <path d="M12 2L10 7L12 6L14 7L12 2Z" opacity="0.8"/>
+                    <path d="M7 8L9 11L8 10L9 13L7 8Z" opacity="0.6"/>
+                    <path d="M17 8L15 11L16 10L15 13L17 8Z" opacity="0.6"/>
+                    <path d="M12 13L11 16L12 15L13 16L12 13Z" opacity="0.5"/>
+                </svg>`,
+                cold: `<svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 12C6 12 8 10 10 10C12 10 12 12 12 12C12 12 12 14 10 14C8 14 6 12 6 12Z" opacity="0.3"/>
+                    <path d="M12 8C12 8 14 6 16 6C18 6 18 8 18 8C18 8 18 10 16 10C14 10 12 8 12 8Z" opacity="0.5"/>
+                    <path d="M12 12C12 12 14 10 18 10C20 10 22 12 22 14C22 16 20 18 18 18C14 18 12 16 12 16L10 20C8 22 4 22 2 20C2 18 4 16 6 16L12 12Z"/>
+                </svg>`,
+                repeat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12C3 7 7 3 12 3C17 3 21 7 21 12" stroke-linecap="round"/>
+                    <path d="M21 12C21 17 17 21 12 21C7 21 3 17 3 12" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M19 9L21 12L18 12Z" fill="currentColor"/>
+                    <path d="M5 15L3 12L6 12Z" fill="currentColor" opacity="0.5"/>
+                </svg>`
+            },
+
+            bold: {
+                heat: `<svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C12 2 7 7 7 11C7 14.31 9.69 17 13 17C16.31 17 19 14.31 19 11C19 7 14 2 14 2C14 2 13 2 12 2Z"/>
+                    <path d="M13 17C13 17 11 19 11 20.5C11 21.33 11.67 22 12.5 22C13.33 22 14 21.33 14 20.5C14 19 12 17 12 17Z" opacity="0.7"/>
+                </svg>`,
+                cold: `<svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C9 2 6 4 6 8C6 10 7 12 8 13L10 18C10 20 11 22 13 22C15 22 16 20 16 18L18 13C19 12 20 10 20 8C20 4 17 2 14 2C13 2 12 2 12 2Z"/>
+                    <ellipse cx="12" cy="7" rx="3" ry="2" fill="rgba(255,255,255,0.3)"/>
+                </svg>`,
+                repeat: `<svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 2L22 7L17 12V8H7C5 8 4 9 4 11V13H2V11C2 8 4 6 7 6H17V2Z"/>
+                    <path d="M7 22L2 17L7 12V16H17C19 16 20 15 20 13V11H22V13C22 16 20 18 17 18H7V22Z"/>
+                </svg>`
+            }
+        };
+
+        // Function to render icon
+        function renderIcon(type, iconSet = 'emoji') {
+            const icons = iconSets[iconSet];
+            if (!icons || !icons[type]) return iconSets.emoji[type];
+
+            const icon = icons[type];
+            if (typeof icon === 'string' && icon.includes('<svg')) {
+                return icon;
+            }
+            return icon;
+        }
+
+        // Function to update all ritual icons
+        function updateRitualIcons(iconSet) {
+            const ritualIcons = document.querySelectorAll('.ritual-icon');
+            ritualIcons.forEach((icon, index) => {
+                const types = ['heat', 'cold', 'repeat'];
+                const type = types[index];
+                const newIcon = renderIcon(type, iconSet);
+
+                if (newIcon.includes('<svg')) {
+                    icon.innerHTML = newIcon;
+                    icon.style.fontSize = '0';
+                } else {
+                    icon.textContent = newIcon;
+                    icon.style.fontSize = '32px';
+                }
+            });
+
+            // Save preference
+            localStorage.setItem('bywater-icons', iconSet);
+        }
+
         // Map sticky scroll behavior
         let mapIsSticky = false;
 
@@ -2523,6 +2653,9 @@
                         if (value !== 'midnight') {
                             document.body.classList.add(`theme-${value}`);
                         }
+                    } else if (option === 'icons') {
+                        // Update ritual icons
+                        updateRitualIcons(value);
                     } else {
                         // Remove all related classes from body
                         document.body.classList.forEach(cls => {
@@ -2550,6 +2683,19 @@
                     if (btn) btn.click();
                 }
             });
+
+            // Restore saved icon set
+            const savedIcons = localStorage.getItem('bywater-icons');
+            if (savedIcons) {
+                updateRitualIcons(savedIcons);
+                const iconBtn = document.querySelector(`[data-option="icons"][data-value="${savedIcons}"]`);
+                if (iconBtn) {
+                    iconBtn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+                    iconBtn.classList.add('active');
+                }
+            } else {
+                updateRitualIcons('emoji');
+            }
         }
     </script>
 </body>
