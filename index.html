@@ -51,10 +51,59 @@
             --warm-white: #FAF8F3;
         }
 
+        /* Theme: Midnight Forest (Default) */
+        body,
+        body.theme-midnight {
+            --primary-bg: #1C1C1C;
+            --secondary-bg: #2D3E35;
+            --accent: #ca5e43;
+            --accent-light: #d67a62;
+            --text: #FAF8F3;
+            --text-muted: rgba(250, 248, 243, 0.7);
+            --card-bg: rgba(74, 97, 86, 0.1);
+            --border: rgba(139, 157, 131, 0.2);
+        }
+
+        /* Theme: Coastal Night (Dark) */
+        body.theme-coastal {
+            --primary-bg: #0f1419;
+            --secondary-bg: #1a2332;
+            --accent: #5eb3d6;
+            --accent-light: #7ec8e3;
+            --text: #e8f4f8;
+            --text-muted: rgba(232, 244, 248, 0.7);
+            --card-bg: rgba(94, 179, 214, 0.08);
+            --border: rgba(94, 179, 214, 0.2);
+        }
+
+        /* Theme: Cedar & Stone (Light) */
+        body.theme-cedar {
+            --primary-bg: #F5F1E8;
+            --secondary-bg: #E8DCC4;
+            --accent: #A6634F;
+            --accent-light: #C7856D;
+            --text: #2D3E35;
+            --text-muted: rgba(45, 62, 53, 0.7);
+            --card-bg: rgba(139, 157, 131, 0.12);
+            --border: rgba(74, 97, 86, 0.25);
+        }
+
+        /* Theme: Sage Garden (Light) */
+        body.theme-sage {
+            --primary-bg: #FAFAF8;
+            --secondary-bg: #E8F0E8;
+            --accent: #4A6156;
+            --accent-light: #5E7968;
+            --text: #1C1C1C;
+            --text-muted: rgba(28, 28, 28, 0.7);
+            --card-bg: rgba(139, 157, 131, 0.15);
+            --border: rgba(74, 97, 86, 0.3);
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--charcoal);
-            color: var(--warm-white);
+            background: var(--primary-bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -100,14 +149,14 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(28, 28, 28, 0.95);
+            background: rgba(var(--primary-bg-rgb, 28, 28, 28), 0.95);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(139, 157, 131, 0.1);
+            border-bottom: 1px solid var(--border);
             transition: all 0.3s;
         }
 
         header.scrolled {
-            background: rgba(28, 28, 28, 0.98);
+            background: rgba(var(--primary-bg-rgb, 28, 28, 28), 0.98);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
@@ -138,14 +187,14 @@
         .logo-circle {
             width: 40px;
             height: 40px;
-            background: var(--orange);
+            background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             font-size: 20px;
-            color: var(--warm-white);
+            color: var(--text);
         }
 
         .nav-links {
@@ -198,28 +247,28 @@
         }
 
         .btn-outline {
-            border: 2px solid var(--sage);
-            color: var(--sage);
+            border: 2px solid var(--accent);
+            color: var(--accent);
             background: transparent;
         }
 
         .btn-outline:hover {
-            background: var(--sage);
-            color: var(--charcoal);
+            background: var(--accent);
+            color: var(--primary-bg);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(139, 157, 131, 0.3);
+            box-shadow: 0 8px 20px var(--border);
         }
 
         .btn-primary {
-            background: var(--orange);
-            color: var(--warm-white);
+            background: var(--accent);
+            color: var(--text);
         }
 
         .btn-primary:hover {
-            background: var(--orange-light);
-            color: var(--warm-white);
+            background: var(--accent-light);
+            color: var(--text);
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 104, 51, 0.5);
+            box-shadow: 0 8px 30px var(--border);
         }
 
         /* Hero with Background Image */
@@ -361,7 +410,7 @@
         .section-label {
             font-size: 12px;
             letter-spacing: 4px;
-            color: var(--orange);
+            color: var(--accent);
             margin-bottom: 20px;
             text-transform: uppercase;
             font-weight: 600;
@@ -384,7 +433,7 @@
         /* How It Works */
         .how-it-works {
             text-align: center;
-            background: linear-gradient(180deg, var(--charcoal) 0%, var(--dark-forest) 100%);
+            background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
         }
 
         .ritual-cards {
@@ -395,8 +444,8 @@
         }
 
         .ritual-card {
-            background: rgba(74, 97, 86, 0.1);
-            border: 1px solid rgba(139, 157, 131, 0.2);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 50px 30px;
             position: relative;
@@ -405,9 +454,9 @@
 
         .ritual-card:hover {
             transform: translateY(-12px);
-            border-color: var(--orange);
-            background: rgba(255, 104, 51, 0.05);
-            box-shadow: 0 20px 60px rgba(255, 104, 51, 0.2);
+            border-color: var(--accent);
+            background: var(--card-bg);
+            box-shadow: 0 20px 60px var(--border);
         }
 
         .ritual-number {
@@ -505,8 +554,8 @@
         }
 
         .location-card {
-            background: rgba(74, 97, 86, 0.1);
-            border: 2px solid rgba(139, 157, 131, 0.2);
+            background: var(--card-bg);
+            border: 2px solid var(--border);
             border-radius: 16px;
             padding: 30px;
             cursor: pointer;
@@ -533,16 +582,16 @@
         }
 
         .location-card.active {
-            border-color: var(--orange);
-            background: rgba(202, 94, 67, 0.08);
+            border-color: var(--accent);
+            background: var(--card-bg);
             transform: scale(1.02);
-            box-shadow: 0 8px 24px rgba(202, 94, 67, 0.15);
+            box-shadow: 0 8px 24px var(--border);
         }
 
         .location-card:hover {
-            border-color: var(--orange);
+            border-color: var(--accent);
             transform: scale(1.02);
-            box-shadow: 0 8px 24px rgba(202, 94, 67, 0.2);
+            box-shadow: 0 8px 24px var(--border);
         }
 
         .location-header {
@@ -820,8 +869,8 @@
         }
 
         .pricing-card {
-            background: rgba(74, 97, 86, 0.1);
-            border: 2px solid rgba(139, 157, 131, 0.2);
+            background: var(--card-bg);
+            border: 2px solid var(--border);
             border-radius: 20px;
             padding: 50px 40px;
             position: relative;
@@ -830,12 +879,12 @@
 
         .pricing-card:hover {
             transform: translateY(-8px);
-            border-color: var(--orange);
-            box-shadow: 0 20px 60px rgba(255, 104, 51, 0.25);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px var(--border);
         }
 
         .pricing-card.popular {
-            border-color: var(--orange);
+            border-color: var(--accent);
         }
 
         .pricing-card.popular::before {
@@ -992,7 +1041,7 @@
 
         /* Newsletter */
         .newsletter {
-            background: var(--dark-forest);
+            background: var(--secondary-bg);
             text-align: center;
         }
 
@@ -1414,6 +1463,41 @@
             font-size: clamp(36px, 4vw, 56px);
         }
 
+        /* Full-width sections option */
+        body.layout-fullwidth section {
+            max-width: none;
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+
+        body.layout-fullwidth nav,
+        body.layout-fullwidth .footer-grid,
+        body.layout-fullwidth .footer-bottom {
+            max-width: none;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        body.layout-fullwidth .faq-container,
+        body.layout-fullwidth .pricing-cards,
+        body.layout-fullwidth .newsletter-form {
+            max-width: 1200px;
+        }
+
+        @media (max-width: 768px) {
+            body.layout-fullwidth section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            body.layout-fullwidth nav,
+            body.layout-fullwidth .footer-grid,
+            body.layout-fullwidth .footer-bottom {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+
         /* Gift Certificates Modal */
         .gift-modal {
             position: fixed;
@@ -1832,6 +1916,24 @@
         <h3>🎨 Design Options</h3>
 
         <div class="option-group">
+            <label>Color Theme</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="theme" data-value="midnight" title="Dark theme with orange accents">
+                    🌲 Midnight
+                </button>
+                <button class="option-btn" data-option="theme" data-value="coastal" title="Dark theme with blue accents">
+                    🌊 Coastal
+                </button>
+                <button class="option-btn" data-option="theme" data-value="cedar" title="Light theme with warm tones">
+                    ☀️ Cedar
+                </button>
+                <button class="option-btn" data-option="theme" data-value="sage" title="Light theme with green accents">
+                    🌿 Sage
+                </button>
+            </div>
+        </div>
+
+        <div class="option-group">
             <label>Card Style</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="cards" data-value="default">Default</button>
@@ -1855,6 +1957,14 @@
                 <button class="option-btn" data-option="text" data-value="small">Small</button>
                 <button class="option-btn active" data-option="text" data-value="default">Default</button>
                 <button class="option-btn" data-option="text" data-value="large">Large</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Section Width</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="layout" data-value="default">Contained</button>
+                <button class="option-btn" data-option="layout" data-value="fullwidth">Full Width</button>
             </div>
         </div>
     </div>
@@ -2401,18 +2511,44 @@
                     // Add active class to clicked button
                     this.classList.add('active');
 
-                    // Remove all related classes from body
-                    document.body.classList.forEach(cls => {
-                        if (cls.startsWith(option + '-')) {
-                            document.body.classList.remove(cls);
+                    // Special handling for themes
+                    if (option === 'theme') {
+                        // Remove all theme classes
+                        document.body.classList.forEach(cls => {
+                            if (cls.startsWith('theme-')) {
+                                document.body.classList.remove(cls);
+                            }
+                        });
+                        // Add new theme class (midnight is default, no class needed)
+                        if (value !== 'midnight') {
+                            document.body.classList.add(`theme-${value}`);
                         }
-                    });
+                    } else {
+                        // Remove all related classes from body
+                        document.body.classList.forEach(cls => {
+                            if (cls.startsWith(option + '-')) {
+                                document.body.classList.remove(cls);
+                            }
+                        });
 
-                    // Add new class if not default
-                    if (value !== 'default') {
-                        document.body.classList.add(`${option}-${value}`);
+                        // Add new class if not default
+                        if (value !== 'default') {
+                            document.body.classList.add(`${option}-${value}`);
+                        }
                     }
+
+                    // Save preference to localStorage
+                    localStorage.setItem(`bywater-${option}`, value);
                 });
+            });
+
+            // Restore saved preferences on page load
+            ['theme', 'cards', 'buttons', 'text', 'layout'].forEach(option => {
+                const saved = localStorage.getItem(`bywater-${option}`);
+                if (saved) {
+                    const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
+                    if (btn) btn.click();
+                }
             });
         }
     </script>
