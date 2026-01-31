@@ -2065,7 +2065,7 @@
             });
 
             // Restore saved preferences on page load
-            ['theme', 'cards', 'buttons', 'text', 'layout'].forEach(option => {
+            ['theme', 'cards', 'buttons', 'font', 'layout'].forEach(option => {
                 const saved = localStorage.getItem(`bywater-${option}`);
                 if (saved) {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
