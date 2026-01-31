@@ -337,6 +337,18 @@
                 <button class="option-btn" data-option="layout" data-value="fullwidth">Full Width</button>
             </div>
         </div>
+
+        <div class="option-group">
+            <label>Logo Color</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="logo" data-value="default">Default</button>
+                <button class="option-btn" data-option="logo" data-value="warm">Warm</button>
+                <button class="option-btn" data-option="logo" data-value="cool">Cool</button>
+                <button class="option-btn" data-option="logo" data-value="vibrant">Vibrant</button>
+                <button class="option-btn" data-option="logo" data-value="muted">Muted</button>
+                <button class="option-btn" data-option="logo" data-value="mono">Mono</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -384,7 +396,7 @@
             });
 
             // Restore saved preferences on page load
-            ['theme', 'cards', 'buttons', 'font', 'layout'].forEach(option => {
+            ['theme', 'cards', 'buttons', 'font', 'layout', 'logo'].forEach(option => {
                 const saved = localStorage.getItem(`bywater-${option}`);
                 if (saved) {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
