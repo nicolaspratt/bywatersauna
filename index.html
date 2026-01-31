@@ -1983,13 +1983,15 @@
             <label>Icon Style</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="icons" data-value="emoji">Emoji</button>
-                <button class="option-btn" data-option="icons" data-value="minimal">Minimal</button>
-                <button class="option-btn" data-option="icons" data-value="geometric">Geometric</button>
-                <button class="option-btn" data-option="icons" data-value="organic">Organic</button>
-                <button class="option-btn" data-option="icons" data-value="bold">Bold</button>
+                <button class="option-btn" data-option="icons" data-value="lucide">Lucide</button>
+                <button class="option-btn" data-option="icons" data-value="natural">Natural</button>
+                <button class="option-btn" data-option="icons" data-value="winter">Winter</button>
             </div>
         </div>
     </div>
+
+    <!-- Attribution for Lucide Icons -->
+    <!-- Icons by Lucide Contributors (https://lucide.dev) - MIT License -->
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
@@ -2428,7 +2430,8 @@
             });
         });
 
-        // SVG Icon Sets for Ritual Cards
+        // SVG Icon Sets for Ritual Cards (Lucide Icons - Open Source MIT License)
+        // Source: https://lucide.dev
         const iconSets = {
             emoji: {
                 heat: '🔥',
@@ -2436,69 +2439,68 @@
                 repeat: '🔄'
             },
 
-            minimal: {
-                heat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2C12 2 8 6 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 6 12 2 12 2Z"/>
-                    <path d="M12 14C12 14 10 16 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16 12 14 12 14Z"/>
+            lucide: {
+                heat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" />
                 </svg>`,
-                cold: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M12 2L12 22M17.66 8L6.34 16M17.66 16L6.34 8"/>
+                cold: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z" />
+                    <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97" />
                 </svg>`,
-                repeat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 1L21 5L17 9"/>
-                    <path d="M3 11V9C3 6.79 4.79 5 7 5H21"/>
-                    <path d="M7 23L3 19L7 15"/>
-                    <path d="M21 13V15C21 17.21 19.21 19 17 19H3"/>
+                repeat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m17 2 4 4-4 4" />
+                    <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+                    <path d="m7 22-4-4 4-4" />
+                    <path d="M21 13v1a4 4 0 0 1-4 4H3" />
                 </svg>`
             },
 
-            geometric: {
-                heat: `<svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L14 8L16 4L17 10L19 6L18 12L20 10L19 16L16 14L17 20L12 16L7 20L8 14L5 16L6 10L4 12L5 6L7 10L8 4L10 8L12 2Z"/>
+            natural: {
+                heat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2" />
+                    <path d="M12 20v2" />
+                    <path d="m4.93 4.93 1.41 1.41" />
+                    <path d="m17.66 17.66 1.41 1.41" />
+                    <path d="M2 12h2" />
+                    <path d="M20 12h2" />
+                    <path d="m6.34 17.66-1.41 1.41" />
+                    <path d="m19.07 4.93-1.41 1.41" />
                 </svg>`,
-                cold: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M12 2V22M5.64 5.64L18.36 18.36M2 12H22M5.64 18.36L18.36 5.64"/>
-                    <circle cx="12" cy="12" r="3"/>
+                cold: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                    <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                    <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
                 </svg>`,
-                repeat: `<svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C12 2 12 2 8 6C6.5 7.5 6.5 9.5 8 11C9.5 12.5 11.5 12.5 13 11C14.5 9.5 14.5 7.5 13 6C13 6 12 2 12 2Z" opacity="0.5"/>
-                    <path d="M12 22C12 22 12 22 16 18C17.5 16.5 17.5 14.5 16 13C14.5 11.5 12.5 11.5 11 13C9.5 14.5 9.5 16.5 11 18C11 18 12 22 12 22Z"/>
+                repeat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                    <path d="M8 16H3v5" />
                 </svg>`
             },
 
-            organic: {
-                heat: `<svg viewBox="0 0 24 24" fill="currentColor">
-                    <circle cx="12" cy="10" r="3"/>
-                    <path d="M12 2L10 7L12 6L14 7L12 2Z" opacity="0.8"/>
-                    <path d="M7 8L9 11L8 10L9 13L7 8Z" opacity="0.6"/>
-                    <path d="M17 8L15 11L16 10L15 13L17 8Z" opacity="0.6"/>
-                    <path d="M12 13L11 16L12 15L13 16L12 13Z" opacity="0.5"/>
+            winter: {
+                heat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" />
                 </svg>`,
-                cold: `<svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 12C6 12 8 10 10 10C12 10 12 12 12 12C12 12 12 14 10 14C8 14 6 12 6 12Z" opacity="0.3"/>
-                    <path d="M12 8C12 8 14 6 16 6C18 6 18 8 18 8C18 8 18 10 16 10C14 10 12 8 12 8Z" opacity="0.5"/>
-                    <path d="M12 12C12 12 14 10 18 10C20 10 22 12 22 14C22 16 20 18 18 18C14 18 12 16 12 16L10 20C8 22 4 22 2 20C2 18 4 16 6 16L12 12Z"/>
+                cold: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m10 20-1.25-2.5L6 18" />
+                    <path d="M10 4 8.75 6.5 6 6" />
+                    <path d="m14 20 1.25-2.5L18 18" />
+                    <path d="m14 4 1.25 2.5L18 6" />
+                    <path d="m17 21-3-6h-4" />
+                    <path d="m17 3-3 6 1.5 3" />
+                    <path d="M2 12h6.5L10 9" />
+                    <path d="m20 10-1.5 2 1.5 2" />
+                    <path d="M22 12h-6.5L14 15" />
+                    <path d="m4 10 1.5 2L4 14" />
+                    <path d="m7 21 3-6-1.5-3" />
+                    <path d="m7 3 3 6h4" />
                 </svg>`,
-                repeat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 12C3 7 7 3 12 3C17 3 21 7 21 12" stroke-linecap="round"/>
-                    <path d="M21 12C21 17 17 21 12 21C7 21 3 17 3 12" stroke-linecap="round" opacity="0.5"/>
-                    <path d="M19 9L21 12L18 12Z" fill="currentColor"/>
-                    <path d="M5 15L3 12L6 12Z" fill="currentColor" opacity="0.5"/>
-                </svg>`
-            },
-
-            bold: {
-                heat: `<svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C12 2 7 7 7 11C7 14.31 9.69 17 13 17C16.31 17 19 14.31 19 11C19 7 14 2 14 2C14 2 13 2 12 2Z"/>
-                    <path d="M13 17C13 17 11 19 11 20.5C11 21.33 11.67 22 12.5 22C13.33 22 14 21.33 14 20.5C14 19 12 17 12 17Z" opacity="0.7"/>
-                </svg>`,
-                cold: `<svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C9 2 6 4 6 8C6 10 7 12 8 13L10 18C10 20 11 22 13 22C15 22 16 20 16 18L18 13C19 12 20 10 20 8C20 4 17 2 14 2C13 2 12 2 12 2Z"/>
-                    <ellipse cx="12" cy="7" rx="3" ry="2" fill="rgba(255,255,255,0.3)"/>
-                </svg>`,
-                repeat: `<svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17 2L22 7L17 12V8H7C5 8 4 9 4 11V13H2V11C2 8 4 6 7 6H17V2Z"/>
-                    <path d="M7 22L2 17L7 12V16H17C19 16 20 15 20 13V11H22V13C22 16 20 18 17 18H7V22Z"/>
+                repeat: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+                    <path d="M21 3v5h-5" />
                 </svg>`
             }
         };
@@ -2538,6 +2540,7 @@
 
         // Map sticky scroll behavior
         let mapIsSticky = false;
+        let hasScrolledPastMap = false;
 
         function initMapStickyScroll() {
             const mapContainer = document.querySelector('.map-container');
@@ -2566,10 +2569,16 @@
             // Observer for map container - when it would scroll out of view, make it sticky
             const mapObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    // Track if user has scrolled down past the map
+                    if (!entry.isIntersecting) {
+                        hasScrolledPastMap = true;
+                    }
+
                     const pricingRect = pricingSection.getBoundingClientRect();
                     const pricingInView = pricingRect.top < window.innerHeight;
 
-                    if (!entry.isIntersecting && !mapIsSticky && !pricingInView) {
+                    // Only make sticky if user has scrolled down past map
+                    if (!entry.isIntersecting && !mapIsSticky && !pricingInView && hasScrolledPastMap) {
                         // Stick the map
                         mapContainer.classList.add('sticky');
                         locationsGrid.classList.add('map-sticky');
