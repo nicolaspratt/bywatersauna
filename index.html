@@ -84,7 +84,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Cormorant:wght@600;700&family=Work+Sans:wght@400;500;600;700&family=DM+Serif+Display:wght@400&family=DM+Sans:wght@400;500;600;700&family=Crimson+Pro:wght@600;700&family=Lora:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * {
@@ -106,53 +106,53 @@
             --warm-white: #FAF8F3;
         }
 
-        /* Theme: Midnight Forest (Default) */
+        /* Theme: Midnight Spa (Default - Dark) */
         body,
         body.theme-midnight {
-            --primary-bg: #1C1C1C;
-            --secondary-bg: #2D3E35;
-            --accent: #ca5e43;
-            --accent-light: #d67a62;
-            --text: #FAF8F3;
-            --text-muted: rgba(250, 248, 243, 0.7);
-            --card-bg: rgba(74, 97, 86, 0.1);
-            --border: rgba(139, 157, 131, 0.2);
+            --primary-bg: #0D1821;
+            --secondary-bg: #1A2F3F;
+            --accent: #E8634F;
+            --accent-light: #F08A74;
+            --text: #F0F4F8;
+            --text-muted: rgba(240, 244, 248, 0.7);
+            --card-bg: rgba(232, 99, 79, 0.08);
+            --border: rgba(232, 99, 79, 0.2);
         }
 
-        /* Theme: Coastal Night (Dark) */
+        /* Theme: Luxe Charcoal (Dark) */
         body.theme-coastal {
-            --primary-bg: #0f1419;
-            --secondary-bg: #1a2332;
-            --accent: #5eb3d6;
-            --accent-light: #7ec8e3;
-            --text: #e8f4f8;
-            --text-muted: rgba(232, 244, 248, 0.7);
-            --card-bg: rgba(94, 179, 214, 0.08);
-            --border: rgba(94, 179, 214, 0.2);
+            --primary-bg: #151515;
+            --secondary-bg: #242424;
+            --accent: #C9A661;
+            --accent-light: #D9B875;
+            --text: #EEEBE7;
+            --text-muted: rgba(238, 235, 231, 0.7);
+            --card-bg: rgba(201, 166, 97, 0.1);
+            --border: rgba(201, 166, 97, 0.25);
         }
 
-        /* Theme: Cedar & Stone (Light) */
+        /* Theme: Coastal Calm (Light) */
         body.theme-cedar {
-            --primary-bg: #F5F1E8;
-            --secondary-bg: #E8DCC4;
-            --accent: #A6634F;
-            --accent-light: #C7856D;
-            --text: #2D3E35;
-            --text-muted: rgba(45, 62, 53, 0.7);
-            --card-bg: rgba(139, 157, 131, 0.12);
-            --border: rgba(74, 97, 86, 0.25);
+            --primary-bg: #F7F4F0;
+            --secondary-bg: #E6DCD4;
+            --accent: #6B8E99;
+            --accent-light: #85A6B3;
+            --text: #1A292F;
+            --text-muted: rgba(26, 41, 47, 0.7);
+            --card-bg: rgba(107, 142, 153, 0.1);
+            --border: rgba(107, 142, 153, 0.25);
         }
 
-        /* Theme: Sage Garden (Light) */
+        /* Theme: Serene Mint (Light) */
         body.theme-sage {
-            --primary-bg: #FAFAF8;
-            --secondary-bg: #E8F0E8;
-            --accent: #4A6156;
-            --accent-light: #5E7968;
-            --text: #1C1C1C;
-            --text-muted: rgba(28, 28, 28, 0.7);
-            --card-bg: rgba(139, 157, 131, 0.15);
-            --border: rgba(74, 97, 86, 0.3);
+            --primary-bg: #FAFCFB;
+            --secondary-bg: #E8F5F1;
+            --accent: #4A8B7B;
+            --accent-light: #5FA394;
+            --text: #1C2D28;
+            --text-muted: rgba(28, 45, 40, 0.7);
+            --card-bg: rgba(74, 139, 123, 0.1);
+            --border: rgba(74, 139, 123, 0.25);
         }
 
         body {
@@ -265,7 +265,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--orange);
+            background: var(--accent);
             transition: width 0.3s;
         }
 
@@ -308,12 +308,12 @@
 
         .btn-primary {
             background: var(--accent);
-            color: var(--text);
+            color: #FFFFFF;
         }
 
         .btn-primary:hover {
             background: var(--accent-light);
-            color: var(--text);
+            color: #FFFFFF;
             transform: translateY(-2px);
             box-shadow: 0 8px 30px var(--border);
         }
@@ -364,7 +364,7 @@
         .hero-label {
             font-size: 12px;
             letter-spacing: 4px;
-            color: var(--orange);
+            color: var(--accent);
             margin-bottom: 30px;
             text-transform: uppercase;
             font-weight: 600;
@@ -395,12 +395,12 @@
         }
 
         .hero h1 .accent {
-            color: var(--orange);
+            color: var(--accent);
         }
 
         /* Legacy class name for backwards compatibility */
         .hero h1 .sage {
-            color: var(--orange);
+            color: var(--accent);
         }
 
         .hero-description {
@@ -615,7 +615,7 @@
             background: var(--card-bg);
             border: 2px solid var(--border);
             border-radius: 16px;
-            padding: 30px;
+            padding: 24px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
@@ -627,7 +627,7 @@
             bottom: 24px;
             right: 24px;
             font-size: 11px;
-            color: var(--orange);
+            color: var(--accent);
             opacity: 0;
             transition: opacity 0.3s;
             font-weight: 600;
@@ -656,14 +656,14 @@
             display: flex;
             justify-content: space-between;
             align-items: start;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .location-icon {
             width: 50px;
             height: 50px;
             border-radius: 12px;
-            background: var(--orange);
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -671,8 +671,8 @@
         }
 
         .location-badge {
-            background: rgba(255, 104, 51, 0.15);
-            color: var(--orange);
+            background: var(--card-bg);
+            color: var(--accent);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 11px;
@@ -683,12 +683,12 @@
 
         .location-card h3 {
             font-size: 28px;
-            margin-bottom: 12px;
-            color: var(--stone);
+            margin-bottom: 8px;
+            color: var(--text);
         }
 
         .location-card p {
-            color: rgba(250, 248, 243, 0.7);
+            color: var(--text-muted);
             line-height: 1.7;
         }
 
@@ -696,9 +696,9 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--orange);
+            color: var(--accent);
             font-size: 14px;
-            margin-top: 16px;
+            margin-top: 12px;
         }
 
         .map-container {
@@ -765,8 +765,8 @@
             top: 24px;
             right: 24px;
             background: rgba(202, 94, 67, 0.2);
-            border: 2px solid var(--orange);
-            color: var(--orange);
+            border: 2px solid var(--accent);
+            color: var(--accent);
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -780,13 +780,40 @@
         }
 
         .close-sidebar:hover {
-            background: var(--orange);
+            background: var(--accent);
             color: var(--warm-white);
             transform: rotate(90deg) scale(1.1);
         }
 
         .sidebar-content {
             padding: 40px 30px;
+        }
+
+        .location-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .location-image-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--card-bg);
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .location-info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
 
         .sidebar-section {
@@ -797,13 +824,13 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--orange);
+            color: var(--accent);
             margin-bottom: 16px;
             font-weight: 700;
         }
 
         .sidebar-section p {
-            color: rgba(250, 248, 243, 0.8);
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
@@ -817,14 +844,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: rgba(250, 248, 243, 0.9);
+            color: var(--text);
         }
 
         .amenities-list li::before {
             content: '✓';
             width: 24px;
             height: 24px;
-            background: var(--orange);
+            background: var(--accent);
             color: var(--warm-white);
             border-radius: 50%;
             display: flex;
@@ -836,7 +863,7 @@
 
         .info-box {
             background: rgba(255, 104, 51, 0.08);
-            border-left: 4px solid var(--orange);
+            border-left: 4px solid var(--accent);
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
@@ -844,7 +871,7 @@
 
         .btn-directions {
             width: 100%;
-            background: var(--orange);
+            background: var(--accent);
             color: var(--warm-white);
             border: none;
             padding: 18px;
@@ -936,7 +963,7 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--orange);
+            background: var(--accent);
             color: var(--warm-white);
             padding: 8px 20px;
             border-radius: 20px;
@@ -985,7 +1012,7 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background: var(--orange);
+            background: var(--accent);
             color: var(--warm-white);
             display: flex;
             align-items: center;
@@ -1026,7 +1053,7 @@
         }
 
         .faq-item.active {
-            border-color: var(--orange);
+            border-color: var(--accent);
             background: rgba(255, 104, 51, 0.08);
         }
 
@@ -1043,7 +1070,7 @@
 
         .faq-icon {
             transition: transform 0.3s;
-            color: var(--orange);
+            color: var(--accent);
         }
 
         .faq-item.active .faq-icon {
@@ -1093,7 +1120,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            color: var(--orange);
+            color: var(--accent);
             margin-bottom: 20px;
             font-size: 12px;
             letter-spacing: 3px;
@@ -1125,7 +1152,7 @@
 
         .newsletter-form input:focus {
             outline: none;
-            border-color: var(--orange);
+            border-color: var(--accent);
             background: rgba(250, 248, 243, 0.08);
         }
 
@@ -1183,7 +1210,7 @@
         }
 
         .social-links a:hover {
-            color: var(--orange);
+            color: var(--accent);
         }
 
         .footer-section h4 {
@@ -1210,7 +1237,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--orange);
+            color: var(--accent);
         }
 
         .footer-bottom {
@@ -1243,7 +1270,7 @@
         }
 
         .footer-legal a:hover {
-            color: var(--orange);
+            color: var(--accent);
         }
 
         /* Mobile */
@@ -1387,7 +1414,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--orange);
+            background: var(--accent);
             color: var(--warm-white);
             border: none;
             width: 56px;
@@ -1411,7 +1438,7 @@
         .design-options h3 {
             font-size: 18px;
             margin-bottom: 20px;
-            color: var(--orange);
+            color: var(--accent);
         }
 
         .option-group {
@@ -1447,13 +1474,13 @@
         }
 
         .option-btn.active {
-            border-color: var(--orange);
+            border-color: var(--accent);
             background: rgba(202, 94, 67, 0.15);
-            color: var(--orange);
+            color: var(--accent);
         }
 
         .option-btn:hover {
-            border-color: var(--orange);
+            border-color: var(--accent);
             transform: translateY(-2px);
         }
 
@@ -1479,6 +1506,63 @@
 
         body.buttons-square .btn {
             border-radius: 4px;
+        }
+
+        /* Font Family Variations */
+        /* Default: Playfair Display + Inter */
+        body,
+        body.font-playfair {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body.font-playfair h1,
+        body.font-playfair h2,
+        body.font-playfair h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Cormorant + Work Sans */
+        body.font-cormorant {
+            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body.font-cormorant h1,
+        body.font-cormorant h2,
+        body.font-cormorant h3 {
+            font-family: 'Cormorant', serif;
+        }
+
+        /* DM Serif Display + DM Sans */
+        body.font-dm {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body.font-dm h1,
+        body.font-dm h2,
+        body.font-dm h3 {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        /* Crimson Pro + Open Sans (using Inter as fallback) */
+        body.font-crimson {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body.font-crimson h1,
+        body.font-crimson h2,
+        body.font-crimson h3 {
+            font-family: 'Crimson Pro', serif;
+        }
+
+        /* Lora + Nunito Sans */
+        body.font-lora {
+            font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body.font-lora h1,
+        body.font-lora h2,
+        body.font-lora h3 {
+            font-family: 'Lora', serif;
         }
 
         /* Font Size Variations */
@@ -1560,7 +1644,7 @@
         .gift-modal h2 {
             font-size: 36px;
             margin-bottom: 20px;
-            color: var(--orange);
+            color: var(--accent);
         }
 
         .gift-modal p {
@@ -1592,8 +1676,8 @@
             top: 20px;
             right: 20px;
             background: rgba(202, 94, 67, 0.2);
-            border: 2px solid var(--orange);
-            color: var(--orange);
+            border: 2px solid var(--accent);
+            color: var(--accent);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -1607,7 +1691,7 @@
         }
 
         .close-modal:hover {
-            background: var(--orange);
+            background: var(--accent);
             color: var(--warm-white);
             transform: rotate(90deg) scale(1.1);
         }
@@ -1742,18 +1826,25 @@
         <div class="sidebar-header">
             <button class="close-sidebar" id="closeSidebar">✕</button>
             <h2 id="sidebarLocationName" style="font-size: 32px; margin-bottom: 8px;"></h2>
-            <p id="sidebarLocationAddress" style="color: rgba(250, 248, 243, 0.7);"></p>
+            <p id="sidebarLocationAddress" style="color: var(--text-muted);"></p>
         </div>
 
         <div class="sidebar-content">
-            <div class="sidebar-section">
-                <h4>Session Details</h4>
-                <p id="sidebarSessionLength"></p>
-            </div>
+            <div class="location-info-grid">
+                <div class="location-image-placeholder" id="sidebarImage">
+                    📸
+                </div>
+                <div>
+                    <div class="sidebar-section" style="margin-bottom: 30px;">
+                        <h4>Session Details</h4>
+                        <p id="sidebarSessionLength"></p>
+                    </div>
 
-            <div class="sidebar-section">
-                <h4>What's Included</h4>
-                <ul class="amenities-list" id="sidebarAmenities"></ul>
+                    <div class="sidebar-section" style="margin-bottom: 0;">
+                        <h4>What's Included</h4>
+                        <ul class="amenities-list" id="sidebarAmenities"></ul>
+                    </div>
+                </div>
             </div>
 
             <div class="sidebar-section">
@@ -1779,7 +1870,7 @@
                 Get Directions →
             </button>
 
-            <a href="book.html" class="btn-directions" style="margin-top: 16px; text-decoration: none; background: var(--orange);">
+            <a href="book.html" class="btn-directions" style="margin-top: 16px; text-decoration: none; background: var(--accent);">
                 Book This Location →
             </a>
         </div>
@@ -1824,7 +1915,7 @@
         </div>
 
         <p class="fade-up" style="text-align: center; margin-top: 40px; color: rgba(250, 248, 243, 0.6);">
-            Looking for a gift? <a href="#" style="color: var(--orange); text-decoration: underline;">Gift certificates available</a>
+            Looking for a gift? <a href="#" style="color: var(--accent); text-decoration: underline;">Gift certificates available</a>
         </p>
     </section>
 
@@ -1951,17 +2042,17 @@
         <div class="option-group">
             <label>Color Theme</label>
             <div class="option-buttons">
-                <button class="option-btn active" data-option="theme" data-value="midnight" title="Dark theme with orange accents">
-                    🌲 Midnight
+                <button class="option-btn active" data-option="theme" data-value="midnight" title="Deep navy with coral accents">
+                    🌙 Midnight Spa
                 </button>
-                <button class="option-btn" data-option="theme" data-value="coastal" title="Dark theme with blue accents">
-                    🌊 Coastal
+                <button class="option-btn" data-option="theme" data-value="coastal" title="Charcoal with warm gold">
+                    ✨ Luxe Charcoal
                 </button>
-                <button class="option-btn" data-option="theme" data-value="cedar" title="Light theme with warm tones">
-                    ☀️ Cedar
+                <button class="option-btn" data-option="theme" data-value="cedar" title="Coastal calm with blue-grey">
+                    🌊 Coastal Calm
                 </button>
-                <button class="option-btn" data-option="theme" data-value="sage" title="Light theme with green accents">
-                    🌿 Sage
+                <button class="option-btn" data-option="theme" data-value="sage" title="Serene mint and teal">
+                    🌿 Serene Mint
                 </button>
             </div>
         </div>
@@ -1981,6 +2072,27 @@
                 <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
                 <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
                 <button class="option-btn" data-option="buttons" data-value="square">Square</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Typography</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="font" data-value="playfair" title="Playfair Display + Inter">
+                    Playfair
+                </button>
+                <button class="option-btn" data-option="font" data-value="cormorant" title="Cormorant + Work Sans">
+                    Cormorant
+                </button>
+                <button class="option-btn" data-option="font" data-value="dm" title="DM Serif Display + DM Sans">
+                    DM Serif
+                </button>
+                <button class="option-btn" data-option="font" data-value="crimson" title="Crimson Pro + Inter">
+                    Crimson
+                </button>
+                <button class="option-btn" data-option="font" data-value="lora" title="Lora + Nunito Sans">
+                    Lora
+                </button>
             </div>
         </div>
 
@@ -2146,7 +2258,7 @@
                     </div>
                     <h3>${location.name}</h3>
                     <div class="location-tag" style="margin-bottom: 16px;">≈ ${location.tagline}</div>
-                    <p style="color: rgba(250, 248, 243, 0.7); font-size: 15px; line-height: 1.7;">${location.address}</p>
+                    <p style="color: var(--text-muted); font-size: 15px; line-height: 1.7;">${location.address}</p>
                 `;
 
                 // Click handler
@@ -2249,7 +2361,7 @@
             const faqData = [
                 {
                     question: "Who Are You?",
-                    answer: "We're a team of Seattle locals who believe in the power of heat, cold, and community. Bywater is our way of bringing people together at the water's edge for shared wellness experiences. Learn more about our story, mission, and the people behind Bywater on our <a href='about.html' style='color: var(--orange); text-decoration: underline; font-weight: 600;'>About page</a>."
+                    answer: "We're a team of Seattle locals who believe in the power of heat, cold, and community. Bywater is our way of bringing people together at the water's edge for shared wellness experiences. Learn more about our story, mission, and the people behind Bywater on our <a href='about.html' style='color: var(--accent); text-decoration: underline; font-weight: 600;'>About page</a>."
                 },
                 {
                     question: "Is that a sauna? How does this all work?",
