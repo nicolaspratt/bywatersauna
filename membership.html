@@ -84,50 +84,63 @@
 
         .membership-card h3 {
             font-size: 36px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .membership-price {
-            font-size: 64px;
+            font-size: 72px;
             font-family: 'Playfair Display', serif;
             color: var(--accent);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: 700;
+            line-height: 1;
         }
 
         .membership-billing {
-            font-size: 16px;
+            font-size: 18px;
             color: var(--text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            font-weight: 500;
         }
 
         .membership-benefits {
             list-style: none;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-align: left;
-            max-width: 400px;
+            max-width: 450px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .membership-benefits li {
-            padding: 16px 0;
+            padding: 20px 0 20px 50px;
             border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 16px;
+            display: block;
+            font-size: 17px;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .membership-benefits li:first-child {
+            border-top: 1px solid var(--border);
         }
 
         .membership-benefits li:last-child {
-            border-bottom: none;
+            border-bottom: 2px solid var(--accent);
         }
 
         .membership-benefits li::before {
             content: '✓';
             color: var(--accent);
-            font-weight: 700;
-            font-size: 20px;
+            font-weight: 900;
+            font-size: 24px;
+            position: absolute;
+            left: 12px;
+            top: 18px;
         }
 
         .steps-section {
@@ -187,22 +200,63 @@
         }
 
         .terms-section h4 {
-            font-size: 20px;
-            margin-bottom: 16px;
-            margin-top: 40px;
+            font-size: 24px;
+            margin-bottom: 20px;
+            margin-top: 50px;
             color: var(--accent);
+            font-weight: 700;
         }
 
         .terms-section p,
         .terms-section ul {
             color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 16px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            font-size: 17px;
         }
 
         .terms-section ul {
-            list-style-position: inside;
-            padding-left: 20px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .terms-section ul li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+        }
+
+        .terms-section ul li::before {
+            content: '→';
+            position: absolute;
+            left: 8px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .term-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--secondary-bg) 100%);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .term-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .contact-form {
@@ -328,21 +382,34 @@
         <div class="terms-section">
             <h3>Membership Terms</h3>
 
-            <h4>Guest Passes</h4>
-            <p>We love friends, and want to meet yours! Members get one free guest pass per month. To use your guest pass, just add +1 to your booking.</p>
-            <p>For additional guests beyond the free pass, the member's account will be charged for the session at the drop-in rate. Our app will allow you to book for more than one guest per month without any additional fee at the time of booking.</p>
+            <div class="terms-grid">
+                <div class="term-card">
+                    <h4>Guest Passes</h4>
+                    <p>We love friends, and want to meet yours! Members get one free guest pass per month. To use your guest pass, just add +1 to your booking.</p>
+                    <p>For additional guests beyond the free pass, the member's account will be charged for the session at the drop-in rate. Our app will allow you to book for more than one guest per month without any additional fee at the time of booking.</p>
+                </div>
 
-            <h4>Booking Caps</h4>
-            <p>As a member, you can attend unlimited sessions per month, with a few caveats:</p>
-            <ul>
-                <li>One session per day</li>
-                <li>Two upcoming bookings at any given time. (ie. If you have bookings for 12/1 and 12/4, you will not be able to book another session until after your 12/1 visit.)</li>
-            </ul>
+                <div class="term-card">
+                    <h4>Booking Caps</h4>
+                    <p>As a member, you can attend unlimited sessions per month, with a few caveats:</p>
+                    <ul>
+                        <li>One session per day</li>
+                        <li>Two upcoming bookings at any given time (ie. If you have bookings for 12/1 and 12/4, you will not be able to book another session until after your 12/1 visit)</li>
+                    </ul>
+                </div>
 
-            <h4>Cancellation / No-Shows</h4>
-            <p>Cancel anytime up to 12 hours in advance of your session.</p>
-            <p>For no-shows and late cancellations, there is a $20 penalty for the members. If the booking includes guests beyond a guest pass, there is an additional $35 per guest.</p>
-            <p>We do not want to be punitive. We do want to encourage responsibility, communication, and grace. If you have an emergency, please reach out to <a href="mailto:info@bywatersauna.com" style="color: var(--accent);">info@bywatersauna.com</a> and let us know.</p>
+                <div class="term-card">
+                    <h4>Cancellation / No-Shows</h4>
+                    <p>Cancel anytime up to 12 hours in advance of your session.</p>
+                    <p>For no-shows and late cancellations, there is a $20 penalty for the members. If the booking includes guests beyond a guest pass, there is an additional $35 per guest.</p>
+                </div>
+
+                <div class="term-card">
+                    <h4>Emergencies</h4>
+                    <p>We do not want to be punitive. We do want to encourage responsibility, communication, and grace.</p>
+                    <p>If you have an emergency, please reach out to <a href="contact.html" style="color: var(--accent); text-decoration: underline;">contact us</a> and let us know.</p>
+                </div>
+            </div>
         </div>
 
         <!-- Adjust Membership Form -->
