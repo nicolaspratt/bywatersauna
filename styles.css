@@ -611,6 +611,18 @@ body.font-lora h3 {
     font-family: 'Lora', serif;
 }
 
+/* Inter (Sans-serif only) */
+body.font-inter {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.font-inter h1,
+body.font-inter h2,
+body.font-inter h3 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+}
+
 /* Layout Variations */
 body.layout-fullwidth section {
     max-width: none;
