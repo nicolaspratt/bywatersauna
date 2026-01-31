@@ -600,6 +600,23 @@
             overflow: hidden;
             height: 600px;
             position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .map-container.sticky {
+            position: fixed;
+            top: 90px;
+            right: 40px;
+            width: calc(50% - 60px);
+            z-index: 500;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--orange);
+        }
+
+        .locations-grid.map-sticky::after {
+            content: '';
+            display: block;
+            height: 600px;
         }
 
         #map {
@@ -775,7 +792,23 @@
 
         /* Pricing */
         .pricing-section {
-            background: linear-gradient(180deg, var(--charcoal) 0%, var(--dark-forest) 100%);
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2d3748 100%);
+            position: relative;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(202, 94, 67, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(139, 157, 131, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pricing-section > * {
+            position: relative;
+            z-index: 1;
         }
 
         .pricing-cards {
@@ -1651,6 +1684,7 @@
                     <li><span class="check">✓</span> Cold water plunge</li>
                     <li><span class="check">✓</span> Towel storage</li>
                     <li><span class="check">✓</span> Outdoor shower</li>
+                    <li><span class="check">✓</span> More flexible availability</li>
                 </ul>
                 <a href="book.html" class="btn btn-book btn-primary" style="text-decoration: none; display: block; text-align: center;">Book Now</a>
             </div>
@@ -2067,6 +2101,10 @@
         function loadFAQ() {
             const faqData = [
                 {
+                    question: "Who Are You?",
+                    answer: "We're a team of Seattle locals who believe in the power of heat, cold, and community. Bywater is our way of bringing people together at the water's edge for shared wellness experiences. Learn more about our story, mission, and the people behind Bywater on our <a href='about.html' style='color: var(--orange); text-decoration: underline; font-weight: 600;'>About page</a>."
+                },
+                {
                     question: "Is that a sauna? How does this all work?",
                     answer: "Yes, it is a sauna! We offer sauna sessions at the beach. Sessions last either 60 or 75 minutes. Anyone can book a spot during a session - reserve online beforehand like signing up for a workout class. During your session, cycle between the sauna and cold water at your own pace."
                 },
@@ -2143,7 +2181,7 @@
         // Initialize map
         const map = L.map('map', {
             center: [47.6205, -122.3493],
-            zoom: 11,
+            zoom: 12,
             scrollWheelZoom: false
         });
 
@@ -2182,7 +2220,7 @@
                 const bounds = L.latLngBounds(
                     locationsData.map(loc => [loc.lat, loc.lng])
                 );
-                map.fitBounds(bounds, { padding: [80, 80], maxZoom: 10 });
+                map.fitBounds(bounds, { padding: [80, 80], maxZoom: 11 });
             }
         }
 
@@ -2258,11 +2296,72 @@
             });
         });
 
+        // Map sticky scroll behavior
+        let mapIsSticky = false;
+
+        function initMapStickyScroll() {
+            const mapContainer = document.querySelector('.map-container');
+            const pricingSection = document.getElementById('pricing');
+            const locationsGrid = document.querySelector('.locations-grid');
+
+            if (!mapContainer || !pricingSection || window.innerWidth <= 768) return;
+
+            // Observer for pricing section - when it enters viewport, unstick map
+            const pricingObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && mapIsSticky) {
+                        // Unstick the map
+                        mapContainer.classList.remove('sticky');
+                        locationsGrid.classList.remove('map-sticky');
+                        mapIsSticky = false;
+                        // Zoom back out
+                        resetMapView();
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '-90px 0px 0px 0px'
+            });
+
+            // Observer for map container - when it would scroll out of view, make it sticky
+            const mapObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const pricingRect = pricingSection.getBoundingClientRect();
+                    const pricingInView = pricingRect.top < window.innerHeight;
+
+                    if (!entry.isIntersecting && !mapIsSticky && !pricingInView) {
+                        // Stick the map
+                        mapContainer.classList.add('sticky');
+                        locationsGrid.classList.add('map-sticky');
+                        mapIsSticky = true;
+                        // Zoom in slightly
+                        if (map) {
+                            map.setZoom(13);
+                        }
+                    } else if (entry.isIntersecting && mapIsSticky) {
+                        // Back in view naturally, unstick
+                        mapContainer.classList.remove('sticky');
+                        locationsGrid.classList.remove('map-sticky');
+                        mapIsSticky = false;
+                        resetMapView();
+                    }
+                });
+            }, {
+                threshold: 0,
+                rootMargin: '-90px 0px 0px 0px'
+            });
+
+            mapObserver.observe(mapContainer);
+            pricingObserver.observe(pricingSection);
+        }
+
         // Load all content on page load
         window.addEventListener('DOMContentLoaded', async () => {
             await loadContent();
             if (locationsData.length > 0) {
                 addMapMarkers(locationsData);
+                // Initialize sticky map scroll after map is loaded
+                setTimeout(() => initMapStickyScroll(), 500);
             }
         });
 
