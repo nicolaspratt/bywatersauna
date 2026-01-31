@@ -1,157 +1,173 @@
-# Bywater Sauna Website with CMS
+# Bywater Sauna - Seattle Beach Sauna Experience
 
-A beautiful, responsive website for Bywater Sauna with an easy-to-use CMS backend.
+A beautiful, fully-featured website for Bywater Sauna with content management, multiple design themes, and SEO optimization.
 
-## Features
+🌐 **Live Site**: [bywatersauna.com](https://bywatersauna.com)
+📝 **CMS Admin**: [bywatersauna.com/admin](https://bywatersauna.com/admin)
 
-- ✅ Fully responsive design (desktop, tablet, mobile)
-- ✅ Interactive map showing all 4 Seattle locations
-- ✅ Smooth animations and transitions
-- ✅ Easy content management through Decap CMS
-- ✅ Hosted for free on GitHub Pages
-- ✅ No database required
+## ✨ Features
 
-## Setup Instructions
+### Design & UX
+- 🎨 **4 Color Themes**: 2 dark (Midnight Forest, Coastal Night), 2 light (Cedar & Stone, Sage Garden)
+- 🎭 **4 Icon Sets**: Emoji, Lucide, Natural, Winter (open source Lucide icons)
+- 📐 **Layout Options**: Contained or Full-Width sections
+- 🃏 **Card Styles**: Default, Minimal, Bold
+- 🔘 **Button Styles**: Default, Rounded, Square
+- 📝 **Text Sizes**: Small, Default, Large
+- 💾 **Persistent Preferences**: All design choices saved to localStorage
 
-### 1. Push to GitHub
+### Interactive Features
+- 🗺️ **Interactive Map**: Leaflet.js map with 4 Seattle location markers
+- 📍 **Sticky Map Scroll**: Map follows you down the page until pricing section
+- 🎯 **Location Hover**: Markers highlight when hovering over location cards
+- 🎬 **Smooth Animations**: Intersection Observer scroll-triggered animations
+- 📱 **Fully Responsive**: Mobile-first design, works on all devices
 
-```bash
-git add .
-git commit -m "Add CMS and initial content"
-git push origin main
-```
+### Content Management
+- 🖥️ **Decap CMS**: Edit content via web interface (no Netlify required)
+- 📂 **JSON Data**: All content in `_data/*.json` files
+- 🔗 **GitHub Backend**: Direct integration with GitHub repository
+- 🆓 **Free & Open Source**: MIT licensed CMS
 
-### 2. Enable GitHub Pages
+### SEO & Performance
+- 🔍 **SEO Optimized**: Meta tags, Open Graph, Twitter Cards
+- 🤖 **robots.txt**: Search engine crawling configuration
+- 🗺️ **sitemap.xml**: Complete site structure for search engines
+- 📊 **Structured Data**: JSON-LD for local business (Schema.org)
+- 🖼️ **Social Previews**: Custom og:image for sharing on social media
+- 🎯 **Favicon**: Custom SVG favicon
 
-1. Go to your repository on GitHub
-2. Click **Settings** → **Pages**
-3. Under "Source", select **main** branch
-4. Click **Save**
-5. Your site will be live at: `https://[username].github.io/bywatersauna/`
+## 🚀 Quick Start
 
-### 3. Set Up Netlify Identity (for CMS authentication)
+### Deploy to GitHub Pages
 
-Since GitHub Pages doesn't support server-side authentication, we'll use Netlify as a proxy:
+1. **Push to GitHub**:
+   ```bash
+   git push origin main
+   ```
 
-1. Go to [Netlify](https://netlify.com) and sign up
-2. Click "Add new site" → "Import an existing project"
-3. Connect your GitHub repository
-4. Deploy settings:
-   - Build command: (leave empty)
-   - Publish directory: `/`
-5. After deployment, go to **Site settings** → **Identity**
-6. Click "Enable Identity"
-7. Under "Registration preferences", select "Invite only"
-8. Under "Services" → "Git Gateway", click "Enable Git Gateway"
+2. **Enable GitHub Pages**:
+   - Go to repository Settings → Pages
+   - Set Source to `main` branch
+   - Save and wait for deployment
 
-### 4. Update CMS Config
+3. **Set up Custom Domain** (optional):
+   - Add `CNAME` file with your domain
+   - Configure DNS with GitHub Pages IPs
 
-1. In `admin/config.yml`, the backend is already configured for Git Gateway
-2. Add this script to your `index.html` before `</body>`:
-```html
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
-```
+### Set up Content Management
 
-### 5. Access the CMS
+See [DECAP_CMS_SETUP.md](DECAP_CMS_SETUP.md) for detailed CMS setup instructions.
 
-1. Go to `https://[your-site].netlify.app/admin/`
-2. Click "Login with Netlify Identity"
-3. You can now edit content!
+**Quick version**:
+1. Create GitHub OAuth App
+2. Configure `admin/config.yml`
+3. Access CMS at `/admin/`
+4. Login and edit content!
 
-### 6. Invite Team Members
-
-1. In Netlify, go to **Identity** tab
-2. Click "Invite users"
-3. Enter email addresses
-4. They'll receive an invite to access the CMS
-
-## Content Structure
-
-All content is stored in `_data/*.json` files:
-
-- `settings.json` - Site title, contact info, social links
-- `hero.json` - Hero section content
-- `about.json` - About section paragraphs
-- `services.json` - Service offerings and pricing
-- `locations.json` - Location details with GPS coordinates
-- `how_it_works.json` - Step-by-step instructions and guidelines
-
-## Editing Content
-
-### Via CMS (Recommended)
-1. Go to `/admin/` on your site
-2. Login with Netlify Identity
-3. Edit content through the visual interface
-4. Click "Publish" to save changes
-
-### Via GitHub
-1. Edit JSON files in `_data/` folder
-2. Commit and push changes
-3. Site rebuilds automatically
-
-## Local Development
-
-```bash
-# Serve locally
-python3 -m http.server 8000
-
-# Or use any static server
-npx serve
-```
-
-Then open: `http://localhost:8000/mockup/`
-
-## File Structure
+## 📁 File Structure
 
 ```
 bywatersauna/
-├── mockup/
-│   └── index.html          # Main website
+├── index.html              # Main homepage
+├── about.html              # About page (Nate & Simeon)
+├── book.html               # Booking information
+├── membership.html         # Membership tiers
+├── events.html             # Private events
+├── contact.html            # Contact form
+├── privacy.html            # Privacy policy
 ├── admin/
-│   ├── index.html          # CMS admin interface
+│   ├── index.html          # Decap CMS admin interface
 │   └── config.yml          # CMS configuration
 ├── _data/
-│   ├── settings.json       # Site settings
-│   ├── hero.json          # Hero section
-│   ├── about.json         # About section
-│   ├── services.json      # Services & pricing
-│   ├── locations.json     # Location data
-│   └── how_it_works.json  # Instructions
-└── assets/
-    └── images/            # Image uploads from CMS
+│   ├── locations.json      # 4 Seattle location data
+│   └── about.json          # About page content
+├── images/
+│   └── uploads/            # CMS uploaded images
+├── favicon.svg             # Site favicon
+├── social-preview.svg      # Social media preview image
+├── robots.txt              # Search engine instructions
+└── sitemap.xml             # Site structure for SEO
 ```
 
-## Customization
+## 🎨 Design System
 
-### Colors
-Edit these CSS variables in `mockup/index.html`:
-- Primary: `#2d5555` (teal)
-- Accent: `#d4c4a8` (tan)
-- Background: `#f8f9fa` (light gray)
+### Color Themes
 
-### Sections
-Add/remove sections by editing the CMS config in `admin/config.yml`
+| Theme | Type | Primary | Accent | Best For |
+|-------|------|---------|--------|----------|
+| Midnight Forest | Dark | #1C1C1C | #ca5e43 (Orange) | Default, professional |
+| Coastal Night | Dark | #0f1419 | #5eb3d6 (Blue) | Ocean-inspired |
+| Cedar & Stone | Light | #F5F1E8 | #A6634F (Red) | Warm, earthy |
+| Sage Garden | Light | #FAFAF8 | #4A6156 (Green) | Fresh, natural |
 
-### Map
-The interactive map automatically loads locations from `_data/locations.json`
+### Icon Sets
 
-## Support
+All icons from **[Lucide Icons](https://lucide.dev)** (MIT License):
 
-For issues or questions, check:
+- **Emoji**: 🔥 💧 🔄 (Default)
+- **Lucide**: Flame, Droplets, Repeat
+- **Natural**: Sun, Waves, Refresh-cw
+- **Winter**: Flame, Snowflake, Rotate-cw
+
+## 📝 Editing Content
+
+### Via CMS (Recommended)
+1. Go to `https://bywatersauna.com/admin/`
+2. Login with GitHub
+3. Edit locations, about page, etc.
+4. Changes commit directly to GitHub
+
+### Via GitHub
+1. Edit files in `_data/` folder
+2. Commit and push changes
+3. Site updates automatically
+
+## 🧪 Local Development
+
+```bash
+# Serve locally
+python -m http.server 8000
+# or
+npx serve
+
+# Run Decap CMS locally
+npx decap-server
+```
+
+Open `http://localhost:8000/`
+
+## 🔧 Customization
+
+### Change Colors
+Edit CSS variables in `index.html` or use the theme switcher in Design Options panel (⚙️ button bottom-right).
+
+### Add Locations
+Edit `_data/locations.json` or use the CMS at `/admin/`.
+
+### Modify Pages
+Edit HTML files directly or configure CMS in `admin/config.yml`.
+
+## 📦 Dependencies
+
+- [Leaflet.js](https://leafletjs.com/) - Interactive maps
+- [Decap CMS](https://decapcms.org/) - Content management
+- [Lucide Icons](https://lucide.dev/) - Open source icons
+- [Google Fonts](https://fonts.google.com/) - Playfair Display + Inter
+
+All dependencies loaded via CDN (no build step required).
+
+## 🤝 Contributing
+
+This is a private business website, but feel free to fork and adapt for your own projects!
+
+## 📄 License
+
+Website code: MIT License
+Content & branding: ©2026 Bywater LLC. All rights reserved.
+
+## 🐛 Issues & Support
+
+- [GitHub Issues](https://github.com/nicolaspratt/bywatersauna/issues)
 - [Decap CMS Docs](https://decapcms.org/docs/)
-- [GitHub Pages Docs](https://docs.github.com/en/pages)
-- [Leaflet Map Docs](https://leafletjs.com/reference.html)
-
-## License
-
-MIT License - feel free to use for your own projects!
+- [Leaflet Docs](https://leafletjs.com/reference.html)
