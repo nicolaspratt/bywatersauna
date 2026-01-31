@@ -377,14 +377,18 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            padding-bottom: 100px;
         }
 
         .map-container {
             position: sticky;
             top: 120px;
-            height: 600px;
+            height: fit-content;
+            max-height: calc(100vh - 140px);
             align-self: start;
+        }
+
+        .map-wrapper {
+            height: 600px;
         }
 
         .location-card {
@@ -1182,7 +1186,8 @@
 
     <!-- How It Works -->
     <section id="how-it-works" class="how-it-works">
-        <p class="section-label fade-up">THE RITUAL</p>
+        <div class="container">
+<p class="section-label fade-up">THE RITUAL</p>
         <h2 class="section-title fade-up" id="how-title">How It Works</h2>
 
         <div class="ritual-cards">
@@ -1215,11 +1220,13 @@
             </p>
             <a href="book.html" class="btn btn-primary btn-large" style="text-decoration: none;">Ready to Try It? →</a>
         </div>
+        </div>
     </section>
 
     <!-- Locations -->
     <section id="locations" class="locations-section">
-        <p class="section-label fade-up">FIND US</p>
+        <div class="container">
+<p class="section-label fade-up">FIND US</p>
         <h2 class="section-title fade-up" id="locations-title">Four Seattle Locations</h2>
         <p class="section-description fade-up" id="locations-description">From beach sunsets to lakefront serenity, find your perfect sauna spot</p>
 
@@ -1233,6 +1240,7 @@
                     <div id="map"></div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -1294,7 +1302,8 @@
 
     <!-- Pricing -->
     <section id="pricing" class="pricing-section">
-        <p class="section-label fade-up">SIMPLE PRICING</p>
+        <div class="container">
+<p class="section-label fade-up">SIMPLE PRICING</p>
         <h2 class="section-title fade-up">Book Your Session</h2>
         <p class="section-description fade-up">Reserve your spot online, just like signing up for a class. Limited spots per session to ensure the best experience.</p>
 
@@ -1333,6 +1342,7 @@
         <p class="fade-up" style="text-align: center; margin-top: 40px; color: rgba(250, 248, 243, 0.6);">
             Looking for a gift? <a href="#" style="color: var(--accent); text-decoration: underline;">Gift certificates available</a>
         </p>
+        </div>
     </section>
 
     <!-- FAQ -->
@@ -1356,7 +1366,8 @@
 
     <!-- Newsletter -->
     <section class="newsletter">
-        <div class="newsletter-label fade-up">
+        <div class="container">
+<div class="newsletter-label fade-up">
             ✨ Join the community
         </div>
         <h2 class="section-title fade-up">Stay in the Loop</h2>
@@ -1370,25 +1381,51 @@
             <input type="email" placeholder="Email address" required style="grid-column: 1 / -1;">
             <button type="submit" class="btn btn-primary btn-large">Subscribe</button>
         </form>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="logo.svg" alt="Bywater" height="24">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="logo.svg" alt="Bywater" height="30">
+                </div>
+                <p class="footer-description">
+                    Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
+                </p>
             </div>
-            <nav class="footer-links">
-                <a href="index.html#locations">Locations</a>
-                <a href="index.html#faq">FAQ</a>
-                <a href="membership.html">Membership</a>
-                <a href="events.html">Private Events</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="https://bywatersauna.corsizio.com/" target="_blank">Book a Session</a>
-                <a href="privacy.html">Privacy Policy</a>
-            </nav>
-            <p class="footer-copyright">© 2024 Bywater LLC</p>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#locations">Locations</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="events.html">Private Events</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Get in Touch</a></li>
+                    <li><a href="https://bywatersauna.corsizio.com/" target="_blank">Book a Session</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Bywater LLC. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1717,11 +1754,15 @@
             // Show sidebar
             document.getElementById('locationSidebar').classList.add('active');
             document.getElementById('sidebarOverlay').classList.add('active');
+            // Disable page scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeSidebar() {
             document.getElementById('locationSidebar').classList.remove('active');
             document.getElementById('sidebarOverlay').classList.remove('active');
+            // Re-enable page scrolling
+            document.body.style.overflow = '';
         }
 
         document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
