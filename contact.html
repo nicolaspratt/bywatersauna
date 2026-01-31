@@ -14,178 +14,149 @@
     <meta property="og:url" content="https://bywatersauna.com/contact.html">
     <meta property="og:title" content="Contact Us - Bywater Sauna">
     <meta property="og:description" content="Get in touch with Bywater Sauna. Questions about sessions, memberships, or events? We're here to help.">
-    <meta property="og:image" content="https://bywatersauna.com/social-preview.svg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bywatersauna.com/contact.html">
     <meta property="twitter:title" content="Contact Us - Bywater Sauna">
     <meta property="twitter:description" content="Get in touch with Bywater Sauna. Questions about sessions, memberships, or events? We're here to help.">
-    <meta property="twitter:image" content="https://bywatersauna.com/social-preview.svg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=Cormorant:wght@600;700&family=Work+Sans:wght@400;500;600;700&family=DM+Serif+Display:wght@400&family=DM+Sans:wght@400;500;600;700&family=Crimson+Pro:wght@600;700&family=Lora:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --orange: #ca5e43;
-            --orange-light: #d67a62;
-            --sage: #8B9D83;
-            --forest: #4A6156;
-            --dark-forest: #2D3E35;
-            --charcoal: #1C1C1C;
-            --warm-white: #FAF8F3;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--charcoal);
-            color: var(--warm-white);
-            line-height: 1.6;
-            font-size: 18px;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(28, 28, 28, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(139, 157, 131, 0.1);
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--warm-white);
-            text-decoration: none;
-        }
-
-        .logo-circle {
-            width: 40px;
-            height: 40px;
-            background: var(--orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--warm-white);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: rgba(250, 248, 243, 0.8);
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--warm-white);
-        }
-
         main {
-            padding-top: 120px;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding-left: 40px;
-            padding-right: 40px;
-            padding-bottom: 80px;
+            padding: 140px 40px 80px;
         }
 
         .page-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         .page-label {
             font-size: 12px;
             letter-spacing: 4px;
-            color: var(--orange);
+            color: var(--accent);
             margin-bottom: 20px;
             text-transform: uppercase;
             font-weight: 600;
         }
 
-        h1 {
+        .page-header h1 {
             font-size: clamp(48px, 6vw, 72px);
             margin-bottom: 24px;
-            line-height: 1.2;
         }
 
-        .intro-text {
-            font-size: 20px;
-            color: rgba(250, 248, 243, 0.8);
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.8;
         }
 
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--secondary-bg) 100%);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-info h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .contact-item {
+            margin-bottom: 30px;
+        }
+
+        .contact-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .contact-item p,
+        .contact-item a {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
         .contact-form {
-            background: rgba(74, 97, 86, 0.1);
-            border: 2px solid rgba(139, 157, 131, 0.2);
+            background: var(--card-bg);
+            border: 2px solid var(--border);
             border-radius: 20px;
             padding: 50px;
         }
 
+        .contact-form h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .contact-form .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
         .form-group {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
         .form-group label {
             display: block;
-            font-size: 14px;
+            margin-bottom: 8px;
             font-weight: 600;
-            color: rgba(250, 248, 243, 0.9);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 14px;
+            color: var(--text);
         }
 
         .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            background: rgba(250, 248, 243, 0.05);
-            border: 1px solid rgba(139, 157, 131, 0.3);
+            padding: 14px;
             border-radius: 8px;
-            padding: 16px 20px;
-            color: var(--warm-white);
+            border: 2px solid var(--border);
+            background: var(--secondary-bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
             font-size: 16px;
-            font-family: inherit;
-            transition: all 0.3s;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         .form-group textarea {
@@ -193,233 +164,35 @@
             resize: vertical;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--orange);
-            background: rgba(250, 248, 243, 0.08);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(250, 248, 243, 0.4);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .btn {
-            padding: 18px 40px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.4s;
-            display: inline-block;
-            background: var(--orange);
-            color: var(--warm-white);
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background: var(--orange-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(202, 94, 67, 0.5);
-        }
-
-        .contact-info {
-            margin-top: 60px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .contact-box {
-            background: rgba(45, 62, 53, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .contact-box h3 {
-            font-size: 24px;
-            margin-bottom: 12px;
-            color: var(--orange);
-        }
-
-        .contact-box a {
-            color: var(--warm-white);
-            text-decoration: none;
-        }
-
-        .contact-box a:hover {
-            color: var(--orange);
-        }
-
-        footer {
-            background: var(--charcoal);
-            padding: 80px 40px 40px;
-            border-top: 1px solid rgba(139, 157, 131, 0.1);
-        }
-
-        .footer-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .footer-brand {
-            max-width: 300px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo-circle {
-            width: 36px;
-            height: 36px;
-            background: var(--orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--warm-white);
-        }
-
-        .footer-description {
-            color: rgba(250, 248, 243, 0.6);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-        }
-
-        .social-links a {
-            color: rgba(250, 248, 243, 0.5);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--orange);
-        }
-
-        .footer-section h4 {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--stone);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(250, 248, 243, 0.6);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--orange);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 30px;
-            border-top: 1px solid rgba(139, 157, 131, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-bottom p {
-            color: rgba(250, 248, 243, 0.4);
-            font-size: 14px;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-legal a {
-            color: rgba(250, 248, 243, 0.4);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-legal a:hover {
-            color: var(--orange);
-        }
-
-        @media (max-width: 768px) {
-            .form-row {
+        @media (max-width: 968px) {
+            .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
 
+            .contact-info,
             .contact-form {
                 padding: 30px;
             }
 
             main {
-                padding-left: 24px;
-                padding-right: 24px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
+                padding: 120px 24px 60px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Header -->
+    <header id="header">
         <nav>
             <a href="index.html" class="logo">
-                <div class="logo-circle">B</div>
-                <span>Bywater</span>
+                <img src="logo.svg" alt="Bywater Sauna" height="45">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#locations">Locations</a></li>
-                <li><a href="book.html">Book</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#faq">FAQs</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="events.html">Private Session</a></li>
             </ul>
         </nav>
     </header>
@@ -428,105 +201,102 @@
         <div class="page-header">
             <p class="page-label">GET IN TOUCH</p>
             <h1>Contact Us</h1>
-            <p class="intro-text">
-                Have a question? We're here to help. Send us a message and we'll get back to you as soon as possible.
-            </p>
+            <p>Questions about sessions, memberships, or events? We're here to help.</p>
         </div>
 
-        <form class="contact-form" action="mailto:info@bywatersauna.com" method="get" enctype="text/plain">
-            <div class="form-group">
-                <label for="topic">What can we help you with?</label>
-                <select id="topic" name="subject" required>
-                    <option value="">Select a topic...</option>
-                    <option value="General Question">General Question</option>
-                    <option value="Book a Session">Book a Session</option>
-                    <option value="Membership Inquiry">Membership Inquiry</option>
-                    <option value="Private Events">Private Events</option>
-                    <option value="Gift Certificates">Gift Certificates</option>
-                    <option value="Technical Support">Technical Support</option>
-                    <option value="Feedback">Feedback</option>
-                </select>
-            </div>
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Reach Out</h2>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="name">Your Name *</label>
-                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:info@bywatersauna.com">info@bywatersauna.com</a>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                <div class="contact-item">
+                    <h3>General Inquiries</h3>
+                    <p>For questions about sessions, pricing, or locations</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Memberships</h3>
+                    <p>Learn more about our membership options and exclusive perks</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Private Events</h3>
+                    <p>Book the entire session for your group, team, or celebration</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Hours</h3>
+                    <p>Session times vary by location. Check our <a href="index.html#locations">locations page</a> for schedules.</p>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="phone">Phone Number (Optional)</label>
-                <input type="tel" id="phone" name="phone" placeholder="(206) 555-1234">
-            </div>
-
-            <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea id="message" name="body" placeholder="Tell us more about your inquiry..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn">Send Message →</button>
-        </form>
-
-        <div class="contact-info">
-            <div class="contact-box">
-                <h3>📧 Email</h3>
-                <p><a href="mailto:info@bywatersauna.com">info@bywatersauna.com</a></p>
-            </div>
-
-            <div class="contact-box">
-                <h3>📞 Phone</h3>
-                <p><a href="tel:+12065551234">(206) 555-1234</a></p>
-            </div>
-
-            <div class="contact-box">
-                <h3>📍 Visit Us</h3>
-                <p>Four locations across Seattle</p>
-                <p><a href="index.html#locations">View Locations →</a></p>
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <p class="subtitle">We'll get back to you within 24 hours.</p>
+                <form action="https://formspree.io/f/your-form-id" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a topic...</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="booking">Booking Question</option>
+                            <option value="membership">Membership</option>
+                            <option value="private-event">Private Event</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Send Message</button>
+                </form>
             </div>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <div class="footer-logo-circle">B</div>
-                    <span style="font-size: 20px; font-weight: 600;">Bywater</span>
+                    <img src="logo.svg" alt="Bywater" height="30">
                 </div>
                 <p class="footer-description">
-                    Seattle's social third space. Relax in cedar barrel saunas and refresh with cold plunges at four waterfront locations.
+                    Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
                 </p>
-                <div class="social-links">
-                    <a href="https://instagram.com/bywatersauna" target="_blank">Instagram</a>
-                    <a href="#" target="_blank">Facebook</a>
-                    <a href="#" target="_blank">Twitter</a>
-                </div>
             </div>
 
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="index.html#how-it-works">How It Works</a></li>
                     <li><a href="index.html#locations">Locations</a></li>
-                    <li><a href="index.html#pricing">Pricing</a></li>
-                    <li><a href="index.html#faq">FAQ</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="book.html">Book a Session</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="events.html">Private Events</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
-                <h4>Get Started</h4>
+                <h4>Company</h4>
                 <ul class="footer-links">
-                    <li><a href="book.html">Book a Session</a></li>
-                    <li><a href="contact.html?topic=gift">Gift Certificates</a></li>
-                    <li><a href="membership.html">Membership</a></li>
-                    <li><a href="events.html">Private Events</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
 
@@ -534,50 +304,127 @@
                 <h4>Contact</h4>
                 <ul class="footer-links">
                     <li><a href="mailto:info@bywatersauna.com">info@bywatersauna.com</a></li>
-                    <li><a href="tel:+12065551234">(206) 555-1234</a></li>
-                    <li><a href="contact.html">Contact Form</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>©2026 Bywater LLC. All rights reserved.</p>
-            <div class="footer-legal">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
+            <p>@2024 Bywater LLC. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Design Options Panel -->
+    <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
+
+    <div class="design-options" id="designOptions">
+        <h3>Design Options</h3>
+
+        <div class="option-group">
+            <label>Color Theme</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="theme" data-value="midnight">Midnight Spa</button>
+                <button class="option-btn" data-option="theme" data-value="coastal">Luxe Charcoal</button>
+                <button class="option-btn" data-option="theme" data-value="cedar">Coastal Calm</button>
+                <button class="option-btn" data-option="theme" data-value="sage">Serene Mint</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Typography</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="font" data-value="playfair">Playfair</button>
+                <button class="option-btn" data-option="font" data-value="cormorant">Cormorant</button>
+                <button class="option-btn" data-option="font" data-value="dm">DM Serif</button>
+                <button class="option-btn" data-option="font" data-value="crimson">Crimson</button>
+                <button class="option-btn" data-option="font" data-value="lora">Lora</button>
+                <button class="option-btn" data-option="font" data-value="inter">Inter</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Card Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="cards" data-value="default">Default</button>
+                <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
+                <button class="option-btn" data-option="cards" data-value="bold">Bold</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Button Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
+                <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
+                <button class="option-btn" data-option="buttons" data-value="square">Square</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Layout</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="layout" data-value="default">Contained</button>
+                <button class="option-btn" data-option="layout" data-value="fullwidth">Full Width</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Smart form handling based on URL parameters
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const topic = urlParams.get('topic');
-            const topicSelect = document.getElementById('topic');
+        // Design Options functionality
+        const designOptionsToggle = document.getElementById('designOptionsToggle');
+        const designOptions = document.getElementById('designOptions');
 
-            if (topic && topicSelect) {
-                const topicMap = {
-                    'membership': 'Membership Inquiry',
-                    'book': 'Book a Session',
-                    'events': 'Private Events',
-                    'gift': 'Gift Certificates',
-                    'general': 'General Question'
-                };
+        if (designOptionsToggle && designOptions) {
+            designOptionsToggle.addEventListener('click', () => {
+                const isActive = designOptions.classList.contains('active');
+                designOptions.classList.toggle('active');
+                designOptionsToggle.textContent = isActive ? '⚙️' : '✕';
+            });
 
-                const selectedTopic = topicMap[topic.toLowerCase()];
-                if (selectedTopic) {
-                    // Find the option with matching value and select it
-                    const options = topicSelect.options;
-                    for (let i = 0; i < options.length; i++) {
-                        if (options[i].value === selectedTopic) {
-                            topicSelect.selectedIndex = i;
-                            break;
+            // Handle option changes
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const option = this.dataset.option;
+                    const value = this.dataset.value;
+
+                    // Update active state
+                    this.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Apply the change
+                    if (option === 'theme') {
+                        Array.from(document.body.classList).forEach(cls => {
+                            if (cls.startsWith('theme-')) {
+                                document.body.classList.remove(cls);
+                            }
+                        });
+                        if (value !== 'midnight') {
+                            document.body.classList.add(`theme-${value}`);
+                        }
+                    } else {
+                        Array.from(document.body.classList).forEach(cls => {
+                            if (cls.startsWith(option + '-')) {
+                                document.body.classList.remove(cls);
+                            }
+                        });
+                        if (value !== 'default') {
+                            document.body.classList.add(`${option}-${value}`);
                         }
                     }
+
+                    // Save to localStorage
+                    localStorage.setItem(`bywater-${option}`, value);
+                });
+            });
+
+            // Restore saved preferences on page load
+            ['theme', 'cards', 'buttons', 'font', 'layout'].forEach(option => {
+                const saved = localStorage.getItem(`bywater-${option}`);
+                if (saved) {
+                    const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
+                    if (btn) btn.click();
                 }
-            }
-        });
+            });
+        }
     </script>
 </body>
 </html>
