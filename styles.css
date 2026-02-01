@@ -784,9 +784,16 @@ body.theme-light footer {
     border-top-color: var(--border);
 }
 
-body.theme-light .footer-description,
+body.theme-light .footer-description {
+    color: rgba(44, 24, 16, 0.6);
+}
+
 body.theme-light .footer-links a {
-    color: var(--text-muted);
+    color: rgba(44, 24, 16, 0.75);
+}
+
+body.theme-light .footer-section h4 {
+    color: var(--text);
 }
 
 body.theme-light .location-card {

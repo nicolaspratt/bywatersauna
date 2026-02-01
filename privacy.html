@@ -342,6 +342,17 @@
         <h3>🎨 Design Options</h3>
 
         <div class="option-group">
+            <label>Theme</label>
+            <div class="theme-toggle-container">
+                <span class="theme-label">Dark</span>
+                <div class="theme-toggle" id="themeToggle">
+                    <div class="theme-toggle-slider"></div>
+                </div>
+                <span class="theme-label">Light</span>
+            </div>
+        </div>
+
+        <div class="option-group">
             <label>Card Style</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="cards" data-value="default">Default</button>
@@ -402,6 +413,32 @@
             designOptionsToggle.addEventListener('click', () => {
                 designOptions.classList.toggle('active');
             });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                // Check saved theme
+                const savedTheme = localStorage.getItem('bywater-theme-mode');
+                if (savedTheme === 'light') {
+                    document.body.classList.add('theme-light');
+                    themeToggle.classList.add('active');
+                }
+
+                themeToggle.addEventListener('click', () => {
+                    const isLight = document.body.classList.contains('theme-light');
+                    if (isLight) {
+                        document.body.classList.remove('theme-light');
+                        document.body.classList.add('theme-dark');
+                        themeToggle.classList.remove('active');
+                        localStorage.setItem('bywater-theme-mode', 'dark');
+                    } else {
+                        document.body.classList.remove('theme-dark');
+                        document.body.classList.add('theme-light');
+                        themeToggle.classList.add('active');
+                        localStorage.setItem('bywater-theme-mode', 'light');
+                    }
+                });
+            }
 
             // Close when clicking outside
             document.addEventListener('click', (e) => {

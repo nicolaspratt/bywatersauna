@@ -1150,6 +1150,47 @@
             opacity: 1;
             pointer-events: all;
         }
+
+        /* Light Theme Overrides */
+        body.theme-light .hero::before {
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.6) 0%,
+                rgba(245, 240, 232, 0.7) 100%);
+        }
+
+        body.theme-light .locations-section {
+            background: var(--primary-bg);
+        }
+
+        body.theme-light .map-wrapper {
+            background: rgba(201, 79, 55, 0.08);
+        }
+
+        body.theme-light .location-sidebar {
+            background: var(--primary-bg);
+        }
+
+        body.theme-light .sidebar-header {
+            background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+        }
+
+        body.theme-light .sidebar-content {
+            background: var(--primary-bg);
+        }
+
+        body.theme-light .pricing-section {
+            background: linear-gradient(135deg, #E8F4F8 0%, #F5F0E8 50%, #FAF8F3 100%);
+        }
+
+        body.theme-light .pricing-section::before {
+            background:
+                radial-gradient(circle at 20% 50%, rgba(201, 79, 55, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(201, 79, 55, 0.06) 0%, transparent 50%);
+        }
+
+        body.theme-light .faq-section {
+            background: var(--primary-bg);
+        }
     </style>
 </head>
 <body>
@@ -1375,28 +1416,8 @@
             </div>
 
             <div class="faq-contact fade-up">
-                <p>Have more questions? <a href="contact.html" style="color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent);">Contact us</a>.</p>
+                <p style="text-align: center; color: rgba(250, 248, 243, 0.6);">Have more questions? <a href="contact.html" style="color: var(--accent); text-decoration: underline;">Contact us</a></p>
             </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-<div class="newsletter-label fade-up">
-            ✨ Join the community
-        </div>
-        <h2 class="section-title fade-up">Stay in the Loop</h2>
-        <p class="section-description fade-up">
-            Be the first to know about new locations, special events, seasonal offerings, and exclusive member perks.
-        </p>
-
-        <form class="newsletter-form fade-up">
-            <input type="text" placeholder="First name" required>
-            <input type="text" placeholder="Last name" required>
-            <input type="email" placeholder="Email address" required style="grid-column: 1 / -1;">
-            <button type="submit" class="btn btn-primary btn-large">Subscribe</button>
-        </form>
         </div>
     </section>
 
