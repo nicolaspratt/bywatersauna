@@ -255,6 +255,12 @@
                 <p class="footer-description">
                     Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
                 </p>
+                <div class="footer-theme-toggle">
+                    <label class="theme-slider-switch">
+                        <input type="checkbox" id="themeSlider">
+                        <span class="theme-slider-track"></span>
+                    </label>
+                </div>
                 <p class="footer-copyright">© 2026 Bywater LLC. All rights reserved.</p>
             </div>
 
@@ -458,6 +464,40 @@
     </script>
 
     <script>
+        // Theme Slider with System Preference Detection
+        const themeSlider = document.getElementById('themeSlider');
+
+        // Detect system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Check saved preference or use system preference
+        const savedTheme = localStorage.getItem('bywater-theme-mode');
+        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+        // Apply initial theme
+        if (initialTheme === 'light') {
+            document.body.classList.add('theme-light');
+            if (themeSlider) themeSlider.checked = true;
+        } else {
+            document.body.classList.remove('theme-light');
+            if (themeSlider) themeSlider.checked = false;
+        }
+
+        // Handle slider toggle
+        if (themeSlider) {
+            themeSlider.addEventListener('change', () => {
+                if (themeSlider.checked) {
+                    document.body.classList.remove('theme-dark');
+                    document.body.classList.add('theme-light');
+                    localStorage.setItem('bywater-theme-mode', 'light');
+                } else {
+                    document.body.classList.remove('theme-light');
+                    document.body.classList.add('theme-dark');
+                    localStorage.setItem('bywater-theme-mode', 'dark');
+                }
+            });
+        }
+
         // Gift Certificates button
         const giftCertBtn = document.getElementById('giftCertBtn');
         if (giftCertBtn) {

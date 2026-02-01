@@ -427,6 +427,20 @@ footer {
     margin-right: auto;
 }
 
+@media (max-width: 968px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 568px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
 .footer-brand {
     max-width: 350px;
 }
@@ -447,6 +461,10 @@ footer {
     line-height: 1.7;
     margin-bottom: 12px;
     font-size: 15px;
+}
+
+.footer-theme-toggle {
+    margin: 24px 0 16px;
 }
 
 .footer-copyright {
@@ -936,8 +954,8 @@ body.theme-light.colorscheme-lavender {
 .theme-slider-switch {
     position: relative;
     display: inline-block;
-    width: 44px;
-    height: 22px;
+    width: 80px;
+    height: 40px;
 }
 
 .theme-slider-switch input {
@@ -955,15 +973,16 @@ body.theme-light.colorscheme-lavender {
     bottom: 0;
     background-color: rgba(139, 157, 131, 0.3);
     transition: 0.3s;
-    border-radius: 22px;
+    border-radius: 40px;
+    border: 2px solid rgba(139, 157, 131, 0.2);
 }
 
 .theme-slider-track:before {
     position: absolute;
-    content: "🌙";
-    height: 18px;
-    width: 18px;
-    left: 2px;
+    content: "🌜";
+    height: 32px;
+    width: 32px;
+    left: 4px;
     bottom: 2px;
     background-color: white;
     transition: 0.3s;
@@ -971,23 +990,34 @@ body.theme-light.colorscheme-lavender {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: 32px;
     text-align: center;
+    filter: hue-rotate(240deg) saturate(2);
 }
 
 .theme-slider-switch input:checked + .theme-slider-track {
-    background-color: var(--accent);
+    background-color: rgba(255, 193, 7, 0.2);
+    border-color: rgba(255, 193, 7, 0.3);
 }
 
 .theme-slider-switch input:checked + .theme-slider-track:before {
-    transform: translateX(22px);
+    transform: translateX(40px);
     content: "☀️";
+    filter: hue-rotate(0deg) saturate(1.5) brightness(1.2);
 }
 
 /* Light theme specific improvements */
 body.theme-light .footer-copyright {
     color: rgba(44, 24, 16, 0.8);
+}
+
+body.theme-light #faq .section-title {
+    color: rgba(44, 24, 16, 0.95) !important;
+}
+
+body.theme-light #faq .section-description {
+    color: rgba(44, 24, 16, 0.85) !important;
 }
 
 body.theme-light .faq-contact {
