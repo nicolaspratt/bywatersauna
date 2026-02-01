@@ -979,21 +979,15 @@ body.theme-light.colorscheme-lavender {
 
 .theme-slider-track:before {
     position: absolute;
-    content: "🌜";
+    content: "";
     height: 32px;
     width: 32px;
     left: 4px;
     bottom: 2px;
-    background-color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     transition: 0.3s;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    line-height: 32px;
-    text-align: center;
-    filter: hue-rotate(240deg) saturate(2);
+    box-shadow: inset 10px -4px 0 0 rgba(255, 255, 255, 0.3);
 }
 
 .theme-slider-switch input:checked + .theme-slider-track {
@@ -1003,8 +997,9 @@ body.theme-light.colorscheme-lavender {
 
 .theme-slider-switch input:checked + .theme-slider-track:before {
     transform: translateX(40px);
-    content: "☀️";
-    filter: hue-rotate(0deg) saturate(1.5) brightness(1.2);
+    background: linear-gradient(135deg, #FDB813 0%, #FFAA00 100%);
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3),
+                0 0 8px rgba(255, 193, 7, 0.5);
 }
 
 /* Light theme specific improvements */
@@ -1013,27 +1008,32 @@ body.theme-light .footer-copyright {
 }
 
 body.theme-light #faq .section-title {
-    color: rgba(44, 24, 16, 0.95) !important;
+    color: #1a1a1a !important;
 }
 
 body.theme-light #faq .section-description {
-    color: rgba(44, 24, 16, 0.85) !important;
+    color: #2a2a2a !important;
 }
 
 body.theme-light .faq-contact {
-    color: rgba(44, 24, 16, 0.95) !important;
+    color: #2a2a2a !important;
 }
 
 body.theme-light .faq-item h4 {
-    color: rgba(44, 24, 16, 0.95) !important;
+    color: #3a3a3a !important;
 }
 
 body.theme-light .faq-item p {
-    color: rgba(44, 24, 16, 0.8) !important;
+    color: #4a4a4a !important;
 }
 
-body.theme-light .logo img {
-    filter: brightness(0.2);
+body.theme-light #pricing p {
+    color: #2a2a2a !important;
+}
+
+body.theme-light .logo img,
+body.theme-light .footer-logo img {
+    content: url('logo-light.svg');
 }
 
 @media (max-width: 768px) {
