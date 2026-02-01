@@ -230,18 +230,23 @@
     </style>
 </head>
 <body>
-    <header>
+    <!-- Header -->
+    <header id="header">
         <nav>
             <a href="index.html" class="logo">
-                <div class="logo-circle">B</div>
-                <span>Bywater</span>
+                <img src="logo.svg" alt="Bywater Sauna" height="50">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#how-it-works">How it Works</a></li>
                 <li><a href="index.html#locations">Locations</a></li>
-                <li><a href="book.html">Book</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
+            <div class="nav-ctas">
+                <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
+                <a href="book.html" class="btn btn-primary">Book a Session</a>
+            </div>
         </nav>
     </header>
 
@@ -361,8 +366,260 @@
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>©2026 Bywater LLC. All rights reserved. | <a href="index.html">Back to Home</a></p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="logo.svg" alt="Bywater" height="32">
+                </div>
+                <p class="footer-description">
+                    Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
+                </p>
+                <p class="footer-copyright">© 2026 Bywater LLC. All rights reserved.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#locations">Locations</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="events.html">Private Events</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Get in Touch</a></li>
+                    <li><a href="book.html">Book a Session</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
+
+    <!-- Design Options Panel -->
+    <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
+    <div class="design-options" id="designOptions">
+        <h3>🎨 Design Options</h3>
+
+        <div class="option-group">
+            <label>Color Theme</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="theme" data-value="midnight" title="Deep navy with coral accents">
+                    🌙 Midnight Spa
+                </button>
+                <button class="option-btn" data-option="theme" data-value="coastal" title="Charcoal with warm gold">
+                    ✨ Luxe Charcoal
+                </button>
+                <button class="option-btn" data-option="theme" data-value="cedar" title="Coastal calm with blue-grey">
+                    🌊 Coastal Calm
+                </button>
+                <button class="option-btn" data-option="theme" data-value="sage" title="Serene mint and teal">
+                    🌿 Serene Mint
+                </button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Card Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="cards" data-value="default">Default</button>
+                <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
+                <button class="option-btn" data-option="cards" data-value="bold">Bold</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Button Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
+                <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
+                <button class="option-btn" data-option="buttons" data-value="square">Square</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Typography</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="font" data-value="playfair" title="Playfair Display + Inter">
+                    Playfair
+                </button>
+                <button class="option-btn" data-option="font" data-value="cormorant" title="Cormorant + Work Sans">
+                    Cormorant
+                </button>
+                <button class="option-btn" data-option="font" data-value="dm" title="DM Serif Display + DM Sans">
+                    DM Serif
+                </button>
+                <button class="option-btn" data-option="font" data-value="crimson" title="Crimson Pro + Inter">
+                    Crimson
+                </button>
+                <button class="option-btn" data-option="font" data-value="lora" title="Lora + Nunito Sans">
+                    Lora
+                </button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Logo Color</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="logo" data-value="default">Default</button>
+                <button class="option-btn" data-option="logo" data-value="warm">Warm</button>
+                <button class="option-btn" data-option="logo" data-value="cool">Cool</button>
+                <button class="option-btn" data-option="logo" data-value="vibrant">Vibrant</button>
+                <button class="option-btn" data-option="logo" data-value="muted">Muted</button>
+                <button class="option-btn" data-option="logo" data-value="mono">Mono</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Design Options functionality
+        const designOptionsToggle = document.getElementById('designOptionsToggle');
+        const designOptions = document.getElementById('designOptions');
+
+        if (designOptionsToggle && designOptions) {
+            designOptionsToggle.addEventListener('click', () => {
+                designOptions.classList.toggle('active');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!designOptions.contains(e.target) && !designOptionsToggle.contains(e.target)) {
+                    designOptions.classList.remove('active');
+                }
+            });
+
+            // Handle option changes
+            const optionButtons = designOptions.querySelectorAll('.option-btn');
+
+            optionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const option = button.dataset.option;
+                    const value = button.dataset.value;
+
+                    // Update active state
+                    button.parentElement.querySelectorAll('.option-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+
+                    // Apply the option
+                    if (option === 'theme') {
+                        document.body.className = document.body.className.replace(/theme-\w+/g, '');
+                        if (value !== 'midnight') {
+                            document.body.classList.add(`theme-${value}`);
+                        }
+                        localStorage.setItem('bywater-theme', value);
+                    } else {
+                        document.body.className = document.body.className.replace(new RegExp(`${option}-\\w+`, 'g'), '');
+                        if (value !== 'default') {
+                            document.body.classList.add(`${option}-${value}`);
+                        }
+                        localStorage.setItem(`bywater-${option}`, value);
+                    }
+                });
+            });
+
+            // Restore saved preferences
+            const savedTheme = localStorage.getItem('bywater-theme');
+            const savedCards = localStorage.getItem('bywater-cards');
+            const savedButtons = localStorage.getItem('bywater-buttons');
+            const savedFont = localStorage.getItem('bywater-font');
+            const savedLayout = localStorage.getItem('bywater-layout');
+
+            if (savedTheme && savedTheme !== 'midnight') {
+                document.body.classList.add(`theme-${savedTheme}`);
+                const themeBtn = designOptions.querySelector(`[data-option="theme"][data-value="${savedTheme}"]`);
+                if (themeBtn) {
+                    themeBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    themeBtn.classList.add('active');
+                }
+            }
+
+            if (savedCards && savedCards !== 'default') {
+                document.body.classList.add(`cards-${savedCards}`);
+                const cardsBtn = designOptions.querySelector(`[data-option="cards"][data-value="${savedCards}"]`);
+                if (cardsBtn) {
+                    cardsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    cardsBtn.classList.add('active');
+                }
+            }
+
+            if (savedButtons && savedButtons !== 'default') {
+                document.body.classList.add(`buttons-${savedButtons}`);
+                const buttonsBtn = designOptions.querySelector(`[data-option="buttons"][data-value="${savedButtons}"]`);
+                if (buttonsBtn) {
+                    buttonsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    buttonsBtn.classList.add('active');
+                }
+            }
+
+            if (savedFont && savedFont !== 'playfair') {
+                document.body.classList.add(`font-${savedFont}`);
+                const fontBtn = designOptions.querySelector(`[data-option="font"][data-value="${savedFont}"]`);
+                if (fontBtn) {
+                    fontBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    fontBtn.classList.add('active');
+                }
+            }
+
+            if (savedLayout && savedLayout !== 'default') {
+                document.body.classList.add(`layout-${savedLayout}`);
+                const layoutBtn = designOptions.querySelector(`[data-option="layout"][data-value="${savedLayout}"]`);
+                if (layoutBtn) {
+                    layoutBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    layoutBtn.classList.add('active');
+                }
+            }
+        }
+    </script>
+
+    <!-- Page Transition Script -->
+    <script>
+        // Smooth page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add transition to internal links
+            document.querySelectorAll('a').forEach(link => {
+                const href = link.getAttribute('href');
+                // Only apply to internal page links (not anchors, external, or special links)
+                if (href &&
+                    !href.startsWith('#') &&
+                    !href.startsWith('http') &&
+                    !href.startsWith('mailto:') &&
+                    !href.startsWith('tel:') &&
+                    !link.hasAttribute('target')) {
+
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const destination = this.getAttribute('href');
+
+                        // Instant navigation
+                        window.location.href = destination;
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Gift Certificates button
+        const giftCertBtn = document.getElementById('giftCertBtn');
+        if (giftCertBtn) {
+            giftCertBtn.addEventListener('click', () => {
+                window.location.href = 'gift-certificates.html';
+            });
+        }
+    </script>
 </body>
 </html>
