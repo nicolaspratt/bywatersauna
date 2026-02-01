@@ -885,10 +885,7 @@
 
         .faq-contact a {
             color: var(--sage);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            display: inline;
             text-decoration: none;
             font-size: 16px;
             transition: color 0.3s;
@@ -1192,11 +1189,24 @@
             background: var(--primary-bg);
         }
 
-        body.theme-light .faq-section .section-title,
-        body.theme-light .faq-section .section-description,
-        body.theme-light .faq-item h4,
-        body.theme-light .faq-item p {
-            color: var(--text);
+        body.theme-light .faq-section .section-title {
+            color: #1a1a1a !important;
+        }
+
+        body.theme-light .faq-section .section-description {
+            color: #2a2a2a !important;
+        }
+
+        body.theme-light .faq-question {
+            color: #3a3a3a !important;
+        }
+
+        body.theme-light .faq-answer-content {
+            color: #4a4a4a !important;
+        }
+
+        body.theme-light .faq-contact {
+            color: #2a2a2a !important;
         }
 
         body.theme-light .pricing-section .section-title,
