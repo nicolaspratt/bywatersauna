@@ -182,7 +182,7 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+        <!-- Header -->
     <header id="header">
         <nav>
             <a href="index.html" class="logo">
@@ -274,7 +274,7 @@
         </div>
     </main>
 
-            <!-- Footer -->
+                <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
@@ -316,33 +316,10 @@
         </div>
     </footer>
 
-    <!-- Design Options Panel -->
+        <!-- Design Options Panel -->
     <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
-
     <div class="design-options" id="designOptions">
-        <h3>Design Options</h3>
-
-        <div class="option-group">
-            <label>Color Theme</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="theme" data-value="midnight">Midnight Spa</button>
-                <button class="option-btn" data-option="theme" data-value="coastal">Luxe Charcoal</button>
-                <button class="option-btn" data-option="theme" data-value="cedar">Coastal Calm</button>
-                <button class="option-btn" data-option="theme" data-value="sage">Serene Mint</button>
-            </div>
-        </div>
-
-        <div class="option-group">
-            <label>Typography</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="font" data-value="playfair">Playfair</button>
-                <button class="option-btn" data-option="font" data-value="cormorant">Cormorant</button>
-                <button class="option-btn" data-option="font" data-value="dm">DM Serif</button>
-                <button class="option-btn" data-option="font" data-value="crimson">Crimson</button>
-                <button class="option-btn" data-option="font" data-value="lora">Lora</button>
-                <button class="option-btn" data-option="font" data-value="inter">Inter</button>
-            </div>
-        </div>
+        <h3>🎨 Design Options</h3>
 
         <div class="option-group">
             <label>Card Style</label>
@@ -359,6 +336,27 @@
                 <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
                 <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
                 <button class="option-btn" data-option="buttons" data-value="square">Square</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Typography</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="font" data-value="playfair" title="Playfair Display + Inter">
+                    Playfair
+                </button>
+                <button class="option-btn" data-option="font" data-value="cormorant" title="Cormorant + Work Sans">
+                    Cormorant
+                </button>
+                <button class="option-btn" data-option="font" data-value="dm" title="DM Serif Display + DM Sans">
+                    DM Serif
+                </button>
+                <button class="option-btn" data-option="font" data-value="crimson" title="Crimson Pro + Inter">
+                    Crimson
+                </button>
+                <button class="option-btn" data-option="font" data-value="lora" title="Lora + Nunito Sans">
+                    Lora
+                </button>
             </div>
         </div>
 
@@ -382,55 +380,82 @@
 
         if (designOptionsToggle && designOptions) {
             designOptionsToggle.addEventListener('click', () => {
-                const isActive = designOptions.classList.contains('active');
                 designOptions.classList.toggle('active');
-                designOptionsToggle.textContent = isActive ? '⚙️' : '✕';
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!designOptions.contains(e.target) && !designOptionsToggle.contains(e.target)) {
+                    designOptions.classList.remove('active');
+                }
             });
 
             // Handle option changes
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const option = this.dataset.option;
-                    const value = this.dataset.value;
+            const optionButtons = designOptions.querySelectorAll('.option-btn');
+
+            optionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const option = button.dataset.option;
+                    const value = button.dataset.value;
 
                     // Update active state
-                    this.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
+                    button.parentElement.querySelectorAll('.option-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
 
-                    // Apply the change
-                    if (option === 'theme') {
-                        Array.from(document.body.classList).forEach(cls => {
-                            if (cls.startsWith('theme-')) {
-                                document.body.classList.remove(cls);
-                            }
-                        });
-                        if (value !== 'midnight') {
-                            document.body.classList.add(`theme-${value}`);
-                        }
+                    // Apply the option (skip theme since we removed it)
+                    if (value !== 'default') {
+                        document.body.className = document.body.className.replace(new RegExp(`${option}-\w+`, 'g'), '');
+                        document.body.classList.add(`${option}-${value}`);
                     } else {
-                        Array.from(document.body.classList).forEach(cls => {
-                            if (cls.startsWith(option + '-')) {
-                                document.body.classList.remove(cls);
-                            }
-                        });
-                        if (value !== 'default') {
-                            document.body.classList.add(`${option}-${value}`);
-                        }
+                        document.body.className = document.body.className.replace(new RegExp(`${option}-\w+`, 'g'), '');
                     }
-
-                    // Save to localStorage
                     localStorage.setItem(`bywater-${option}`, value);
                 });
             });
 
-            // Restore saved preferences on page load
-            ['theme', 'cards', 'buttons', 'font', 'layout', 'logo'].forEach(option => {
-                const saved = localStorage.getItem(`bywater-${option}`);
-                if (saved) {
-                    const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
-                    if (btn) btn.click();
+            // Restore saved preferences (skip theme)
+            const savedCards = localStorage.getItem('bywater-cards');
+            const savedButtons = localStorage.getItem('bywater-buttons');
+            const savedFont = localStorage.getItem('bywater-font');
+            const savedLogo = localStorage.getItem('bywater-logo');
+
+            if (savedCards && savedCards !== 'default') {
+                document.body.classList.add(`cards-${savedCards}`);
+                const cardsBtn = designOptions.querySelector(`[data-option="cards"][data-value="${savedCards}"]`);
+                if (cardsBtn) {
+                    cardsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    cardsBtn.classList.add('active');
                 }
-            });
+            }
+
+            if (savedButtons && savedButtons !== 'default') {
+                document.body.classList.add(`buttons-${savedButtons}`);
+                const buttonsBtn = designOptions.querySelector(`[data-option="buttons"][data-value="${savedButtons}"]`);
+                if (buttonsBtn) {
+                    buttonsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    buttonsBtn.classList.add('active');
+                }
+            }
+
+            if (savedFont && savedFont !== 'playfair') {
+                document.body.classList.add(`font-${savedFont}`);
+                const fontBtn = designOptions.querySelector(`[data-option="font"][data-value="${savedFont}"]`);
+                if (fontBtn) {
+                    fontBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    fontBtn.classList.add('active');
+                }
+            }
+
+            if (savedLogo && savedLogo !== 'default') {
+                document.body.classList.add(`logo-${savedLogo}`);
+                const logoBtn = designOptions.querySelector(`[data-option="logo"][data-value="${savedLogo}"]`);
+                if (logoBtn) {
+                    logoBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    logoBtn.classList.add('active');
+                }
+            }
         }
     </script>
 
@@ -442,17 +467,17 @@
             document.querySelectorAll('a').forEach(link => {
                 const href = link.getAttribute('href');
                 // Only apply to internal page links (not anchors, external, or special links)
-                if (href && 
-                    !href.startsWith('#') && 
-                    !href.startsWith('http') && 
-                    !href.startsWith('mailto:') && 
+                if (href &&
+                    !href.startsWith('#') &&
+                    !href.startsWith('http') &&
+                    !href.startsWith('mailto:') &&
                     !href.startsWith('tel:') &&
                     !link.hasAttribute('target')) {
-                    
+
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
                         const destination = this.getAttribute('href');
-                        
+
                         // Instant navigation
                         window.location.href = destination;
                     });

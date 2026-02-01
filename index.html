@@ -1477,24 +1477,6 @@
         <h3>🎨 Design Options</h3>
 
         <div class="option-group">
-            <label>Color Theme</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="theme" data-value="midnight" title="Deep navy with coral accents">
-                    🌙 Midnight Spa
-                </button>
-                <button class="option-btn" data-option="theme" data-value="coastal" title="Charcoal with warm gold">
-                    ✨ Luxe Charcoal
-                </button>
-                <button class="option-btn" data-option="theme" data-value="cedar" title="Coastal calm with blue-grey">
-                    🌊 Coastal Calm
-                </button>
-                <button class="option-btn" data-option="theme" data-value="sage" title="Serene mint and teal">
-                    🌿 Serene Mint
-                </button>
-            </div>
-        </div>
-
-        <div class="option-group">
             <label>Card Style</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="cards" data-value="default">Default</button>
@@ -2095,19 +2077,8 @@
                     // Add active class to clicked button
                     this.classList.add('active');
 
-                    // Special handling for themes
-                    if (option === 'theme') {
-                        // Remove all theme classes
-                        Array.from(document.body.classList).forEach(cls => {
-                            if (cls.startsWith('theme-')) {
-                                document.body.classList.remove(cls);
-                            }
-                        });
-                        // Add new theme class (midnight is default, no class needed)
-                        if (value !== 'midnight') {
-                            document.body.classList.add(`theme-${value}`);
-                        }
-                    } else if (option === 'icons') {
+                    // Handle option changes (theme removed)
+                    if (option === 'icons') {
                         // Update ritual icons
                         updateRitualIcons(value);
                     } else {
@@ -2129,8 +2100,8 @@
                 });
             });
 
-            // Restore saved preferences on page load
-            ['theme', 'cards', 'buttons', 'font', 'layout', 'logo'].forEach(option => {
+            // Restore saved preferences on page load (theme removed)
+            ['cards', 'buttons', 'font', 'layout', 'logo'].forEach(option => {
                 const saved = localStorage.getItem(`bywater-${option}`);
                 if (saved) {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);

@@ -230,7 +230,7 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+        <!-- Header -->
     <header id="header">
         <nav>
             <a href="index.html" class="logo">
@@ -366,7 +366,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-brand">
@@ -408,28 +408,10 @@
         </div>
     </footer>
 
-    <!-- Design Options Panel -->
+        <!-- Design Options Panel -->
     <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
     <div class="design-options" id="designOptions">
         <h3>🎨 Design Options</h3>
-
-        <div class="option-group">
-            <label>Color Theme</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="theme" data-value="midnight" title="Deep navy with coral accents">
-                    🌙 Midnight Spa
-                </button>
-                <button class="option-btn" data-option="theme" data-value="coastal" title="Charcoal with warm gold">
-                    ✨ Luxe Charcoal
-                </button>
-                <button class="option-btn" data-option="theme" data-value="cedar" title="Coastal calm with blue-grey">
-                    🌊 Coastal Calm
-                </button>
-                <button class="option-btn" data-option="theme" data-value="sage" title="Serene mint and teal">
-                    🌿 Serene Mint
-                </button>
-            </div>
-        </div>
 
         <div class="option-group">
             <label>Card Style</label>
@@ -514,38 +496,22 @@
                     });
                     button.classList.add('active');
 
-                    // Apply the option
-                    if (option === 'theme') {
-                        document.body.className = document.body.className.replace(/theme-\w+/g, '');
-                        if (value !== 'midnight') {
-                            document.body.classList.add(`theme-${value}`);
-                        }
-                        localStorage.setItem('bywater-theme', value);
+                    // Apply the option (skip theme since we removed it)
+                    if (value !== 'default') {
+                        document.body.className = document.body.className.replace(new RegExp(`${option}-\w+`, 'g'), '');
+                        document.body.classList.add(`${option}-${value}`);
                     } else {
-                        document.body.className = document.body.className.replace(new RegExp(`${option}-\\w+`, 'g'), '');
-                        if (value !== 'default') {
-                            document.body.classList.add(`${option}-${value}`);
-                        }
-                        localStorage.setItem(`bywater-${option}`, value);
+                        document.body.className = document.body.className.replace(new RegExp(`${option}-\w+`, 'g'), '');
                     }
+                    localStorage.setItem(`bywater-${option}`, value);
                 });
             });
 
-            // Restore saved preferences
-            const savedTheme = localStorage.getItem('bywater-theme');
+            // Restore saved preferences (skip theme)
             const savedCards = localStorage.getItem('bywater-cards');
             const savedButtons = localStorage.getItem('bywater-buttons');
             const savedFont = localStorage.getItem('bywater-font');
-            const savedLayout = localStorage.getItem('bywater-layout');
-
-            if (savedTheme && savedTheme !== 'midnight') {
-                document.body.classList.add(`theme-${savedTheme}`);
-                const themeBtn = designOptions.querySelector(`[data-option="theme"][data-value="${savedTheme}"]`);
-                if (themeBtn) {
-                    themeBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    themeBtn.classList.add('active');
-                }
-            }
+            const savedLogo = localStorage.getItem('bywater-logo');
 
             if (savedCards && savedCards !== 'default') {
                 document.body.classList.add(`cards-${savedCards}`);
@@ -574,12 +540,12 @@
                 }
             }
 
-            if (savedLayout && savedLayout !== 'default') {
-                document.body.classList.add(`layout-${savedLayout}`);
-                const layoutBtn = designOptions.querySelector(`[data-option="layout"][data-value="${savedLayout}"]`);
-                if (layoutBtn) {
-                    layoutBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    layoutBtn.classList.add('active');
+            if (savedLogo && savedLogo !== 'default') {
+                document.body.classList.add(`logo-${savedLogo}`);
+                const logoBtn = designOptions.querySelector(`[data-option="logo"][data-value="${savedLogo}"]`);
+                if (logoBtn) {
+                    logoBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    logoBtn.classList.add('active');
                 }
             }
         }
