@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Certificates - Bywater Sauna</title>
+    <meta name="description" content="Give the gift of heat! Purchase Bywater Sauna gift certificates for sessions at all 4 of our Seattle waterfront locations.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 140px 40px 80px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-label {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .page-header h1 {
+            font-size: clamp(48px, 6vw, 64px);
+            margin-bottom: 24px;
+        }
+
+        .page-header .tagline {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--secondary-bg) 100%);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 15px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(var(--primary-bg-rgb), 0.4);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(var(--primary-bg-rgb), 0.6);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(var(--primary-bg-rgb), 0.2);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .radio-option:hover {
+            border-color: var(--accent);
+            background: rgba(var(--primary-bg-rgb), 0.3);
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .note {
+            background: rgba(var(--accent-rgb, 232, 99, 79), 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .note p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .note strong {
+            color: var(--accent);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px 40px;
+            background: var(--accent);
+            color: var(--warm-white);
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(var(--accent-rgb, 232, 99, 79), 0.4);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 120px 24px 60px;
+            }
+
+            .form-container {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="logo.svg" alt="Bywater Sauna" height="50">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#how-it-works">How it Works</a></li>
+                <li><a href="index.html#locations">Locations</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-ctas">
+                <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
+                <a href="https://bywatersauna.corsizio.com/" target="_blank" class="btn btn-primary">Book a Session</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <p class="page-label">GIVE THE GIFT OF WELLNESS</p>
+            <h1>Bywater Gift Certificates</h1>
+            <p class="tagline">Give the gift of heat!</p>
+            <p>After receiving your form, we will follow up by email to confirm details, collect payment, and send the gift certificate. We will NOT send the card to the recipient before discussing with you.</p>
+        </div>
+
+        <div class="form-container">
+            <form id="giftCertificateForm">
+                <div class="form-group">
+                    <label for="yourName">Your First and Last Name *</label>
+                    <input type="text" id="yourName" name="yourName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="yourEmail">Your Email *</label>
+                    <input type="email" id="yourEmail" name="yourEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipientName">Recipient First and Last Name *</label>
+                    <input type="text" id="recipientName" name="recipientName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipientEmail">Recipient Email *</label>
+                    <input type="email" id="recipientEmail" name="recipientEmail" required>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">NOTE: We will NOT send the certificate to them. We will send it to you. This is just for setting up an account for the recipient.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipientPhone">Recipient Phone Number *</label>
+                    <input type="tel" id="recipientPhone" name="recipientPhone" required>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">This is for the recipient's account.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Gift Amount *</label>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Credits good at all 4 of our locations and for all of our 60-75 minute sessions.</p>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="credit1" name="giftAmount" value="1 credit - $40" required>
+                            <label for="credit1">1 credit - $40</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="credit3" name="giftAmount" value="3 credits - $100">
+                            <label for="credit3">3 credits - $100</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="credit5" name="giftAmount" value="5 credits - $160">
+                            <label for="credit5">5 credits - $160</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="credit10" name="giftAmount" value="10 credits - $300">
+                            <label for="credit10">10 credits - $300</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="creditOther" name="giftAmount" value="Other">
+                            <label for="creditOther">Other amount (specify in message below)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message (Optional)</label>
+                    <textarea id="message" name="message" placeholder="Any special instructions or custom gift amount..."></textarea>
+                </div>
+
+                <div class="note">
+                    <p><strong>Payment Note:</strong> Once we receive your request, we will email you to confirm details and take payment. We accept credit cards or Venmo.</p>
+                </div>
+
+                <div class="note" style="border-color: var(--accent-light);">
+                    <p style="color: var(--accent-light); text-align: center; font-weight: 600;">We will be in touch within 24 hours of your request. Thank you!</p>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Gift Certificate Request →</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="logo.svg" alt="Bywater" height="32">
+                </div>
+                <p class="footer-description">
+                    Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
+                </p>
+                <p class="footer-copyright">© 2026 Bywater LLC. All rights reserved.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#locations">Locations</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="events.html">Private Events</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Get in Touch</a></li>
+                    <li><a href="https://bywatersauna.corsizio.com/" target="_blank">Book a Session</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Design Options Panel -->
+    <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
+    <div class="design-options" id="designOptions">
+        <h3>🎨 Design Options</h3>
+
+        <div class="option-group">
+            <label>Color Theme</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="theme" data-value="midnight">🌙 Midnight Spa</button>
+                <button class="option-btn" data-option="theme" data-value="coastal">✨ Luxe Charcoal</button>
+                <button class="option-btn" data-option="theme" data-value="cedar">🌊 Coastal Calm</button>
+                <button class="option-btn" data-option="theme" data-value="sage">🌿 Serene Mint</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Card Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="cards" data-value="default">Default</button>
+                <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
+                <button class="option-btn" data-option="cards" data-value="bold">Bold</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Button Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
+                <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
+                <button class="option-btn" data-option="buttons" data-value="square">Square</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Typography</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="font" data-value="playfair">Playfair</button>
+                <button class="option-btn" data-option="font" data-value="cormorant">Cormorant</button>
+                <button class="option-btn" data-option="font" data-value="dm">DM Serif</button>
+                <button class="option-btn" data-option="font" data-value="crimson">Crimson</button>
+                <button class="option-btn" data-option="font" data-value="lora">Lora</button>
+                <button class="option-btn" data-option="font" data-value="inter">Inter</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Logo Color</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="logo" data-value="default">Default</button>
+                <button class="option-btn" data-option="logo" data-value="warm">Warm</button>
+                <button class="option-btn" data-option="logo" data-value="cool">Cool</button>
+                <button class="option-btn" data-option="logo" data-value="vibrant">Vibrant</button>
+                <button class="option-btn" data-option="logo" data-value="muted">Muted</button>
+                <button class="option-btn" data-option="logo" data-value="mono">Mono</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Design Options functionality
+        const designOptionsToggle = document.getElementById('designOptionsToggle');
+        const designOptions = document.getElementById('designOptions');
+
+        if (designOptionsToggle && designOptions) {
+            designOptionsToggle.addEventListener('click', () => {
+                const isActive = designOptions.classList.contains('active');
+                designOptions.classList.toggle('active');
+                designOptionsToggle.textContent = isActive ? '⚙️' : '✕';
+            });
+
+            // Handle option changes
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const option = this.dataset.option;
+                    const value = this.dataset.value;
+
+                    // Remove active class from siblings
+                    this.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Apply changes
+                    if (option === 'theme') {
+                        Array.from(document.body.classList).forEach(cls => {
+                            if (cls.startsWith('theme-')) document.body.classList.remove(cls);
+                        });
+                        if (value !== 'midnight') document.body.classList.add(`theme-${value}`);
+                    } else {
+                        Array.from(document.body.classList).forEach(cls => {
+                            if (cls.startsWith(option + '-')) document.body.classList.remove(cls);
+                        });
+                        if (value !== 'default') document.body.classList.add(`${option}-${value}`);
+                    }
+
+                    localStorage.setItem(`bywater-${option}`, value);
+                });
+            });
+
+            // Restore preferences
+            ['theme', 'cards', 'buttons', 'font', 'logo'].forEach(option => {
+                const saved = localStorage.getItem(`bywater-${option}`);
+                if (saved) {
+                    const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
+                    if (btn) btn.click();
+                }
+            });
+        }
+
+        // Form submission
+        document.getElementById('giftCertificateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Create mailto link with form data
+            const subject = 'Gift Certificate Request';
+            const body = `
+Gift Certificate Request:
+
+Your Information:
+- Name: ${data.yourName}
+- Email: ${data.yourEmail}
+
+Recipient Information:
+- Name: ${data.recipientName}
+- Email: ${data.recipientEmail}
+- Phone: ${data.recipientPhone}
+
+Gift Details:
+- Amount: ${data.giftAmount}
+${data.message ? `- Message: ${data.message}` : ''}
+
+Thank you!
+            `.trim();
+
+            window.location.href = `mailto:info@bywatersauna.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+
+        // Gift cert button functionality
+        const giftCertBtn = document.getElementById('giftCertBtn');
+        if (giftCertBtn) {
+            giftCertBtn.addEventListener('click', () => {
+                window.location.href = 'gift-certificates.html';
+            });
+        }
+
+        // Page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:') && !link.hasAttribute('target')) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.location.href = this.getAttribute('href');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
