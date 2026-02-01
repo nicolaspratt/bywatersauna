@@ -395,18 +395,23 @@
     </style>
 </head>
 <body>
-    <header>
+    <!-- Header -->
+    <header id="header">
         <nav>
             <a href="index.html" class="logo">
-                <div class="logo-circle">B</div>
-                <span>Bywater</span>
+                <img src="logo.svg" alt="Bywater Sauna" height="50">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#how-it-works">How it Works</a></li>
                 <li><a href="index.html#locations">Locations</a></li>
-                <li><a href="book.html">Book</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
+            <div class="nav-ctas">
+                <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
+                <a href="book.html" class="btn btn-primary">Book a Session</a>
+            </div>
         </nav>
     </header>
 
@@ -498,10 +503,21 @@
                 <h4>Connect</h4>
                 <ul class="footer-links">
                     <li><a href="contact.html">Get in Touch</a></li>
-                    <li><a href="https://bywatersauna.corsizio.com/" target="_blank">Book a Session</a></li>
+                    <li><a href="book.html">Book a Session</a></li>
                 </ul>
             </div>
         </div>
     </footer>
+
+    <script src="design-options.js"></script>
+    <script>
+        // Gift Certificates button
+        const giftCertBtn = document.getElementById('giftCertBtn');
+        if (giftCertBtn) {
+            giftCertBtn.addEventListener('click', () => {
+                window.location.href = 'gift-certificates.html';
+            });
+        }
+    </script>
 </body>
 </html>
