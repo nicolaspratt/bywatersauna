@@ -1191,6 +1191,25 @@
         body.theme-light .faq-section {
             background: var(--primary-bg);
         }
+
+        body.theme-light .faq-section .section-title,
+        body.theme-light .faq-section .section-description,
+        body.theme-light .faq-item h4,
+        body.theme-light .faq-item p {
+            color: var(--text);
+        }
+
+        body.theme-light .pricing-section .section-title,
+        body.theme-light .pricing-section .section-description,
+        body.theme-light .pricing-card h3,
+        body.theme-light .pricing-card .period,
+        body.theme-light .pricing-features li {
+            color: var(--text);
+        }
+
+        body.theme-light #map {
+            filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+        }
     </style>
 </head>
 <body>
@@ -1214,6 +1233,12 @@
             <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <div class="theme-icon" id="darkIcon" title="Dark Mode">🌙</div>
+        <div class="theme-icon active" id="lightIcon" title="Light Mode">☀️</div>
+    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
@@ -1416,7 +1441,7 @@
             </div>
 
             <div class="faq-contact fade-up">
-                <p style="text-align: center; color: rgba(250, 248, 243, 0.6);">Have more questions? <a href="contact.html" style="color: var(--accent); text-decoration: underline;">Contact us</a></p>
+                <p style="text-align: center; color: var(--text-muted);">Have more questions? <a href="contact.html" style="color: var(--accent); text-decoration: underline;">Contact Us</a></p>
             </div>
         </div>
     </section>
@@ -1572,6 +1597,46 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // Theme Switcher with System Preference Detection
+        const darkIcon = document.getElementById('darkIcon');
+        const lightIcon = document.getElementById('lightIcon');
+
+        // Detect system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Check saved preference or use system preference
+        const savedTheme = localStorage.getItem('bywater-theme-mode');
+        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+        // Apply initial theme
+        if (initialTheme === 'light') {
+            document.body.classList.add('theme-light');
+            darkIcon.classList.remove('active');
+            lightIcon.classList.add('active');
+        } else {
+            document.body.classList.remove('theme-light');
+            darkIcon.classList.add('active');
+            lightIcon.classList.remove('active');
+        }
+
+        // Handle dark mode toggle
+        darkIcon.addEventListener('click', () => {
+            document.body.classList.remove('theme-light');
+            document.body.classList.add('theme-dark');
+            darkIcon.classList.add('active');
+            lightIcon.classList.remove('active');
+            localStorage.setItem('bywater-theme-mode', 'dark');
+        });
+
+        // Handle light mode toggle
+        lightIcon.addEventListener('click', () => {
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            lightIcon.classList.add('active');
+            darkIcon.classList.remove('active');
+            localStorage.setItem('bywater-theme-mode', 'light');
+        });
+
         // Scroll Animations
         const observerOptions = {
             threshold: 0.1,

@@ -199,6 +199,48 @@
                 padding-right: 24px;
             }
         }
+
+        /* Light Theme */
+        body.theme-light {
+            background: var(--primary-bg);
+            color: var(--text);
+        }
+
+        body.theme-light h1,
+        body.theme-light h2,
+        body.theme-light h3 {
+            color: var(--text);
+        }
+
+        body.theme-light .intro-text,
+        body.theme-light .member-bio {
+            color: var(--text-muted);
+        }
+
+        body.theme-light .team-member {
+            background: white;
+            border-color: var(--border);
+        }
+
+        body.theme-light .member-info h3 {
+            color: var(--accent);
+        }
+
+        body.theme-light .member-title {
+            color: var(--accent);
+        }
+
+        body.theme-light .story-section {
+            background: rgba(201, 79, 55, 0.05);
+        }
+
+        body.theme-light .story-section h2 {
+            color: var(--accent);
+        }
+
+        body.theme-light .story-section p {
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
@@ -221,6 +263,12 @@
             </div>
         </nav>
     </header>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <div class="theme-icon" id="darkIcon" title="Dark Mode">🌙</div>
+        <div class="theme-icon active" id="lightIcon" title="Light Mode">☀️</div>
+    </div>
 
     <main>
         <div class="page-header">
@@ -391,6 +439,46 @@
     </div>
 
     <script>
+        // Theme Switcher with System Preference Detection
+        const darkIcon = document.getElementById('darkIcon');
+        const lightIcon = document.getElementById('lightIcon');
+
+        // Detect system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Check saved preference or use system preference
+        const savedTheme = localStorage.getItem('bywater-theme-mode');
+        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+        // Apply initial theme
+        if (initialTheme === 'light') {
+            document.body.classList.add('theme-light');
+            darkIcon.classList.remove('active');
+            lightIcon.classList.add('active');
+        } else {
+            document.body.classList.remove('theme-light');
+            darkIcon.classList.add('active');
+            lightIcon.classList.remove('active');
+        }
+
+        // Handle dark mode toggle
+        darkIcon.addEventListener('click', () => {
+            document.body.classList.remove('theme-light');
+            document.body.classList.add('theme-dark');
+            darkIcon.classList.add('active');
+            lightIcon.classList.remove('active');
+            localStorage.setItem('bywater-theme-mode', 'dark');
+        });
+
+        // Handle light mode toggle
+        lightIcon.addEventListener('click', () => {
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            lightIcon.classList.add('active');
+            darkIcon.classList.remove('active');
+            localStorage.setItem('bywater-theme-mode', 'light');
+        });
+
         // Design Options functionality
         const designOptionsToggle = document.getElementById('designOptionsToggle');
         const designOptions = document.getElementById('designOptions');

@@ -237,8 +237,25 @@
                 <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
                 <a href="book.html" class="btn btn-primary">Book a Session</a>
             </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <div class="theme-icon" id="darkIcon" title="Dark Mode">🌙</div>
+        <div class="theme-icon active" id="lightIcon" title="Light Mode">☀️</div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#how-it-works">How it Works</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="book.html" class="btn btn-primary" style="margin-top: 20px;">Book a Session</a>
+    </div>
 
     <main>
         <div class="page-header">
@@ -403,6 +420,46 @@
     </div>
 
     <script>
+        // Theme Switcher with System Preference Detection
+        const darkIcon = document.getElementById('darkIcon');
+        const lightIcon = document.getElementById('lightIcon');
+
+        // Detect system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Check saved preference or use system preference
+        const savedTheme = localStorage.getItem('bywater-theme-mode');
+        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+        // Apply initial theme
+        if (initialTheme === 'light') {
+            document.body.classList.add('theme-light');
+            darkIcon.classList.remove('active');
+            lightIcon.classList.add('active');
+        } else {
+            document.body.classList.remove('theme-light');
+            darkIcon.classList.add('active');
+            lightIcon.classList.remove('active');
+        }
+
+        // Handle dark mode toggle
+        darkIcon.addEventListener('click', () => {
+            document.body.classList.remove('theme-light');
+            document.body.classList.add('theme-dark');
+            darkIcon.classList.add('active');
+            lightIcon.classList.remove('active');
+            localStorage.setItem('bywater-theme-mode', 'dark');
+        });
+
+        // Handle light mode toggle
+        lightIcon.addEventListener('click', () => {
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            lightIcon.classList.add('active');
+            darkIcon.classList.remove('active');
+            localStorage.setItem('bywater-theme-mode', 'light');
+        });
+
         // Design Options functionality
         const designOptionsToggle = document.getElementById('designOptionsToggle');
         const designOptions = document.getElementById('designOptions');
@@ -542,6 +599,31 @@
     </script>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isActive = mobileMenu.classList.contains('active');
+                if (isActive) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                } else {
+                    mobileMenu.classList.add('active');
+                    mobileMenuToggle.textContent = '✕';
+                }
+            });
+
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
+            });
+        }
+
         // Gift Certificates button
         const giftCertBtn = document.getElementById('giftCertBtn');
         if (giftCertBtn) {

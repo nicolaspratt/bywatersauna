@@ -858,3 +858,68 @@ body.theme-light.colorscheme-lavender {
     --card-bg: rgba(110, 92, 138, 0.04);
     --border: rgba(110, 92, 138, 0.12);
 }
+
+/* ========================================
+   Fixed Theme Toggle Button
+   ======================================== */
+
+.theme-switcher {
+    position: fixed;
+    top: 100px;
+    right: 30px;
+    z-index: 999;
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 30px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.theme-switcher:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.theme-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.theme-icon.active {
+    background: var(--accent);
+    color: white;
+}
+
+.theme-icon:not(.active) {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.theme-icon:hover:not(.active) {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .theme-switcher {
+        top: 80px;
+        right: 20px;
+        padding: 6px;
+    }
+
+    .theme-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+    }
+}
