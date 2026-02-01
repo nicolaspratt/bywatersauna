@@ -690,15 +690,15 @@ body.layout-fullwidth section {
 
 /* Light Theme */
 body.theme-light {
-    --primary-bg: #FAF8F3;
-    --primary-bg-rgb: 250, 248, 243;
-    --secondary-bg: #F0EDE5;
-    --accent: #D85A42;
-    --accent-light: #E8634F;
-    --text: #1A2024;
-    --text-muted: rgba(26, 32, 36, 0.7);
-    --card-bg: rgba(216, 90, 66, 0.05);
-    --border: rgba(216, 90, 66, 0.15);
+    --primary-bg: #FFFCF7;
+    --primary-bg-rgb: 255, 252, 247;
+    --secondary-bg: #F5F0E8;
+    --accent: #C94F37;
+    --accent-light: #D96B56;
+    --text: #2C1810;
+    --text-muted: rgba(44, 24, 16, 0.65);
+    --card-bg: rgba(201, 79, 55, 0.04);
+    --border: rgba(201, 79, 55, 0.12);
 }
 
 /* Dark Theme  (keep existing as default) */
@@ -797,4 +797,57 @@ body.theme-light .location-card {
 body.theme-light .faq-item {
     background: white;
     border: 1px solid var(--border);
+}
+
+/* Color Schemes */
+/* Forest Color Scheme */
+body.colorscheme-forest {
+    --accent: #3D7E4F;
+    --accent-light: #52A569;
+}
+
+body.theme-light.colorscheme-forest {
+    --accent: #2D6E3F;
+    --accent-light: #3D8E4F;
+    --card-bg: rgba(45, 110, 63, 0.04);
+    --border: rgba(45, 110, 63, 0.12);
+}
+
+/* Ocean Color Scheme */
+body.colorscheme-ocean {
+    --accent: #2B7A9B;
+    --accent-light: #3A9BC4;
+}
+
+body.theme-light.colorscheme-ocean {
+    --accent: #1B6A8B;
+    --accent-light: #2B8AB1;
+    --card-bg: rgba(27, 106, 139, 0.04);
+    --border: rgba(27, 106, 139, 0.12);
+}
+
+/* Earth Color Scheme */
+body.colorscheme-earth {
+    --accent: #A8764D;
+    --accent-light: #C08E65;
+}
+
+body.theme-light.colorscheme-earth {
+    --accent: #8B5E3C;
+    --accent-light: #A87654;
+    --card-bg: rgba(139, 94, 60, 0.04);
+    --border: rgba(139, 94, 60, 0.12);
+}
+
+/* Lavender Color Scheme */
+body.colorscheme-lavender {
+    --accent: #8B7AA8;
+    --accent-light: #A394C0;
+}
+
+body.theme-light.colorscheme-lavender {
+    --accent: #6E5C8A;
+    --accent-light: #8A73A8;
+    --card-bg: rgba(110, 92, 138, 0.04);
+    --border: rgba(110, 92, 138, 0.12);
 }

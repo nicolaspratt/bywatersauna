@@ -1375,8 +1375,7 @@
             </div>
 
             <div class="faq-contact fade-up">
-                <p>Have more questions?</p>
-                <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <p>Have more questions? <a href="contact.html" style="color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent);">Contact us</a>.</p>
             </div>
         </div>
     </section>
@@ -1532,6 +1531,17 @@
                 <button class="option-btn" data-option="logo" data-value="vibrant">Vibrant</button>
                 <button class="option-btn" data-option="logo" data-value="muted">Muted</button>
                 <button class="option-btn" data-option="logo" data-value="mono">Mono</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Color Scheme</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="colorscheme" data-value="default">Sunset</button>
+                <button class="option-btn" data-option="colorscheme" data-value="forest">Forest</button>
+                <button class="option-btn" data-option="colorscheme" data-value="ocean">Ocean</button>
+                <button class="option-btn" data-option="colorscheme" data-value="earth">Earth</button>
+                <button class="option-btn" data-option="colorscheme" data-value="lavender">Lavender</button>
             </div>
         </div>
     </div>
@@ -2137,7 +2147,7 @@
             });
 
             // Restore saved preferences on page load (theme removed)
-            ['cards', 'buttons', 'font', 'layout', 'logo'].forEach(option => {
+            ['cards', 'buttons', 'font', 'layout', 'logo', 'colorscheme'].forEach(option => {
                 const saved = localStorage.getItem(`bywater-${option}`);
                 if (saved) {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
