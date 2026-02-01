@@ -683,3 +683,118 @@ body.layout-fullwidth section {
         padding-right: 24px;
     }
 }
+
+/* ========================================
+   Light/Dark Theme Toggle
+   ======================================== */
+
+/* Light Theme */
+body.theme-light {
+    --primary-bg: #FAF8F3;
+    --primary-bg-rgb: 250, 248, 243;
+    --secondary-bg: #F0EDE5;
+    --accent: #D85A42;
+    --accent-light: #E8634F;
+    --text: #1A2024;
+    --text-muted: rgba(26, 32, 36, 0.7);
+    --card-bg: rgba(216, 90, 66, 0.05);
+    --border: rgba(216, 90, 66, 0.15);
+}
+
+/* Dark Theme  (keep existing as default) */
+body.theme-dark {
+    --primary-bg: #0D1821;
+    --primary-bg-rgb: 13, 24, 33;
+    --secondary-bg: #1A2F3F;
+    --accent: #D85A42;
+    --accent-light: #E8634F;
+    --text: #F0F4F8;
+    --text-muted: rgba(240, 244, 248, 0.7);
+    --card-bg: rgba(216, 90, 66, 0.08);
+    --border: rgba(216, 90, 66, 0.2);
+}
+
+/* Smooth transitions for theme changes */
+body,
+header,
+footer,
+.card,
+.btn,
+.location-card,
+.faq-item,
+.design-options {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Theme toggle slider styles */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: var(--border);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.theme-toggle.active {
+    background: var(--accent);
+}
+
+.theme-toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.theme-toggle.active .theme-toggle-slider {
+    transform: translateX(30px);
+}
+
+.theme-label {
+    font-size: 14px;
+    color: var(--text-muted);
+    min-width: 40px;
+}
+
+/* Light theme specific adjustments */
+body.theme-light .nav-links a {
+    color: var(--text);
+}
+
+body.theme-light .nav-links a:hover {
+    color: var(--accent);
+}
+
+body.theme-light footer {
+    background: var(--secondary-bg);
+    border-top-color: var(--border);
+}
+
+body.theme-light .footer-description,
+body.theme-light .footer-links a {
+    color: var(--text-muted);
+}
+
+body.theme-light .location-card {
+    background: white;
+    border: 1px solid var(--border);
+}
+
+body.theme-light .faq-item {
+    background: white;
+    border: 1px solid var(--border);
+}

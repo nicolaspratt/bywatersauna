@@ -1272,52 +1272,47 @@
     <div class="location-sidebar" id="locationSidebar">
         <div class="sidebar-header">
             <button class="close-sidebar" id="closeSidebar">✕</button>
-            <h2 id="sidebarLocationName" style="font-size: 32px; margin-bottom: 8px;"></h2>
-            <p id="sidebarLocationAddress" style="color: var(--text-muted);"></p>
+            <div class="location-badge" id="sidebarBadge"></div>
+            <h2 id="sidebarLocationName" style="font-size: 32px; margin-bottom: 8px; margin-top: 12px;"></h2>
+            <p id="sidebarTagline" style="color: var(--accent); font-size: 16px; margin-bottom: 12px;"></p>
+            <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 16px;">
+                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">📍 Address</div>
+                <p id="sidebarLocationAddress" style="color: var(--text); font-weight: 500; font-size: 15px;"></p>
+            </div>
         </div>
 
         <div class="sidebar-content">
-            <div class="location-info-grid">
-                <div class="location-image-placeholder" id="sidebarImage">
-                    📸
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+                <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">⏱️ Session Length</div>
+                    <p id="sidebarSessionLength" style="color: var(--text); font-weight: 600; font-size: 16px;"></p>
                 </div>
-                <div>
-                    <div class="sidebar-section" style="margin-bottom: 30px;">
-                        <h4>Session Details</h4>
-                        <p id="sidebarSessionLength"></p>
-                    </div>
-
-                    <div class="sidebar-section" style="margin-bottom: 0;">
-                        <h4>What's Included</h4>
-                        <ul class="amenities-list" id="sidebarAmenities"></ul>
-                    </div>
+                <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">⭐ Best Time</div>
+                    <p id="sidebarBestTime" style="color: var(--text); font-weight: 600; font-size: 14px; line-height: 1.4;"></p>
                 </div>
             </div>
 
-            <div class="sidebar-section">
-                <h4>🅿️ Parking Information</h4>
-                <div class="info-box">
-                    <p id="sidebarParking"></p>
-                </div>
+            <div class="sidebar-section" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+                <h4 style="margin-bottom: 12px; font-size: 16px;">✨ What's Included</h4>
+                <ul class="amenities-list" id="sidebarAmenities" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;"></ul>
             </div>
 
-            <div class="sidebar-section">
-                <h4>🚌 Getting There</h4>
-                <p id="sidebarTransit"></p>
+            <div class="sidebar-section" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
+                <h4 style="margin-bottom: 8px; font-size: 16px;">🅿️ Parking</h4>
+                <p id="sidebarParking" style="color: var(--text-muted); line-height: 1.6; font-size: 14px;"></p>
             </div>
 
-            <div class="sidebar-section">
-                <h4>⏰ Best Time to Visit</h4>
-                <div class="info-box">
-                    <p id="sidebarBestTime"></p>
-                </div>
+            <div class="sidebar-section" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
+                <h4 style="margin-bottom: 8px; font-size: 16px;">🚌 Getting There</h4>
+                <p id="sidebarTransit" style="color: var(--text-muted); line-height: 1.6; font-size: 14px;"></p>
             </div>
 
-            <button class="btn-directions" id="getDirections">
+            <button class="btn-directions" id="getDirections" style="width: 100%; margin-bottom: 12px;">
                 Get Directions →
             </button>
 
-            <a href="book.html" class="btn-directions" style="margin-top: 16px; text-decoration: none; background: var(--accent);">
+            <a href="book.html" class="btn-directions" style="width: 100%; text-decoration: none; background: var(--accent); display: block; text-align: center;">
                 Book This Location →
             </a>
         </div>
@@ -1380,9 +1375,8 @@
             </div>
 
             <div class="faq-contact fade-up">
-                <a href="mailto:info@bywatersauna.com">
-                    ✉️ info@bywatersauna.com
-                </a>
+                <p>Have more questions?</p>
+                <a href="contact.html" class="btn btn-primary">Contact Us</a>
             </div>
         </div>
     </section>
@@ -1475,6 +1469,17 @@
     <button class="design-options-toggle" id="designOptionsToggle">⚙️</button>
     <div class="design-options" id="designOptions">
         <h3>🎨 Design Options</h3>
+
+        <div class="option-group">
+            <label>Theme</label>
+            <div class="theme-toggle-container">
+                <span class="theme-label">Dark</span>
+                <div class="theme-toggle" id="themeToggle">
+                    <div class="theme-toggle-slider"></div>
+                </div>
+                <span class="theme-label">Light</span>
+            </div>
+        </div>
 
         <div class="option-group">
             <label>Card Style</label>
@@ -1737,19 +1742,24 @@
         function openLocationSidebar(location) {
             currentLocation = location;
 
+            document.getElementById('sidebarBadge').textContent = location.neighborhood;
             document.getElementById('sidebarLocationName').textContent = location.name;
+            document.getElementById('sidebarTagline').textContent = location.tagline;
             document.getElementById('sidebarLocationAddress').textContent = location.address;
             document.getElementById('sidebarSessionLength').textContent = location.session_length;
             document.getElementById('sidebarParking').textContent = location.parking;
             document.getElementById('sidebarTransit').textContent = location.getting_there;
             document.getElementById('sidebarBestTime').textContent = location.best_time;
 
-            // Render amenities
+            // Render amenities with checkmarks
             const amenitiesList = document.getElementById('sidebarAmenities');
             amenitiesList.innerHTML = '';
             location.amenities.forEach(amenity => {
                 const li = document.createElement('li');
-                li.textContent = amenity;
+                li.style.listStyle = 'none';
+                li.style.color = 'var(--text-muted)';
+                li.style.fontSize = '14px';
+                li.innerHTML = `✓ ${amenity}`;
                 amenitiesList.appendChild(li);
             });
 
@@ -2062,6 +2072,32 @@
                 designOptions.classList.toggle('active');
                 designOptionsToggle.textContent = isActive ? '⚙️' : '✕';
             });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                // Check saved theme
+                const savedTheme = localStorage.getItem('bywater-theme-mode');
+                if (savedTheme === 'light') {
+                    document.body.classList.add('theme-light');
+                    themeToggle.classList.add('active');
+                }
+
+                themeToggle.addEventListener('click', () => {
+                    const isLight = document.body.classList.contains('theme-light');
+                    if (isLight) {
+                        document.body.classList.remove('theme-light');
+                        document.body.classList.add('theme-dark');
+                        themeToggle.classList.remove('active');
+                        localStorage.setItem('bywater-theme-mode', 'dark');
+                    } else {
+                        document.body.classList.remove('theme-dark');
+                        document.body.classList.add('theme-light');
+                        themeToggle.classList.add('active');
+                        localStorage.setItem('bywater-theme-mode', 'light');
+                    }
+                });
+            }
 
             // Handle option changes
             document.querySelectorAll('.option-btn').forEach(btn => {
