@@ -33,12 +33,12 @@ body.theme-midnight {
     --primary-bg: #0D1821;
     --primary-bg-rgb: 13, 24, 33;
     --secondary-bg: #1A2F3F;
-    --accent: #E8634F;
-    --accent-light: #F08A74;
+    --accent: #D85A42;
+    --accent-light: #E8634F;
     --text: #F0F4F8;
     --text-muted: rgba(240, 244, 248, 0.7);
-    --card-bg: rgba(232, 99, 79, 0.08);
-    --border: rgba(232, 99, 79, 0.2);
+    --card-bg: rgba(216, 90, 66, 0.08);
+    --border: rgba(216, 90, 66, 0.2);
 }
 
 /* Theme: Luxe Charcoal (Dark) */
@@ -235,6 +235,17 @@ body.logo-mono .logo img {
     color: var(--warm-white);
 }
 
+/* Accessibility Fix: Dark navigation links for light themes */
+body.theme-cedar .nav-links a,
+body.theme-sage .nav-links a {
+    color: #0F1419;
+}
+
+body.theme-cedar .nav-links a:hover,
+body.theme-sage .nav-links a:hover {
+    color: #000000;
+}
+
 .nav-ctas {
     display: flex;
     gap: 16px;
@@ -283,6 +294,15 @@ body.logo-mono .logo img {
 .btn-large {
     padding: 18px 40px;
     font-size: 16px;
+}
+
+/* Accessibility Fix: Better button contrast for Luxe Charcoal theme */
+body.theme-coastal .btn-primary {
+    color: #1A1A1A;
+}
+
+body.theme-coastal .btn-primary:hover {
+    color: #1A1A1A;
 }
 
 /* ========================================
