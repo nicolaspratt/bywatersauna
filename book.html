@@ -241,12 +241,6 @@
         </nav>
     </header>
 
-    <!-- Theme Switcher -->
-    <div class="theme-switcher">
-        <div class="theme-icon" id="darkIcon" title="Dark Mode">🌙</div>
-        <div class="theme-icon active" id="lightIcon" title="Light Mode">☀️</div>
-    </div>
-
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html#how-it-works">How it Works</a>
@@ -348,6 +342,18 @@
                     <li><a href="book.html">Book a Session</a></li>
                 </ul>
             </div>
+
+            <div class="footer-section">
+                <h4>Theme</h4>
+                <div class="footer-theme-slider">
+                    <span class="theme-label-text">🌙</span>
+                    <label class="theme-slider-switch">
+                        <input type="checkbox" id="themeSlider">
+                        <span class="theme-slider-track"></span>
+                    </label>
+                    <span class="theme-label-text">☀️</span>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -420,9 +426,8 @@
     </div>
 
     <script>
-        // Theme Switcher with System Preference Detection
-        const darkIcon = document.getElementById('darkIcon');
-        const lightIcon = document.getElementById('lightIcon');
+        // Theme Slider with System Preference Detection
+        const themeSlider = document.getElementById('themeSlider');
 
         // Detect system preference
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -434,31 +439,26 @@
         // Apply initial theme
         if (initialTheme === 'light') {
             document.body.classList.add('theme-light');
-            darkIcon.classList.remove('active');
-            lightIcon.classList.add('active');
+            if (themeSlider) themeSlider.checked = true;
         } else {
             document.body.classList.remove('theme-light');
-            darkIcon.classList.add('active');
-            lightIcon.classList.remove('active');
+            if (themeSlider) themeSlider.checked = false;
         }
 
-        // Handle dark mode toggle
-        darkIcon.addEventListener('click', () => {
-            document.body.classList.remove('theme-light');
-            document.body.classList.add('theme-dark');
-            darkIcon.classList.add('active');
-            lightIcon.classList.remove('active');
-            localStorage.setItem('bywater-theme-mode', 'dark');
-        });
-
-        // Handle light mode toggle
-        lightIcon.addEventListener('click', () => {
-            document.body.classList.remove('theme-dark');
-            document.body.classList.add('theme-light');
-            lightIcon.classList.add('active');
-            darkIcon.classList.remove('active');
-            localStorage.setItem('bywater-theme-mode', 'light');
-        });
+        // Handle slider toggle
+        if (themeSlider) {
+            themeSlider.addEventListener('change', () => {
+                if (themeSlider.checked) {
+                    document.body.classList.remove('theme-dark');
+                    document.body.classList.add('theme-light');
+                    localStorage.setItem('bywater-theme-mode', 'light');
+                } else {
+                    document.body.classList.remove('theme-light');
+                    document.body.classList.add('theme-dark');
+                    localStorage.setItem('bywater-theme-mode', 'dark');
+                }
+            });
+        }
 
         // Design Options functionality
         const designOptionsToggle = document.getElementById('designOptionsToggle');

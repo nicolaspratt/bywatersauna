@@ -1207,6 +1207,10 @@
             color: var(--text);
         }
 
+        body.theme-light .price-text {
+            color: rgba(44, 24, 16, 0.75) !important;
+        }
+
         body.theme-light #map {
             filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
         }
@@ -1233,12 +1237,6 @@
             <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
-
-    <!-- Theme Switcher -->
-    <div class="theme-switcher">
-        <div class="theme-icon" id="darkIcon" title="Dark Mode">🌙</div>
-        <div class="theme-icon active" id="lightIcon" title="Light Mode">☀️</div>
-    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
@@ -1393,33 +1391,33 @@
 
         <div class="pricing-cards">
             <div class="pricing-card fade-up stagger-1">
-                <h3>Weekday</h3>
-                <p class="period">Monday through Friday</p>
-                <div class="price"><span>$</span>35<span>/session</span></div>
+                <h3>Single Sessions</h3>
+                <p class="period">Pay as you go</p>
+                <div class="price-text" style="font-size: 18px; color: var(--text-muted); margin: 20px 0;">Perfect for trying out or occasional visits</div>
                 <ul class="pricing-features">
                     <li><span class="check">✓</span> 60 or 75 minute sessions</li>
                     <li><span class="check">✓</span> Cedar barrel sauna access</li>
                     <li><span class="check">✓</span> Cold water plunge</li>
                     <li><span class="check">✓</span> Towel storage</li>
                     <li><span class="check">✓</span> Outdoor shower</li>
-                    <li><span class="check">✓</span> More flexible availability</li>
+                    <li><span class="check">✓</span> Book anytime</li>
                 </ul>
                 <a href="book.html" class="btn btn-book btn-primary" style="text-decoration: none; display: block; text-align: center;">Book Now</a>
             </div>
 
             <div class="pricing-card popular fade-up stagger-2">
-                <h3>Weekend</h3>
-                <p class="period">Saturday & Sunday</p>
-                <div class="price"><span>$</span>40<span>/session</span></div>
+                <h3>Memberships</h3>
+                <p class="period">Best value for regulars</p>
+                <div class="price-text" style="font-size: 18px; color: var(--text-muted); margin: 20px 0;">Save with monthly or annual plans</div>
                 <ul class="pricing-features">
-                    <li><span class="check">✓</span> 60 or 75 minute sessions</li>
-                    <li><span class="check">✓</span> Cedar barrel sauna access</li>
-                    <li><span class="check">✓</span> Cold water plunge</li>
-                    <li><span class="check">✓</span> Towel storage</li>
-                    <li><span class="check">✓</span> Outdoor shower</li>
-                    <li><span class="check">✓</span> Prime sunset slots</li>
+                    <li><span class="check">✓</span> Everything in Single Sessions</li>
+                    <li><span class="check">✓</span> Priority booking access</li>
+                    <li><span class="check">✓</span> Member-only events</li>
+                    <li><span class="check">✓</span> Guest passes included</li>
+                    <li><span class="check">✓</span> Exclusive discounts</li>
+                    <li><span class="check">✓</span> Cancel anytime</li>
                 </ul>
-                <a href="book.html" class="btn btn-book btn-primary" style="text-decoration: none; display: block; text-align: center;">Book Now</a>
+                <a href="membership.html" class="btn btn-book btn-primary" style="text-decoration: none; display: block; text-align: center;">Learn More</a>
             </div>
         </div>
 
@@ -1440,9 +1438,9 @@
                 <!-- FAQ items will be loaded here -->
             </div>
 
-            <div class="faq-contact fade-up">
-                <p style="text-align: center; color: var(--text-muted);">Have more questions? <a href="contact.html" style="color: var(--accent); text-decoration: underline;">Contact Us</a></p>
-            </div>
+            <p class="faq-contact fade-up" style="text-align: center; color: var(--text-muted); margin-top: 60px;">
+                Have more questions? <a href="contact.html" style="color: var(--accent); text-decoration: underline;">Contact Us</a>
+            </p>
         </div>
     </section>
 
@@ -1484,6 +1482,18 @@
                     <li><a href="contact.html">Get in Touch</a></li>
                     <li><a href="book.html">Book a Session</a></li>
                 </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Theme</h4>
+                <div class="footer-theme-slider">
+                    <span class="theme-label-text">🌙</span>
+                    <label class="theme-slider-switch">
+                        <input type="checkbox" id="themeSlider">
+                        <span class="theme-slider-track"></span>
+                    </label>
+                    <span class="theme-label-text">☀️</span>
+                </div>
             </div>
         </div>
     </footer>
@@ -1597,9 +1607,8 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Theme Switcher with System Preference Detection
-        const darkIcon = document.getElementById('darkIcon');
-        const lightIcon = document.getElementById('lightIcon');
+        // Theme Slider with System Preference Detection
+        const themeSlider = document.getElementById('themeSlider');
 
         // Detect system preference
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1611,31 +1620,26 @@
         // Apply initial theme
         if (initialTheme === 'light') {
             document.body.classList.add('theme-light');
-            darkIcon.classList.remove('active');
-            lightIcon.classList.add('active');
+            if (themeSlider) themeSlider.checked = true;
         } else {
             document.body.classList.remove('theme-light');
-            darkIcon.classList.add('active');
-            lightIcon.classList.remove('active');
+            if (themeSlider) themeSlider.checked = false;
         }
 
-        // Handle dark mode toggle
-        darkIcon.addEventListener('click', () => {
-            document.body.classList.remove('theme-light');
-            document.body.classList.add('theme-dark');
-            darkIcon.classList.add('active');
-            lightIcon.classList.remove('active');
-            localStorage.setItem('bywater-theme-mode', 'dark');
-        });
-
-        // Handle light mode toggle
-        lightIcon.addEventListener('click', () => {
-            document.body.classList.remove('theme-dark');
-            document.body.classList.add('theme-light');
-            lightIcon.classList.add('active');
-            darkIcon.classList.remove('active');
-            localStorage.setItem('bywater-theme-mode', 'light');
-        });
+        // Handle slider toggle
+        if (themeSlider) {
+            themeSlider.addEventListener('change', () => {
+                if (themeSlider.checked) {
+                    document.body.classList.remove('theme-dark');
+                    document.body.classList.add('theme-light');
+                    localStorage.setItem('bywater-theme-mode', 'light');
+                } else {
+                    document.body.classList.remove('theme-light');
+                    document.body.classList.add('theme-dark');
+                    localStorage.setItem('bywater-theme-mode', 'dark');
+                }
+            });
+        }
 
         // Scroll Animations
         const observerOptions = {
