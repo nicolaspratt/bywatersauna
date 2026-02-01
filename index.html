@@ -1356,6 +1356,14 @@
         </div>
 
         <div class="sidebar-content">
+            <!-- Photos Section -->
+            <div class="sidebar-section" style="margin-bottom: 24px;">
+                <h4 style="margin-bottom: 12px; font-size: 16px; color: var(--text);">📸 Photos</h4>
+                <div id="sidebarPhotos" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <!-- Photos will be loaded here -->
+                </div>
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
                 <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
                     <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">⏱️ Session Length</div>
@@ -1507,20 +1515,31 @@
     <div class="gift-modal" id="giftModal">
         <button class="close-modal" id="closeGiftModal">✕</button>
         <h2>🎁 Gift Certificates</h2>
-        <p>Give the gift of relaxation and wellness. Perfect for birthdays, holidays, or just because.</p>
+        <p>Credits good at all 4 of our locations and for all of our 60-75 minute sessions.</p>
 
-        <ul>
-            <li>Available in any amount ($35 minimum)</li>
-            <li>Never expire</li>
-            <li>Redeemable at all 4 locations</li>
-            <li>Digital delivery or physical card</li>
-            <li>Transferable to friends and family</li>
-        </ul>
-
-        <p><strong>Popular amounts:</strong> $35 (single session), $150 (5 sessions), $300 (10 sessions)</p>
+        <div style="margin: 30px 0;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">1 Credit</div>
+                    <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$40</div>
+                </div>
+                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">3 Credits</div>
+                    <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$100</div>
+                </div>
+                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">5 Credits</div>
+                    <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$160</div>
+                </div>
+                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">10 Credits</div>
+                    <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$300</div>
+                </div>
+            </div>
+        </div>
 
         <div style="margin-top: 30px;">
-            <a href="book.html?gift=true" class="btn btn-primary btn-large" style="display: block; text-align: center; text-decoration: none;">Purchase Gift Certificate →</a>
+            <a href="mailto:info@bywatersauna.com?subject=Gift%20Certificate%20Purchase" class="btn btn-primary btn-large" style="display: block; text-align: center; text-decoration: none;">Purchase Gift Certificate →</a>
         </div>
     </div>
 
@@ -1690,7 +1709,8 @@
                 session_length: "60-75 minutes",
                 amenities: ["Cedar barrel sauna", "Cold water plunge", "Outdoor shower", "Towel storage", "Fire pit"],
                 best_time: "Sunset sessions are magical here",
-                getting_there: "From downtown: Take the D Line bus to Golden Gardens Park. 5 minute walk to sauna location."
+                getting_there: "From downtown: Take the D Line bus to Golden Gardens Park. 5 minute walk to sauna location.",
+                photos: ["https://placehold.co/400x300/4A6156/FAF8F3?text=Golden+Gardens+1", "https://placehold.co/400x300/4A6156/FAF8F3?text=Golden+Gardens+2"]
             },
             {
                 name: "Alki Beach",
@@ -1703,7 +1723,8 @@
                 session_length: "60-75 minutes",
                 amenities: ["Cedar barrel sauna", "Cold water plunge", "Outdoor shower", "Towel storage", "Beach chairs"],
                 best_time: "Morning sessions for calm water",
-                getting_there: "Water taxi from downtown to West Seattle, then 10 minute walk. Or drive across West Seattle Bridge."
+                getting_there: "Water taxi from downtown to West Seattle, then 10 minute walk. Or drive across West Seattle Bridge.",
+                photos: ["https://placehold.co/400x300/4A6156/FAF8F3?text=Alki+Beach+1", "https://placehold.co/400x300/4A6156/FAF8F3?text=Alki+Beach+2"]
             },
             {
                 name: "Old Stove (Ballard)",
@@ -1716,7 +1737,8 @@
                 session_length: "60-75 minutes",
                 amenities: ["Cedar barrel sauna", "Cold plunge tub", "Outdoor shower", "Towel storage", "Beer garden access"],
                 best_time: "Evening sessions - enjoy a beer after",
-                getting_there: "40 bus line stops 2 blocks away. Easy bike access via Burke-Gilman Trail nearby."
+                getting_there: "40 bus line stops 2 blocks away. Easy bike access via Burke-Gilman Trail nearby.",
+                photos: ["https://placehold.co/400x300/4A6156/FAF8F3?text=Old+Stove+1", "https://placehold.co/400x300/4A6156/FAF8F3?text=Old+Stove+2"]
             },
             {
                 name: "Leschi",
@@ -1729,7 +1751,8 @@
                 session_length: "60-75 minutes",
                 amenities: ["Cedar barrel sauna", "Lake Washington plunge", "Outdoor shower", "Towel storage", "Dock seating"],
                 best_time: "Weekday mornings for quiet reflection",
-                getting_there: "From downtown: Take bus 27 to Leschi. 3 minute walk to dock. Limited Uber/Lyft pickup area."
+                getting_there: "From downtown: Take bus 27 to Leschi. 3 minute walk to dock. Limited Uber/Lyft pickup area.",
+                photos: ["https://placehold.co/400x300/4A6156/FAF8F3?text=Leschi+1", "https://placehold.co/400x300/4A6156/FAF8F3?text=Leschi+2"]
             }
         ];
 
@@ -1866,6 +1889,23 @@
                 li.innerHTML = `✓ ${amenity}`;
                 amenitiesList.appendChild(li);
             });
+
+            // Render photos
+            const photosList = document.getElementById('sidebarPhotos');
+            photosList.innerHTML = '';
+            if (location.photos && location.photos.length > 0) {
+                location.photos.forEach(photo => {
+                    const img = document.createElement('img');
+                    img.src = photo;
+                    img.alt = `${location.name} photo`;
+                    img.style.width = '100%';
+                    img.style.borderRadius = '8px';
+                    img.style.aspectRatio = '4/3';
+                    img.style.objectFit = 'cover';
+                    img.style.border = '1px solid var(--border)';
+                    photosList.appendChild(img);
+                });
+            }
 
             // Show sidebar
             document.getElementById('locationSidebar').classList.add('active');
