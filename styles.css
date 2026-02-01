@@ -306,6 +306,70 @@ body.theme-coastal .btn-primary:hover {
 }
 
 /* ========================================
+   Mobile Menu & Responsive Navigation
+   ======================================== */
+
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(28, 28, 28, 0.98);
+    z-index: 999;
+    padding: 100px 40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.mobile-menu.active {
+    display: block;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.mobile-menu a {
+    color: var(--warm-white);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block; /* Show on mobile */
+    }
+
+    .nav-links,
+    .nav-ctas {
+        display: none; /* Hide main nav on mobile */
+    }
+
+    nav {
+        padding: 20px 24px;
+    }
+}
+
+/* ========================================
    Section Labels & Titles
    ======================================== */
 
@@ -866,21 +930,14 @@ body.theme-light.colorscheme-lavender {
 .footer-theme-slider {
     display: flex;
     align-items: center;
-    gap: 12px;
     padding: 10px 0;
-}
-
-.theme-label-text {
-    font-size: 20px;
-    opacity: 0.6;
-    transition: opacity 0.3s;
 }
 
 .theme-slider-switch {
     position: relative;
     display: inline-block;
-    width: 52px;
-    height: 26px;
+    width: 44px;
+    height: 22px;
 }
 
 .theme-slider-switch input {
@@ -897,20 +954,26 @@ body.theme-light.colorscheme-lavender {
     right: 0;
     bottom: 0;
     background-color: rgba(139, 157, 131, 0.3);
-    transition: 0.4s;
-    border-radius: 26px;
+    transition: 0.3s;
+    border-radius: 22px;
 }
 
 .theme-slider-track:before {
     position: absolute;
-    content: "";
+    content: "🌙";
     height: 18px;
     width: 18px;
-    left: 4px;
-    bottom: 4px;
-    background-color: var(--text);
-    transition: 0.4s;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.3s;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
 }
 
 .theme-slider-switch input:checked + .theme-slider-track {
@@ -918,7 +981,8 @@ body.theme-light.colorscheme-lavender {
 }
 
 .theme-slider-switch input:checked + .theme-slider-track:before {
-    transform: translateX(26px);
+    transform: translateX(22px);
+    content: "☀️";
 }
 
 /* Light theme specific improvements */
@@ -927,7 +991,19 @@ body.theme-light .footer-copyright {
 }
 
 body.theme-light .faq-contact {
+    color: rgba(44, 24, 16, 0.95) !important;
+}
+
+body.theme-light .faq-item h4 {
+    color: rgba(44, 24, 16, 0.95) !important;
+}
+
+body.theme-light .faq-item p {
     color: rgba(44, 24, 16, 0.8) !important;
+}
+
+body.theme-light .logo img {
+    filter: brightness(0.2);
 }
 
 @media (max-width: 768px) {

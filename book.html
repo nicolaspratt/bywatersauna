@@ -217,6 +217,45 @@
                 padding-right: 24px;
             }
         }
+
+        /* Light Theme */
+        body.theme-light {
+            background: var(--primary-bg);
+            color: var(--text);
+        }
+
+        body.theme-light h1,
+        body.theme-light h2,
+        body.theme-light h3 {
+            color: var(--text);
+        }
+
+        body.theme-light .intro-text {
+            color: var(--text-muted);
+        }
+
+        body.theme-light .booking-info {
+            background: white;
+            border-color: var(--border);
+        }
+
+        body.theme-light .booking-info h2 {
+            color: var(--accent);
+        }
+
+        body.theme-light .booking-info p,
+        body.theme-light .booking-info li {
+            color: var(--text-muted);
+        }
+
+        body.theme-light .info-box {
+            background: rgba(201, 79, 55, 0.06);
+            border-left-color: var(--accent);
+        }
+
+        body.theme-light .info-box h3 {
+            color: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -224,7 +263,7 @@
     <header id="header">
         <nav>
             <a href="index.html" class="logo">
-                <img src="logo.svg" alt="Bywater Sauna" height="50">
+                <img src="logo.svg" alt="Bywater Sauna" height="45">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html#how-it-works">How it Works</a></li>
@@ -243,12 +282,14 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="index.html#how-it-works">How it Works</a>
-        <a href="index.html#locations">Locations</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="about.html">About</a>
-        <a href="book.html" class="btn btn-primary" style="margin-top: 20px;">Book a Session</a>
+        <ul>
+            <li><a href="index.html#how-it-works" class="mobile-menu-link">How It Works</a></li>
+            <li><a href="index.html#locations" class="mobile-menu-link">Locations</a></li>
+            <li><a href="index.html#pricing" class="mobile-menu-link">Pricing</a></li>
+            <li><a href="index.html#faq" class="mobile-menu-link">FAQ</a></li>
+            <li><a href="about.html" class="mobile-menu-link">About</a></li>
+        </ul>
+        <a href="book.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Book a Session</a>
     </div>
 
     <main>
@@ -346,12 +387,10 @@
             <div class="footer-section">
                 <h4>Theme</h4>
                 <div class="footer-theme-slider">
-                    <span class="theme-label-text">🌙</span>
                     <label class="theme-slider-switch">
                         <input type="checkbox" id="themeSlider">
                         <span class="theme-slider-track"></span>
                     </label>
-                    <span class="theme-label-text">☀️</span>
                 </div>
             </div>
         </div>
@@ -616,7 +655,7 @@
             });
 
             // Close menu when clicking a link
-            mobileMenu.querySelectorAll('a').forEach(link => {
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.remove('active');
                     mobileMenuToggle.textContent = '☰';
