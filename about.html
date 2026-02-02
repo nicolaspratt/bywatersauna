@@ -244,6 +244,20 @@
     </style>
 </head>
 <body>
+    <script>
+        // Swap logo for light/dark theme (cross-browser)
+        (function() {
+            function updateLogos() {
+                var isLight = document.body.classList.contains('theme-light');
+                var src = isLight ? 'logo-light.svg' : 'logo.svg';
+                document.querySelectorAll('.logo img, .footer-logo img').forEach(function(img) {
+                    if (img.src.indexOf('logo') !== -1) img.src = src;
+                });
+            }
+            new MutationObserver(updateLogos).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+            document.addEventListener('DOMContentLoaded', updateLogos);
+        })();
+    </script>
         <!-- Header -->
     <header id="header">
         <nav>
