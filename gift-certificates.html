@@ -9,6 +9,22 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bywatersauna.com/gift-certificates.html">
+    <meta property="og:title" content="Gift Certificates - Bywater Sauna">
+    <meta property="og:description" content="Give the gift of heat! Purchase Bywater Sauna gift certificates for sessions at all 4 of our Seattle waterfront locations.">
+    <meta property="og:image" content="https://bywatersauna.com/social-preview.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bywatersauna.com/gift-certificates.html">
+    <meta property="twitter:title" content="Gift Certificates - Bywater Sauna">
+    <meta property="twitter:description" content="Give the gift of heat! Purchase Bywater Sauna gift certificates for sessions at all 4 of our Seattle waterfront locations.">
+    <meta property="twitter:image" content="https://bywatersauna.com/social-preview.svg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -204,8 +220,21 @@
                 <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
                 <a href="book.html" class="btn btn-primary">Book a Session</a>
             </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html#how-it-works" class="mobile-menu-link">How It Works</a></li>
+            <li><a href="index.html#locations" class="mobile-menu-link">Locations</a></li>
+            <li><a href="index.html#pricing" class="mobile-menu-link">Pricing</a></li>
+            <li><a href="index.html#faq" class="mobile-menu-link">FAQ</a></li>
+            <li><a href="about.html" class="mobile-menu-link">About</a></li>
+        </ul>
+        <a href="book.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Book a Session</a>
+    </div>
 
     <main>
         <div class="page-header">
@@ -216,7 +245,7 @@
         </div>
 
         <div class="form-container">
-            <form id="giftCertificateForm">
+            <form id="giftCertificateForm" action="mailto:info@bywatersauna.com" method="POST" enctype="text/plain">
                 <div class="form-group">
                     <label for="yourName">Your First and Last Name *</label>
                     <input type="text" id="yourName" name="yourName" required>
@@ -395,6 +424,31 @@
     </div>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isActive = mobileMenu.classList.contains('active');
+                if (isActive) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                } else {
+                    mobileMenu.classList.add('active');
+                    mobileMenuToggle.textContent = '✕';
+                }
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
+            });
+        }
+
         // Design Options functionality
         const designOptionsToggle = document.getElementById('designOptionsToggle');
         const designOptions = document.getElementById('designOptions');

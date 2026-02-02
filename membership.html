@@ -14,12 +14,16 @@
     <meta property="og:url" content="https://bywatersauna.com/membership.html">
     <meta property="og:title" content="Membership - Bywater Sauna">
     <meta property="og:description" content="Join the Bywater Sauna membership. Unlimited sauna sessions with exclusive benefits.">
+    <meta property="og:image" content="https://bywatersauna.com/social-preview.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bywatersauna.com/membership.html">
     <meta property="twitter:title" content="Membership - Bywater Sauna">
     <meta property="twitter:description" content="Join the Bywater Sauna membership. Unlimited sauna sessions with exclusive benefits.">
+    <meta property="twitter:image" content="https://bywatersauna.com/social-preview.svg">
 
     <!-- Decap CMS -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -351,8 +355,21 @@
                 <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
                 <a href="book.html" class="btn btn-primary">Book a Session</a>
             </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html#how-it-works" class="mobile-menu-link">How It Works</a></li>
+            <li><a href="index.html#locations" class="mobile-menu-link">Locations</a></li>
+            <li><a href="index.html#pricing" class="mobile-menu-link">Pricing</a></li>
+            <li><a href="index.html#faq" class="mobile-menu-link">FAQ</a></li>
+            <li><a href="about.html" class="mobile-menu-link">About</a></li>
+        </ul>
+        <a href="book.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Book a Session</a>
+    </div>
 
     <main>
         <div class="page-header">
@@ -421,7 +438,7 @@
         <div class="contact-form">
             <h3>Adjust Your Membership</h3>
             <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Use the form below to pause or cancel your membership:</p>
-            <form action="https://formspree.io/f/your-form-id" method="POST">
+            <form action="mailto:info@bywatersauna.com" enctype="text/plain" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First name</label>
@@ -551,6 +568,31 @@
     </div>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isActive = mobileMenu.classList.contains('active');
+                if (isActive) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                } else {
+                    mobileMenu.classList.add('active');
+                    mobileMenuToggle.textContent = '✕';
+                }
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
+            });
+        }
+
         // Design Options functionality
         const designOptionsToggle = document.getElementById('designOptionsToggle');
         const designOptions = document.getElementById('designOptions');

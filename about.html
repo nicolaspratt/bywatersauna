@@ -261,8 +261,21 @@
                 <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
                 <a href="book.html" class="btn btn-primary">Book a Session</a>
             </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html#how-it-works" class="mobile-menu-link">How It Works</a></li>
+            <li><a href="index.html#locations" class="mobile-menu-link">Locations</a></li>
+            <li><a href="index.html#pricing" class="mobile-menu-link">Pricing</a></li>
+            <li><a href="index.html#faq" class="mobile-menu-link">FAQ</a></li>
+            <li><a href="about.html" class="mobile-menu-link">About</a></li>
+        </ul>
+        <a href="book.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Book a Session</a>
+    </div>
 
     <main>
         <div class="page-header">
@@ -439,6 +452,31 @@
     </div>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isActive = mobileMenu.classList.contains('active');
+                if (isActive) {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                } else {
+                    mobileMenu.classList.add('active');
+                    mobileMenuToggle.textContent = '✕';
+                }
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
+            });
+        }
+
         // Theme Slider with System Preference Detection
         const themeSlider = document.getElementById('themeSlider');
 
