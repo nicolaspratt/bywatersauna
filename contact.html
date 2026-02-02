@@ -186,25 +186,11 @@
     </style>
 </head>
 <body>
-    <script>
-        // Swap logo for light/dark theme (cross-browser)
-        (function() {
-            function updateLogos() {
-                var isLight = document.body.classList.contains('theme-light');
-                var src = isLight ? 'logo-light.svg' : 'logo.svg';
-                document.querySelectorAll('.logo img, .footer-logo img').forEach(function(img) {
-                    if (img.src.indexOf('logo') !== -1) img.src = src;
-                });
-            }
-            new MutationObserver(updateLogos).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-            document.addEventListener('DOMContentLoaded', updateLogos);
-        })();
-    </script>
         <!-- Header -->
     <header id="header">
         <nav>
             <a href="index.html" class="logo">
-                <img src="logo.svg" alt="Bywater Sauna" height="50">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" fill="#E8634F" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html#how-it-works">How it Works</a></li>
@@ -310,7 +296,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="logo.svg" alt="Bywater" height="32">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" fill="#E8634F" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
                 </div>
                 <p class="footer-description">
                     Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
