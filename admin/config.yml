@@ -4,7 +4,7 @@
 backend:
   name: github
   repo: nicolaspratt/bywatersauna
-  branch: main
+  branch: claude/bywater-sauna-mockup-Dt9Ga
   # For GitHub Pages, you'll need to set up GitHub OAuth App:
   # https://github.com/settings/developers
   # Set Homepage URL to: https://yourusername.github.io/bywatersauna
