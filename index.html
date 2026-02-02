@@ -1626,6 +1626,15 @@
             </div>
         </div>
 
+        <div class="option-group light-mode-only" id="lightModeOptions">
+            <label>Light Mode Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="lightmode" data-value="default">Warm Cream</button>
+                <button class="option-btn" data-option="lightmode" data-value="cool">Cool White</button>
+                <button class="option-btn" data-option="lightmode" data-value="sage">Sage</button>
+            </div>
+        </div>
+
         <div class="option-group">
             <label>Color Scheme</label>
             <div class="option-buttons">
@@ -1674,6 +1683,8 @@
                     document.body.classList.add('theme-dark');
                     localStorage.setItem('bywater-theme-mode', 'dark');
                 }
+                var el = document.getElementById('lightModeOptions');
+                if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
             });
         }
 
@@ -1920,9 +1931,10 @@
                 });
             }
 
-            // Show sidebar
+            // Show sidebar and reset scroll
             document.getElementById('locationSidebar').classList.add('active');
             document.getElementById('sidebarOverlay').classList.add('active');
+            document.querySelector('.sidebar-content').scrollTop = 0;
             // Disable page scrolling
             document.body.style.overflow = 'hidden';
         }
@@ -2240,6 +2252,11 @@
                     themeToggle.classList.add('active');
                 }
 
+                function updateLightModeOptions() {
+                    const el = document.getElementById('lightModeOptions');
+                    if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
+                }
+
                 themeToggle.addEventListener('click', () => {
                     const isLight = document.body.classList.contains('theme-light');
                     if (isLight) {
@@ -2253,7 +2270,10 @@
                         themeToggle.classList.add('active');
                         localStorage.setItem('bywater-theme-mode', 'light');
                     }
+                    updateLightModeOptions();
                 });
+
+                updateLightModeOptions();
             }
 
             // Handle option changes
@@ -2294,7 +2314,7 @@
             });
 
             // Restore saved preferences on page load (theme removed)
-            ['cards', 'buttons', 'font', 'layout', 'logo', 'colorscheme'].forEach(option => {
+            ['cards', 'buttons', 'font', 'layout', 'logo', 'colorscheme', 'lightmode'].forEach(option => {
                 const saved = localStorage.getItem(`bywater-${option}`);
                 if (saved) {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);

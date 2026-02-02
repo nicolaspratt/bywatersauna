@@ -828,6 +828,32 @@ body.theme-light {
     --border: rgba(201, 79, 55, 0.12);
 }
 
+/* Light Mode: Cool White */
+body.theme-light.lightmode-cool {
+    --primary-bg: #F8FAFE;
+    --primary-bg-rgb: 248, 250, 254;
+    --secondary-bg: #EDF1F7;
+    --accent: #3B6B9E;
+    --accent-light: #5085B5;
+    --text: #1A2433;
+    --text-muted: rgba(26, 36, 51, 0.65);
+    --card-bg: rgba(59, 107, 158, 0.06);
+    --border: rgba(59, 107, 158, 0.15);
+}
+
+/* Light Mode: Sage */
+body.theme-light.lightmode-sage {
+    --primary-bg: #F5F8F5;
+    --primary-bg-rgb: 245, 248, 245;
+    --secondary-bg: #E8EDE8;
+    --accent: #4A6150;
+    --accent-light: #5E7A64;
+    --text: #1C2B1E;
+    --text-muted: rgba(28, 43, 30, 0.65);
+    --card-bg: rgba(74, 97, 80, 0.06);
+    --border: rgba(74, 97, 80, 0.15);
+}
+
 /* Dark Theme  (keep existing as default) */
 body.theme-dark {
     --primary-bg: #0D1821;
