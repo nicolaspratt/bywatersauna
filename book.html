@@ -382,6 +382,26 @@
             </div>
         </div>
 
+        <div class="option-group light-mode-only" id="lightModeOptions">
+            <label>Light Mode Style</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="lightmode" data-value="default">Warm Cream</button>
+                <button class="option-btn" data-option="lightmode" data-value="cool">Cool White</button>
+                <button class="option-btn" data-option="lightmode" data-value="sage">Sage</button>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <label>Theme Color</label>
+            <div class="option-buttons">
+                <button class="option-btn active" data-option="colorscheme" data-value="default">Sunset</button>
+                <button class="option-btn" data-option="colorscheme" data-value="forest">Pine</button>
+                <button class="option-btn" data-option="colorscheme" data-value="ocean">Ocean</button>
+                <button class="option-btn" data-option="colorscheme" data-value="earth">Earth</button>
+                <button class="option-btn" data-option="colorscheme" data-value="lavender">Lavender</button>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -416,6 +436,9 @@
                     document.body.classList.add('theme-dark');
                     localStorage.setItem('bywater-theme-mode', 'dark');
                 }
+                // Update light mode options visibility
+                const el = document.getElementById('lightModeOptions');
+                if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
             });
         }
 
@@ -451,6 +474,9 @@
                         themeToggle.classList.add('active');
                         localStorage.setItem('bywater-theme-mode', 'light');
                     }
+                    // Update light mode options visibility
+                    const el = document.getElementById('lightModeOptions');
+                    if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
                 });
             }
 
@@ -507,6 +533,35 @@
                     fontBtn.classList.add('active');
                 }
             }
+
+            // Restore colorscheme
+            const savedColorscheme = localStorage.getItem('bywater-colorscheme');
+            if (savedColorscheme && savedColorscheme !== 'default') {
+                document.body.classList.add(`colorscheme-${savedColorscheme}`);
+                const colorBtn = designOptions.querySelector(`[data-option="colorscheme"][data-value="${savedColorscheme}"]`);
+                if (colorBtn) {
+                    colorBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    colorBtn.classList.add('active');
+                }
+            }
+
+            // Restore lightmode and update visibility
+            const savedLightmode = localStorage.getItem('bywater-lightmode');
+            if (savedLightmode && savedLightmode !== 'default') {
+                document.body.classList.add(`lightmode-${savedLightmode}`);
+                const lightBtn = designOptions.querySelector(`[data-option="lightmode"][data-value="${savedLightmode}"]`);
+                if (lightBtn) {
+                    lightBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+                    lightBtn.classList.add('active');
+                }
+            }
+
+            // Show/hide light mode options based on theme
+            function updateLightModeOptions() {
+                const el = document.getElementById('lightModeOptions');
+                if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
+            }
+            updateLightModeOptions();
         }
     </script>
 
