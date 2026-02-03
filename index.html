@@ -1918,16 +1918,14 @@
                 });
             }
 
-            // Reset scroll before showing
-            var sidebarContent = document.querySelector('.sidebar-content');
-            sidebarContent.scrollTop = 0;
-
             // Show sidebar
-            document.getElementById('locationSidebar').classList.add('active');
+            var sidebar = document.getElementById('locationSidebar');
+            sidebar.scrollTop = 0;
+            sidebar.classList.add('active');
             document.getElementById('sidebarOverlay').classList.add('active');
 
-            // Reset scroll again after sidebar is visible
-            setTimeout(function() { sidebarContent.scrollTop = 0; }, 50);
+            // Reset scroll again after transition starts
+            setTimeout(function() { sidebar.scrollTop = 0; }, 50);
 
             // Disable page scrolling
             document.body.style.overflow = 'hidden';

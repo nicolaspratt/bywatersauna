@@ -833,39 +833,39 @@ body.layout-fullwidth section {
 body.theme-light {
     --primary-bg: #FFFCF7;
     --primary-bg-rgb: 255, 252, 247;
-    --secondary-bg: #F5F0E8;
+    --secondary-bg: #F0E8DA;
     --accent: #C94F37;
     --accent-light: #D96B56;
     --text: #2C1810;
-    --text-muted: rgba(44, 24, 16, 0.65);
-    --card-bg: rgba(201, 79, 55, 0.04);
-    --border: rgba(201, 79, 55, 0.12);
+    --text-muted: rgba(44, 24, 16, 0.7);
+    --card-bg: rgba(201, 79, 55, 0.08);
+    --border: rgba(201, 79, 55, 0.18);
 }
 
 /* Light Mode: Cool White */
 body.theme-light.lightmode-cool {
-    --primary-bg: #F0F4FA;
-    --primary-bg-rgb: 240, 244, 250;
-    --secondary-bg: #D9E2F0;
-    --accent: #2B5A8F;
-    --accent-light: #3D72B0;
-    --text: #111C2E;
-    --text-muted: rgba(17, 28, 46, 0.7);
-    --card-bg: rgba(43, 90, 143, 0.08);
-    --border: rgba(43, 90, 143, 0.2);
+    --primary-bg: #EEF2F9;
+    --primary-bg-rgb: 238, 242, 249;
+    --secondary-bg: #D0DAE9;
+    --accent: #1E5299;
+    --accent-light: #2E6ABD;
+    --text: #0E1824;
+    --text-muted: rgba(14, 24, 36, 0.75);
+    --card-bg: rgba(30, 82, 153, 0.1);
+    --border: rgba(30, 82, 153, 0.25);
 }
 
 /* Light Mode: Sage */
 body.theme-light.lightmode-sage {
-    --primary-bg: #EDF3ED;
-    --primary-bg-rgb: 237, 243, 237;
-    --secondary-bg: #D4DED4;
-    --accent: #355740;
-    --accent-light: #4A7358;
-    --text: #142018;
-    --text-muted: rgba(20, 32, 24, 0.7);
-    --card-bg: rgba(53, 87, 64, 0.08);
-    --border: rgba(53, 87, 64, 0.2);
+    --primary-bg: #EBF1EB;
+    --primary-bg-rgb: 235, 241, 235;
+    --secondary-bg: #CEDACE;
+    --accent: #2A6B3A;
+    --accent-light: #3A8A4E;
+    --text: #0F1D12;
+    --text-muted: rgba(15, 29, 18, 0.75);
+    --card-bg: rgba(42, 107, 58, 0.1);
+    --border: rgba(42, 107, 58, 0.25);
 }
 
 /* Dark Theme  (keep existing as default) */
