@@ -1865,8 +1865,12 @@
                     openLocationSidebar(location);
                 });
 
-                // Hover handlers for map interaction
+                // Hover handlers for card highlighting and map interaction
                 card.addEventListener('mouseenter', () => {
+                    // Highlight this card, remove from others
+                    document.querySelectorAll('.location-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+
                     if (mapMarkers[location.name]) {
                         // Highlight marker
                         const markerElement = mapMarkers[location.name].getElement();
