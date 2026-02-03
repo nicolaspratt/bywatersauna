@@ -436,6 +436,21 @@
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 0 0 0 3px var(--accent);
         }
 
+        /* Hide the top accent bar in light mode elevated cards */
+        body.theme-light.cards-elevated .location-card::before,
+        body.theme-light.cards-elevated .location-card.active::before {
+            display: none !important;
+        }
+
+        body.theme-light.cards-elevated .location-card {
+            border: none !important;
+        }
+
+        body.theme-light.cards-elevated .location-card.active {
+            border: none !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 3px var(--accent);
+        }
+
         .location-card.active::before {
             transform: scaleX(1);
         }
