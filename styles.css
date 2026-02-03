@@ -649,6 +649,8 @@ body.theme-light .option-btn.active {
    ======================================== */
 
 /* Card Style Variations */
+
+/* Minimal - thin borders, transparent */
 body.cards-minimal .location-card,
 body.cards-minimal .ritual-card,
 body.cards-minimal .pricing-card,
@@ -657,16 +659,54 @@ body.cards-minimal .tier-card,
 body.cards-minimal .event-card {
     background: transparent;
     border-width: 1px;
+    box-shadow: none;
 }
 
-body.cards-bold .location-card,
-body.cards-bold .ritual-card,
-body.cards-bold .pricing-card,
-body.cards-bold .team-member,
-body.cards-bold .tier-card,
-body.cards-bold .event-card {
-    border-width: 3px;
-    background: rgba(74, 97, 86, 0.15);
+/* Outlined - medium borders, subtle fill */
+body.cards-outlined .location-card,
+body.cards-outlined .ritual-card,
+body.cards-outlined .pricing-card,
+body.cards-outlined .team-member,
+body.cards-outlined .tier-card,
+body.cards-outlined .event-card {
+    background: var(--card-bg);
+    border-width: 2px;
+}
+
+/* Elevated - shadows, lifted appearance */
+body.cards-elevated .location-card,
+body.cards-elevated .ritual-card,
+body.cards-elevated .pricing-card,
+body.cards-elevated .team-member,
+body.cards-elevated .tier-card,
+body.cards-elevated .event-card {
+    background: var(--card-bg);
+    border-width: 1px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass - frosted glass effect */
+body.cards-glass .location-card,
+body.cards-glass .ritual-card,
+body.cards-glass .pricing-card,
+body.cards-glass .team-member,
+body.cards-glass .tier-card,
+body.cards-glass .event-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.theme-light.cards-glass .location-card,
+body.theme-light.cards-glass .ritual-card,
+body.theme-light.cards-glass .pricing-card,
+body.theme-light.cards-glass .team-member,
+body.theme-light.cards-glass .tier-card,
+body.theme-light.cards-glass .event-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 

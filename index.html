@@ -1640,9 +1640,11 @@
         <div class="option-group">
             <label>Card Style</label>
             <div class="option-buttons">
-                <button class="option-btn" data-option="cards" data-value="default">Default</button>
+                <button class="option-btn active" data-option="cards" data-value="default">Bold</button>
+                <button class="option-btn" data-option="cards" data-value="outlined">Outlined</button>
                 <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
-                <button class="option-btn active" data-option="cards" data-value="bold">Bold</button>
+                <button class="option-btn" data-option="cards" data-value="elevated">Elevated</button>
+                <button class="option-btn" data-option="cards" data-value="glass">Glass</button>
             </div>
         </div>
 
@@ -2340,12 +2342,8 @@
             // Restore saved preferences on page load (theme removed)
             ['cards', 'font', 'layout', 'colorscheme', 'lightmode'].forEach(option => {
                 const saved = localStorage.getItem(`bywater-${option}`);
-                if (saved) {
+                if (saved && saved !== 'default') {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
-                    if (btn) btn.click();
-                } else if (option === 'cards') {
-                    // Bold cards is the default
-                    const btn = document.querySelector(`[data-option="cards"][data-value="bold"]`);
                     if (btn) btn.click();
                 }
             });
