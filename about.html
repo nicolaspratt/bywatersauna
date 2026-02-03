@@ -522,12 +522,16 @@
                     });
                     button.classList.add('active');
 
-                    // Apply the option (skip theme since we removed it)
+                    // Remove all related classes from body
+                    Array.from(document.body.classList).forEach(cls => {
+                        if (cls.startsWith(option + '-')) {
+                            document.body.classList.remove(cls);
+                        }
+                    });
+
+                    // Add new class if not default
                     if (value !== 'default') {
-                        document.body.className = document.body.className.replace(new RegExp(`${option}-\w+`, 'g'), '');
                         document.body.classList.add(`${option}-${value}`);
-                    } else {
-                        document.body.className = document.body.className.replace(new RegExp(`${option}-\w+`, 'g'), '');
                     }
                     localStorage.setItem(`bywater-${option}`, value);
                 });
