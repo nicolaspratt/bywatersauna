@@ -38,7 +38,7 @@
       "image": "https://bywatersauna.com/social-preview.svg",
       "telephone": "(206) 555-1234",
       "email": "info@bywatersauna.com",
-      "priceRange": "$35-$40",
+      "priceRange": "$40",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Seattle",
@@ -61,18 +61,8 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Weekday Sauna Session",
+              "name": "Sauna Session",
               "description": "60-75 minute cedar barrel sauna and cold plunge session"
-            },
-            "price": "35",
-            "priceCurrency": "USD"
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Weekend Sauna Session",
-              "description": "60-75 minute cedar barrel sauna and cold plunge session with prime sunset slots"
             },
             "price": "40",
             "priceCurrency": "USD"
@@ -1575,15 +1565,6 @@
         </div>
 
         <div class="option-group">
-            <label>Button Style</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
-                <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
-                <button class="option-btn" data-option="buttons" data-value="square">Square</button>
-            </div>
-        </div>
-
-        <div class="option-group">
             <label>Typography</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="font" data-value="playfair" title="Playfair Display + Inter">
@@ -1607,17 +1588,6 @@
             </div>
         </div>
 
-        <div class="option-group">
-            <label>Logo Color</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="logo" data-value="default">Default</button>
-                <button class="option-btn" data-option="logo" data-value="warm">Warm</button>
-                <button class="option-btn" data-option="logo" data-value="cool">Cool</button>
-                <button class="option-btn" data-option="logo" data-value="vibrant">Vibrant</button>
-                <button class="option-btn" data-option="logo" data-value="muted">Muted</button>
-                <button class="option-btn" data-option="logo" data-value="mono">Mono</button>
-            </div>
-        </div>
 
         <div class="option-group light-mode-only" id="lightModeOptions">
             <label>Light Mode Style</label>
@@ -1629,10 +1599,10 @@
         </div>
 
         <div class="option-group">
-            <label>Color Scheme</label>
+            <label>Theme Color</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="colorscheme" data-value="default">Sunset</button>
-                <button class="option-btn" data-option="colorscheme" data-value="forest">Forest</button>
+                <button class="option-btn" data-option="colorscheme" data-value="forest">Pine</button>
                 <button class="option-btn" data-option="colorscheme" data-value="ocean">Ocean</button>
                 <button class="option-btn" data-option="colorscheme" data-value="earth">Earth</button>
                 <button class="option-btn" data-option="colorscheme" data-value="lavender">Lavender</button>
@@ -2282,7 +2252,7 @@
             });
 
             // Restore saved preferences on page load (theme removed)
-            ['cards', 'buttons', 'font', 'layout', 'logo', 'colorscheme', 'lightmode'].forEach(option => {
+            ['cards', 'font', 'layout', 'colorscheme', 'lightmode'].forEach(option => {
                 const saved = localStorage.getItem(`bywater-${option}`);
                 if (saved) {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);

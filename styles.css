@@ -202,27 +202,6 @@ body.theme-light .footer-logo .sauna-text {
     fill: #1C1C1C;
 }
 
-/* Logo Color Variations */
-body.logo-warm .logo img {
-    filter: brightness(1.3) saturate(1.5) hue-rotate(15deg) !important;
-}
-
-body.logo-cool .logo img {
-    filter: brightness(1.2) saturate(1.1) hue-rotate(180deg) !important;
-}
-
-body.logo-vibrant .logo img {
-    filter: brightness(1.4) saturate(2) contrast(1.3) !important;
-}
-
-body.logo-muted .logo img {
-    filter: brightness(0.9) saturate(0.4) contrast(0.9) !important;
-}
-
-body.logo-mono .logo img {
-    filter: grayscale(1) brightness(1.5) contrast(1.3) !important;
-}
-
 .nav-links {
     display: flex;
     gap: 40px;
@@ -657,14 +636,6 @@ body.cards-bold .event-card {
     background: rgba(74, 97, 86, 0.15);
 }
 
-/* Button Style Variations */
-body.buttons-rounded .btn {
-    border-radius: 50px;
-}
-
-body.buttons-square .btn {
-    border-radius: 4px;
-}
 
 /* Font Family Variations */
 /* Default: Playfair Display + Inter */
