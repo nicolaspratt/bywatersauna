@@ -514,13 +514,13 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0.9);
             width: 90%;
-            max-width: 800px;
+            max-width: 720px;
             max-height: 85vh;
-            background: var(--dark-forest);
+            background: var(--primary-bg);
             z-index: 2000;
             overflow-y: auto;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
             opacity: 0;
             pointer-events: none;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -535,25 +535,26 @@
         .sidebar-header {
             position: sticky;
             top: 0;
-            background: linear-gradient(135deg, var(--forest) 0%, var(--dark-forest) 100%);
-            padding: 40px;
+            background: var(--secondary-bg);
+            padding: 32px 40px;
             z-index: 10;
-            border-radius: 24px 24px 0 0;
+            border-radius: 20px 20px 0 0;
+            border-bottom: 1px solid var(--border);
         }
 
         .close-sidebar {
             position: absolute;
-            top: 24px;
-            right: 24px;
-            background: rgba(202, 94, 67, 0.2);
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            width: 44px;
-            height: 44px;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 18px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -562,12 +563,13 @@
 
         .close-sidebar:hover {
             background: var(--accent);
-            color: var(--warm-white);
-            transform: rotate(90deg) scale(1.1);
+            border-color: var(--accent);
+            color: white;
+            transform: scale(1.1);
         }
 
         .sidebar-content {
-            padding: 40px 30px;
+            padding: 32px 40px 40px;
         }
 
         .location-info-grid {
@@ -598,21 +600,45 @@
         }
 
         .sidebar-section {
-            margin-bottom: 40px;
+            margin-bottom: 28px;
         }
 
         .sidebar-section h4 {
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 16px;
-            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
         .sidebar-section p {
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .sidebar-info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .sidebar-info-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--text-muted);
-            line-height: 1.8;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .sidebar-info-value {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
         }
 
         .amenities-list {
@@ -1045,12 +1071,20 @@
             }
 
             .sidebar-header {
-                padding: 30px 20px;
+                padding: 24px 20px;
                 border-radius: 16px 16px 0 0;
+            }
+
+            .sidebar-header h2 {
+                font-size: 28px !important;
             }
 
             .sidebar-content {
                 padding: 20px;
+            }
+
+            .sidebar-info-card {
+                padding: 16px;
             }
         }
 
@@ -1171,14 +1205,20 @@
 
         body.theme-light .location-sidebar {
             background: var(--primary-bg);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
         }
 
         body.theme-light .sidebar-header {
-            background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+            background: var(--secondary-bg);
         }
 
         body.theme-light .sidebar-content {
             background: var(--primary-bg);
+        }
+
+        body.theme-light .sidebar-info-card {
+            background: white;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
         }
 
         body.theme-light .pricing-section {
@@ -1353,57 +1393,70 @@
     <div class="location-sidebar" id="locationSidebar">
         <div class="sidebar-header">
             <button class="close-sidebar" id="closeSidebar">✕</button>
-            <div class="location-badge" id="sidebarBadge"></div>
-            <h2 id="sidebarLocationName" style="font-size: 32px; margin-bottom: 8px; margin-top: 12px;"></h2>
-            <p id="sidebarTagline" style="color: var(--accent); font-size: 16px; margin-bottom: 12px;"></p>
-            <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 16px;">
-                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">📍 Address</div>
-                <p id="sidebarLocationAddress" style="color: var(--text); font-weight: 500; font-size: 15px;"></p>
-            </div>
+            <div class="location-badge" id="sidebarBadge" style="font-size: 11px; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 8px;"></div>
+            <h2 id="sidebarLocationName" style="font-size: 36px; margin-bottom: 8px; line-height: 1.2; color: var(--text);"></h2>
+            <p id="sidebarTagline" style="color: var(--text-muted); font-size: 17px; font-style: italic;"></p>
         </div>
 
         <div class="sidebar-content">
+            <!-- Address Card -->
+            <div class="sidebar-info-card" style="margin-bottom: 24px;">
+                <div class="sidebar-info-label">📍 Address</div>
+                <p id="sidebarLocationAddress" class="sidebar-info-value"></p>
+            </div>
+
             <!-- Photos Section -->
-            <div class="sidebar-section" style="margin-bottom: 24px;">
-                <h4 style="margin-bottom: 12px; font-size: 16px; color: var(--text);">📸 Photos</h4>
+            <div class="sidebar-section">
+                <h4>Photos</h4>
                 <div id="sidebarPhotos" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                     <!-- Photos will be loaded here -->
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
-                <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-                    <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">⏱️ Session Length</div>
-                    <p id="sidebarSessionLength" style="color: var(--text); font-weight: 600; font-size: 16px;"></p>
+            <!-- Quick Info Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px;">
+                <div class="sidebar-info-card">
+                    <div class="sidebar-info-label">⏱️ Session</div>
+                    <p id="sidebarSessionLength" class="sidebar-info-value"></p>
                 </div>
-                <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
-                    <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">⭐ Best Time</div>
-                    <p id="sidebarBestTime" style="color: var(--text); font-weight: 600; font-size: 14px; line-height: 1.4;"></p>
+                <div class="sidebar-info-card">
+                    <div class="sidebar-info-label">⭐ Best Time</div>
+                    <p id="sidebarBestTime" class="sidebar-info-value" style="font-size: 14px;"></p>
                 </div>
             </div>
 
-            <div class="sidebar-section" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
-                <h4 style="margin-bottom: 12px; font-size: 16px;">✨ What's Included</h4>
-                <ul class="amenities-list" id="sidebarAmenities" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;"></ul>
+            <!-- What's Included -->
+            <div class="sidebar-section">
+                <h4>What's Included</h4>
+                <div class="sidebar-info-card" style="padding: 16px 20px;">
+                    <ul class="amenities-list" id="sidebarAmenities" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;"></ul>
+                </div>
             </div>
 
-            <div class="sidebar-section" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
-                <h4 style="margin-bottom: 8px; font-size: 16px;">🅿️ Parking</h4>
-                <p id="sidebarParking" style="color: var(--text-muted); line-height: 1.6; font-size: 14px;"></p>
+            <!-- Getting There -->
+            <div class="sidebar-section">
+                <h4>Getting There</h4>
+                <div class="sidebar-info-card">
+                    <div style="margin-bottom: 16px;">
+                        <div class="sidebar-info-label" style="margin-bottom: 6px;">🅿️ Parking</div>
+                        <p id="sidebarParking" style="color: var(--text); line-height: 1.6; font-size: 15px;"></p>
+                    </div>
+                    <div>
+                        <div class="sidebar-info-label" style="margin-bottom: 6px;">🚌 Transit</div>
+                        <p id="sidebarTransit" style="color: var(--text); line-height: 1.6; font-size: 15px;"></p>
+                    </div>
+                </div>
             </div>
 
-            <div class="sidebar-section" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
-                <h4 style="margin-bottom: 8px; font-size: 16px;">🚌 Getting There</h4>
-                <p id="sidebarTransit" style="color: var(--text-muted); line-height: 1.6; font-size: 14px;"></p>
+            <!-- Action Buttons -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px;">
+                <button class="btn btn-outline" id="getDirections" style="padding: 14px 20px;">
+                    Get Directions
+                </button>
+                <a href="book.html" class="btn btn-primary" style="text-decoration: none; text-align: center; padding: 14px 20px;">
+                    Book Now
+                </a>
             </div>
-
-            <button class="btn-directions" id="getDirections" style="width: 100%; margin-bottom: 12px;">
-                Get Directions →
-            </button>
-
-            <a href="book.html" class="btn-directions" style="width: 100%; text-decoration: none; background: var(--accent); display: block; text-align: center;">
-                Book This Location →
-            </a>
         </div>
     </div>
 
