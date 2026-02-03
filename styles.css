@@ -273,19 +273,7 @@ body.theme-sage .nav-links a:hover {
     gap: 16px;
 }
 
-.theme-icon-toggle {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 6px;
-    margin-left: 8px;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-}
-.theme-icon-toggle:hover {
-    opacity: 1;
-}
+
 
 /* ========================================
    Buttons
@@ -833,39 +821,39 @@ body.layout-fullwidth section {
 body.theme-light {
     --primary-bg: #FFFCF7;
     --primary-bg-rgb: 255, 252, 247;
-    --secondary-bg: #F0E8DA;
+    --secondary-bg: #EDE4D4;
     --accent: #C94F37;
     --accent-light: #D96B56;
     --text: #2C1810;
     --text-muted: rgba(44, 24, 16, 0.7);
-    --card-bg: rgba(201, 79, 55, 0.08);
-    --border: rgba(201, 79, 55, 0.18);
+    --card-bg: #FFFFFF;
+    --border: rgba(201, 79, 55, 0.22);
 }
 
 /* Light Mode: Cool White */
 body.theme-light.lightmode-cool {
     --primary-bg: #EEF2F9;
     --primary-bg-rgb: 238, 242, 249;
-    --secondary-bg: #D0DAE9;
+    --secondary-bg: #C9D5E8;
     --accent: #1E5299;
     --accent-light: #2E6ABD;
     --text: #0E1824;
     --text-muted: rgba(14, 24, 36, 0.75);
-    --card-bg: rgba(30, 82, 153, 0.1);
-    --border: rgba(30, 82, 153, 0.25);
+    --card-bg: #FFFFFF;
+    --border: rgba(30, 82, 153, 0.28);
 }
 
 /* Light Mode: Sage */
 body.theme-light.lightmode-sage {
     --primary-bg: #EBF1EB;
     --primary-bg-rgb: 235, 241, 235;
-    --secondary-bg: #CEDACE;
+    --secondary-bg: #C5D4C5;
     --accent: #2A6B3A;
     --accent-light: #3A8A4E;
     --text: #0F1D12;
     --text-muted: rgba(15, 29, 18, 0.75);
-    --card-bg: rgba(42, 107, 58, 0.1);
-    --border: rgba(42, 107, 58, 0.25);
+    --card-bg: #FFFFFF;
+    --border: rgba(42, 107, 58, 0.28);
 }
 
 /* Dark Theme  (keep existing as default) */
@@ -963,9 +951,12 @@ body.theme-light .footer-section h4 {
     color: var(--text);
 }
 
+body.theme-light .ritual-card,
+body.theme-light .pricing-card,
 body.theme-light .location-card {
     background: white;
     border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 body.theme-light .faq-item {
@@ -983,8 +974,8 @@ body.colorscheme-forest {
 body.theme-light.colorscheme-forest {
     --accent: #2D6E3F;
     --accent-light: #3D8E4F;
-    --card-bg: rgba(45, 110, 63, 0.04);
-    --border: rgba(45, 110, 63, 0.12);
+    --card-bg: #FFFFFF;
+    --border: rgba(45, 110, 63, 0.25);
 }
 
 /* Ocean Color Scheme */
@@ -996,8 +987,8 @@ body.colorscheme-ocean {
 body.theme-light.colorscheme-ocean {
     --accent: #1B6A8B;
     --accent-light: #2B8AB1;
-    --card-bg: rgba(27, 106, 139, 0.04);
-    --border: rgba(27, 106, 139, 0.12);
+    --card-bg: #FFFFFF;
+    --border: rgba(27, 106, 139, 0.25);
 }
 
 /* Earth Color Scheme */
@@ -1009,8 +1000,8 @@ body.colorscheme-earth {
 body.theme-light.colorscheme-earth {
     --accent: #8B5E3C;
     --accent-light: #A87654;
-    --card-bg: rgba(139, 94, 60, 0.04);
-    --border: rgba(139, 94, 60, 0.12);
+    --card-bg: #FFFFFF;
+    --border: rgba(139, 94, 60, 0.25);
 }
 
 /* Lavender Color Scheme */
@@ -1022,8 +1013,8 @@ body.colorscheme-lavender {
 body.theme-light.colorscheme-lavender {
     --accent: #6E5C8A;
     --accent-light: #8A73A8;
-    --card-bg: rgba(110, 92, 138, 0.04);
-    --border: rgba(110, 92, 138, 0.12);
+    --card-bg: #FFFFFF;
+    --border: rgba(110, 92, 138, 0.25);
 }
 
 /* ========================================

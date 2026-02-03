@@ -275,7 +275,8 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: rgba(139, 157, 131, 0.15);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -651,7 +652,8 @@
         }
 
         .info-box {
-            background: rgba(255, 104, 51, 0.08);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-left: 4px solid var(--accent);
             padding: 20px;
             border-radius: 8px;
@@ -834,8 +836,8 @@
         }
 
         .faq-item {
-            background: rgba(74, 97, 86, 0.08);
-            border: 1px solid rgba(139, 157, 131, 0.15);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s;
@@ -843,7 +845,7 @@
 
         .faq-item.active {
             border-color: var(--accent);
-            background: rgba(255, 104, 51, 0.08);
+            background: var(--card-bg);
         }
 
         .faq-question {
@@ -1256,7 +1258,6 @@
                 <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
                 <a href="book.html" class="btn btn-primary">Book a Session</a>
             </div>
-            <button class="theme-icon-toggle" id="navThemeToggle" title="Toggle light/dark mode">☀️</button>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
@@ -1533,19 +1534,19 @@
 
         <div style="margin: 30px 0;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
-                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 20px; border-radius: 12px; text-align: center;">
                     <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">1 Credit</div>
                     <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$40</div>
                 </div>
-                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 20px; border-radius: 12px; text-align: center;">
                     <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">3 Credits</div>
                     <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$100</div>
                 </div>
-                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 20px; border-radius: 12px; text-align: center;">
                     <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">5 Credits</div>
                     <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$160</div>
                 </div>
-                <div style="background: rgba(139, 157, 131, 0.15); padding: 20px; border-radius: 12px; text-align: center;">
+                <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 20px; border-radius: 12px; text-align: center;">
                     <div style="font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">10 Credits</div>
                     <div style="font-size: 32px; font-weight: 900; color: var(--warm-white);">$300</div>
                 </div>
@@ -1673,7 +1674,6 @@
                     document.body.classList.add('theme-dark');
                     localStorage.setItem('bywater-theme-mode', 'dark');
                 }
-                if (typeof updateThemeIcon === 'function') updateThemeIcon();
                 if (typeof updateLightModeOptions === 'function') updateLightModeOptions();
             });
         }
@@ -2240,32 +2240,6 @@
                 if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
             }
 
-            function updateThemeIcon() {
-                const btn = document.getElementById('navThemeToggle');
-                if (btn) btn.textContent = document.body.classList.contains('theme-light') ? '🌙' : '☀️';
-            }
-
-            function toggleTheme() {
-                const isLight = document.body.classList.contains('theme-light');
-                if (isLight) {
-                    document.body.classList.remove('theme-light');
-                    document.body.classList.add('theme-dark');
-                    localStorage.setItem('bywater-theme-mode', 'dark');
-                    if (themeSlider) themeSlider.checked = false;
-                } else {
-                    document.body.classList.remove('theme-dark');
-                    document.body.classList.add('theme-light');
-                    localStorage.setItem('bywater-theme-mode', 'light');
-                    if (themeSlider) themeSlider.checked = true;
-                }
-                updateThemeIcon();
-                updateLightModeOptions();
-            }
-
-            const navThemeToggle = document.getElementById('navThemeToggle');
-            if (navThemeToggle) navThemeToggle.addEventListener('click', toggleTheme);
-
-            updateThemeIcon();
             updateLightModeOptions();
 
             // Handle option changes
