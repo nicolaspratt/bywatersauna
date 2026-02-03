@@ -394,13 +394,14 @@
 
         .location-card {
             background: linear-gradient(135deg, var(--card-bg) 0%, var(--secondary-bg) 100%);
-            border: 2px solid var(--border);
+            border: 3px solid var(--border);
             border-radius: 20px;
             padding: 28px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
         }
 
         .location-card::before {
@@ -837,7 +838,7 @@
 
         .faq-item {
             background: var(--card-bg);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             transition: all 0.3s;
@@ -845,6 +846,7 @@
 
         .faq-item.active {
             border-color: var(--accent);
+            border-width: 2px;
             background: var(--card-bg);
         }
 
@@ -1566,9 +1568,9 @@
         <div class="option-group">
             <label>Card Style</label>
             <div class="option-buttons">
-                <button class="option-btn active" data-option="cards" data-value="default">Default</button>
+                <button class="option-btn" data-option="cards" data-value="default">Default</button>
                 <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
-                <button class="option-btn" data-option="cards" data-value="bold">Bold</button>
+                <button class="option-btn active" data-option="cards" data-value="bold">Bold</button>
             </div>
         </div>
 
@@ -2284,6 +2286,10 @@
                 const saved = localStorage.getItem(`bywater-${option}`);
                 if (saved) {
                     const btn = document.querySelector(`[data-option="${option}"][data-value="${saved}"]`);
+                    if (btn) btn.click();
+                } else if (option === 'cards') {
+                    // Bold cards is the default
+                    const btn = document.querySelector(`[data-option="cards"][data-value="bold"]`);
                     if (btn) btn.click();
                 }
             });

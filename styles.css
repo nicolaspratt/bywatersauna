@@ -952,11 +952,21 @@ body.theme-light .footer-section h4 {
 }
 
 body.theme-light .ritual-card,
-body.theme-light .pricing-card,
+body.theme-light .pricing-card {
+    background: white;
+    border: 2px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
 body.theme-light .location-card {
     background: white;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 3px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-light .faq-item {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 body.theme-light .faq-item {
