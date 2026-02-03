@@ -380,10 +380,10 @@
         <div class="option-group">
             <label>Card Style</label>
             <div class="option-buttons">
-                <button class="option-btn active" data-option="cards" data-value="default">Bold</button>
+                <button class="option-btn active" data-option="cards" data-value="elevated">Elevated</button>
+                <button class="option-btn" data-option="cards" data-value="default">Bold</button>
                 <button class="option-btn" data-option="cards" data-value="outlined">Outlined</button>
                 <button class="option-btn" data-option="cards" data-value="minimal">Minimal</button>
-                <button class="option-btn" data-option="cards" data-value="elevated">Elevated</button>
                 <button class="option-btn" data-option="cards" data-value="glass">Glass</button>
             </div>
         </div>
@@ -543,13 +543,18 @@
             const savedCards = localStorage.getItem('bywater-cards');
             const savedFont = localStorage.getItem('bywater-font');
 
-            if (savedCards && savedCards !== 'default') {
-                document.body.classList.add(`cards-${savedCards}`);
+            if (savedCards) {
+                if (savedCards !== 'default') {
+                    document.body.classList.add(`cards-${savedCards}`);
+                }
                 const cardsBtn = designOptions.querySelector(`[data-option="cards"][data-value="${savedCards}"]`);
                 if (cardsBtn) {
                     cardsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
                     cardsBtn.classList.add('active');
                 }
+            } else {
+                // Elevated is the default
+                document.body.classList.add('cards-elevated');
             }
 
             if (savedFont && savedFont !== 'playfair') {

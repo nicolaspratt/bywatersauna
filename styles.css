@@ -683,8 +683,19 @@ body.cards-elevated .team-member,
 body.cards-elevated .tier-card,
 body.cards-elevated .event-card {
     background: var(--card-bg);
-    border-width: 1px;
+    border: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+body.theme-light.cards-elevated .location-card,
+body.theme-light.cards-elevated .ritual-card,
+body.theme-light.cards-elevated .pricing-card,
+body.theme-light.cards-elevated .team-member,
+body.theme-light.cards-elevated .tier-card,
+body.theme-light.cards-elevated .event-card {
+    background: white;
+    border: none;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* Glass - frosted glass effect */
