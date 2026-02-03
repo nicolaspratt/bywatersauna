@@ -191,6 +191,12 @@ nav {
     height: 32px;
 }
 
+/* BYWATER text color follows accent */
+.logo .bywater-text, .footer-logo .bywater-text {
+    fill: var(--accent);
+    transition: fill 0.3s;
+}
+
 /* SAUNA text color changes with theme */
 .logo .sauna-text, .footer-logo .sauna-text {
     fill: #FFFFFF;
@@ -609,6 +615,33 @@ footer {
 .option-btn:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
+}
+
+/* Design Options Panel - Light Mode */
+body.theme-light .design-options {
+    background: white;
+    border-color: var(--border);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-light .design-options h3 {
+    color: var(--accent);
+}
+
+body.theme-light .option-group label {
+    color: var(--text-muted);
+}
+
+body.theme-light .option-btn {
+    border-color: var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+}
+
+body.theme-light .option-btn.active {
+    border-color: var(--accent);
+    background: rgba(var(--accent), 0.1);
+    color: var(--accent);
 }
 
 /* ========================================

@@ -207,7 +207,7 @@
     <header id="header">
         <nav>
             <a href="index.html" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" fill="#E8634F" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text class="bywater-text" x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html#how-it-works">How it Works</a></li>
@@ -293,7 +293,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" fill="#E8634F" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text class="bywater-text" x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
                 </div>
                 <p class="footer-description">
                     Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
@@ -362,15 +362,6 @@
         </div>
 
         <div class="option-group">
-            <label>Button Style</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="buttons" data-value="default">Default</button>
-                <button class="option-btn" data-option="buttons" data-value="rounded">Rounded</button>
-                <button class="option-btn" data-option="buttons" data-value="square">Square</button>
-            </div>
-        </div>
-
-        <div class="option-group">
             <label>Typography</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="font" data-value="playfair" title="Playfair Display + Inter">
@@ -391,17 +382,6 @@
             </div>
         </div>
 
-        <div class="option-group">
-            <label>Logo Color</label>
-            <div class="option-buttons">
-                <button class="option-btn active" data-option="logo" data-value="default">Default</button>
-                <button class="option-btn" data-option="logo" data-value="warm">Warm</button>
-                <button class="option-btn" data-option="logo" data-value="cool">Cool</button>
-                <button class="option-btn" data-option="logo" data-value="vibrant">Vibrant</button>
-                <button class="option-btn" data-option="logo" data-value="muted">Muted</button>
-                <button class="option-btn" data-option="logo" data-value="mono">Mono</button>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -508,9 +488,7 @@
 
             // Restore saved preferences (skip theme)
             const savedCards = localStorage.getItem('bywater-cards');
-            const savedButtons = localStorage.getItem('bywater-buttons');
             const savedFont = localStorage.getItem('bywater-font');
-            const savedLogo = localStorage.getItem('bywater-logo');
 
             if (savedCards && savedCards !== 'default') {
                 document.body.classList.add(`cards-${savedCards}`);
@@ -521,30 +499,12 @@
                 }
             }
 
-            if (savedButtons && savedButtons !== 'default') {
-                document.body.classList.add(`buttons-${savedButtons}`);
-                const buttonsBtn = designOptions.querySelector(`[data-option="buttons"][data-value="${savedButtons}"]`);
-                if (buttonsBtn) {
-                    buttonsBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    buttonsBtn.classList.add('active');
-                }
-            }
-
             if (savedFont && savedFont !== 'playfair') {
                 document.body.classList.add(`font-${savedFont}`);
                 const fontBtn = designOptions.querySelector(`[data-option="font"][data-value="${savedFont}"]`);
                 if (fontBtn) {
                     fontBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
                     fontBtn.classList.add('active');
-                }
-            }
-
-            if (savedLogo && savedLogo !== 'default') {
-                document.body.classList.add(`logo-${savedLogo}`);
-                const logoBtn = designOptions.querySelector(`[data-option="logo"][data-value="${savedLogo}"]`);
-                if (logoBtn) {
-                    logoBtn.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-                    logoBtn.classList.add('active');
                 }
             }
         }

@@ -425,6 +425,17 @@
             color: white;
         }
 
+        body.theme-light .location-card.active h3,
+        body.theme-light .location-card.active .location-tag,
+        body.theme-light .location-card.active p {
+            color: var(--text);
+        }
+
+        body.theme-light .location-card.active {
+            background: white;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 0 0 0 3px var(--accent);
+        }
+
         .location-card.active::before {
             transform: scaleX(1);
         }
@@ -505,7 +516,17 @@
             height: 100%;
         }
 
-        /* Map marker highlighting */
+        /* Map marker styling */
+        .map-marker-dot {
+            background: var(--accent);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-bg);
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
         .location-marker {
             transition: all 0.3s;
         }
@@ -1285,7 +1306,7 @@
     <header id="header">
         <nav>
             <a href="index.html" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" fill="#E8634F" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text class="bywater-text" x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
             </a>
             <ul class="nav-links">
                 <li><a href="#how-it-works">How it Works</a></li>
@@ -1535,7 +1556,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" fill="#E8634F" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 180" role="img" aria-label="Bywater Sauna"><text class="bywater-text" x="15" y="105" font-family="'Anton', 'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="900" letter-spacing="7">BYWATER</text><text class="sauna-text" x="215" y="155" font-family="'Montserrat', 'Futura', 'Trebuchet MS', sans-serif" font-size="32" font-weight="700" letter-spacing="14" text-anchor="middle">SAUNA</text></svg>
                 </div>
                 <p class="footer-description">
                     Seattle's authentic beach sauna experience. Heat up in cedar barrel saunas, cool down in Puget Sound.
@@ -2085,7 +2106,7 @@
             locations.forEach(loc => {
                 const icon = L.divIcon({
                     className: 'custom-icon location-marker',
-                    html: '<div style="background: #ca5e43; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #FAF8F3; transition: all 0.3s;"></div>',
+                    html: '<div class="map-marker-dot"></div>',
                     iconSize: [24, 24],
                     iconAnchor: [12, 12]
                 });
