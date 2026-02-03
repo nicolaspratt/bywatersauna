@@ -650,6 +650,8 @@ body.theme-light .option-btn.active {
 
 /* Card Style Variations */
 
+/* Default (Bold) uses base styles - 3px border, card-bg fill */
+
 /* Minimal - thin borders, transparent */
 body.cards-minimal .location-card,
 body.cards-minimal .ritual-card,
@@ -662,14 +664,14 @@ body.cards-minimal .event-card {
     box-shadow: none;
 }
 
-/* Outlined - medium borders, subtle fill */
+/* Outlined - medium borders, no fill */
 body.cards-outlined .location-card,
 body.cards-outlined .ritual-card,
 body.cards-outlined .pricing-card,
 body.cards-outlined .team-member,
 body.cards-outlined .tier-card,
 body.cards-outlined .event-card {
-    background: var(--card-bg);
+    background: transparent;
     border-width: 2px;
 }
 

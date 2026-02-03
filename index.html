@@ -2120,17 +2120,17 @@
                 mapMarkers[loc.name] = marker;
             });
 
-            // Fit map to show all markers initially
-            resetMapView();
+            // Fit map to show all markers initially (no animation on load)
+            resetMapView(false);
         }
 
         // Reset map to show all locations
-        function resetMapView() {
+        function resetMapView(animate = true) {
             if (locationsData.length > 0) {
                 const bounds = L.latLngBounds(
                     locationsData.map(loc => [loc.lat, loc.lng])
                 );
-                map.fitBounds(bounds, { padding: [80, 80], maxZoom: 11 });
+                map.fitBounds(bounds, { padding: [80, 80], maxZoom: 11, animate: animate });
             }
         }
 
