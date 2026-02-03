@@ -1256,6 +1256,7 @@
                 <button class="btn btn-outline" id="giftCertBtn">Gift Certificates</button>
                 <a href="book.html" class="btn btn-primary">Book a Session</a>
             </div>
+            <button class="theme-icon-toggle" id="navThemeToggle" title="Toggle light/dark mode">☀️</button>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
@@ -1562,17 +1563,6 @@
         <h3>🎨 Design Options</h3>
 
         <div class="option-group">
-            <label>Theme</label>
-            <div class="theme-toggle-container">
-                <span class="theme-label">Dark</span>
-                <div class="theme-toggle" id="themeToggle">
-                    <div class="theme-toggle-slider"></div>
-                </div>
-                <span class="theme-label">Light</span>
-            </div>
-        </div>
-
-        <div class="option-group">
             <label>Card Style</label>
             <div class="option-buttons">
                 <button class="option-btn active" data-option="cards" data-value="default">Default</button>
@@ -1683,8 +1673,8 @@
                     document.body.classList.add('theme-dark');
                     localStorage.setItem('bywater-theme-mode', 'dark');
                 }
-                var el = document.getElementById('lightModeOptions');
-                if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
+                if (typeof updateThemeIcon === 'function') updateThemeIcon();
+                if (typeof updateLightModeOptions === 'function') updateLightModeOptions();
             });
         }
 
@@ -1838,9 +1828,6 @@
                     document.querySelectorAll('.location-card').forEach(c => c.classList.remove('active'));
                     card.classList.add('active');
 
-                    // Update map
-                    map.setView([location.lat, location.lng], 14);
-
                     // Open modal
                     openLocationSidebar(location);
                 });
@@ -1931,10 +1918,17 @@
                 });
             }
 
-            // Show sidebar and reset scroll
+            // Reset scroll before showing
+            var sidebarContent = document.querySelector('.sidebar-content');
+            sidebarContent.scrollTop = 0;
+
+            // Show sidebar
             document.getElementById('locationSidebar').classList.add('active');
             document.getElementById('sidebarOverlay').classList.add('active');
-            document.querySelector('.sidebar-content').scrollTop = 0;
+
+            // Reset scroll again after sidebar is visible
+            setTimeout(function() { sidebarContent.scrollTop = 0; }, 50);
+
             // Disable page scrolling
             document.body.style.overflow = 'hidden';
         }
@@ -2242,39 +2236,39 @@
                 designOptionsToggle.textContent = isActive ? '⚙️' : '✕';
             });
 
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                // Check saved theme
-                const savedTheme = localStorage.getItem('bywater-theme-mode');
-                if (savedTheme === 'light') {
+            // Theme toggle functionality (nav icon + footer slider)
+            function updateLightModeOptions() {
+                const el = document.getElementById('lightModeOptions');
+                if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
+            }
+
+            function updateThemeIcon() {
+                const btn = document.getElementById('navThemeToggle');
+                if (btn) btn.textContent = document.body.classList.contains('theme-light') ? '🌙' : '☀️';
+            }
+
+            function toggleTheme() {
+                const isLight = document.body.classList.contains('theme-light');
+                if (isLight) {
+                    document.body.classList.remove('theme-light');
+                    document.body.classList.add('theme-dark');
+                    localStorage.setItem('bywater-theme-mode', 'dark');
+                    if (themeSlider) themeSlider.checked = false;
+                } else {
+                    document.body.classList.remove('theme-dark');
                     document.body.classList.add('theme-light');
-                    themeToggle.classList.add('active');
+                    localStorage.setItem('bywater-theme-mode', 'light');
+                    if (themeSlider) themeSlider.checked = true;
                 }
-
-                function updateLightModeOptions() {
-                    const el = document.getElementById('lightModeOptions');
-                    if (el) el.style.display = document.body.classList.contains('theme-light') ? '' : 'none';
-                }
-
-                themeToggle.addEventListener('click', () => {
-                    const isLight = document.body.classList.contains('theme-light');
-                    if (isLight) {
-                        document.body.classList.remove('theme-light');
-                        document.body.classList.add('theme-dark');
-                        themeToggle.classList.remove('active');
-                        localStorage.setItem('bywater-theme-mode', 'dark');
-                    } else {
-                        document.body.classList.remove('theme-dark');
-                        document.body.classList.add('theme-light');
-                        themeToggle.classList.add('active');
-                        localStorage.setItem('bywater-theme-mode', 'light');
-                    }
-                    updateLightModeOptions();
-                });
-
+                updateThemeIcon();
                 updateLightModeOptions();
             }
+
+            const navThemeToggle = document.getElementById('navThemeToggle');
+            if (navThemeToggle) navThemeToggle.addEventListener('click', toggleTheme);
+
+            updateThemeIcon();
+            updateLightModeOptions();
 
             // Handle option changes
             document.querySelectorAll('.option-btn').forEach(btn => {

@@ -273,6 +273,20 @@ body.theme-sage .nav-links a:hover {
     gap: 16px;
 }
 
+.theme-icon-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.theme-icon-toggle:hover {
+    opacity: 1;
+}
+
 /* ========================================
    Buttons
    ======================================== */
@@ -830,28 +844,28 @@ body.theme-light {
 
 /* Light Mode: Cool White */
 body.theme-light.lightmode-cool {
-    --primary-bg: #F8FAFE;
-    --primary-bg-rgb: 248, 250, 254;
-    --secondary-bg: #EDF1F7;
-    --accent: #3B6B9E;
-    --accent-light: #5085B5;
-    --text: #1A2433;
-    --text-muted: rgba(26, 36, 51, 0.65);
-    --card-bg: rgba(59, 107, 158, 0.06);
-    --border: rgba(59, 107, 158, 0.15);
+    --primary-bg: #F0F4FA;
+    --primary-bg-rgb: 240, 244, 250;
+    --secondary-bg: #D9E2F0;
+    --accent: #2B5A8F;
+    --accent-light: #3D72B0;
+    --text: #111C2E;
+    --text-muted: rgba(17, 28, 46, 0.7);
+    --card-bg: rgba(43, 90, 143, 0.08);
+    --border: rgba(43, 90, 143, 0.2);
 }
 
 /* Light Mode: Sage */
 body.theme-light.lightmode-sage {
-    --primary-bg: #F5F8F5;
-    --primary-bg-rgb: 245, 248, 245;
-    --secondary-bg: #E8EDE8;
-    --accent: #4A6150;
-    --accent-light: #5E7A64;
-    --text: #1C2B1E;
-    --text-muted: rgba(28, 43, 30, 0.65);
-    --card-bg: rgba(74, 97, 80, 0.06);
-    --border: rgba(74, 97, 80, 0.15);
+    --primary-bg: #EDF3ED;
+    --primary-bg-rgb: 237, 243, 237;
+    --secondary-bg: #D4DED4;
+    --accent: #355740;
+    --accent-light: #4A7358;
+    --text: #142018;
+    --text-muted: rgba(20, 32, 24, 0.7);
+    --card-bg: rgba(53, 87, 64, 0.08);
+    --border: rgba(53, 87, 64, 0.2);
 }
 
 /* Dark Theme  (keep existing as default) */
